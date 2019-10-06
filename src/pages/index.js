@@ -1,9 +1,17 @@
 import React from "react"
 import Resume from "../components/resume"
 import { allItems } from "../utils/items.js"
+import { Helmet } from "react-helmet"
 
 export default () => (
   <div style={{ maxWidth: "75vw", margin: "3rem auto" }}>
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>Charles Jenkins</title>
+      <link rel="canonical" href="https://thecharlesjenkins.com/" />
+      <link rel="icon" href="best_charlemagne.ico" />
+    </Helmet>
+
     <h1>
       <a
         href="https://www.linkedin.com/in/charles--jenkins/"
