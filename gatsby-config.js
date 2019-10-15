@@ -5,13 +5,35 @@
  */
 
 module.exports = {
+  siteMetadata: {
+    title: `Charles Jenkins`,
+    social: [
+      {
+        name: "LinkedIn",
+        url: `https://linkedin.com/in/charles--jenkins`,
+      },
+      {
+        name: "Github",
+        url: `https://github.com/BestCharlemagne`,
+      },
+      {
+        name: "Email",
+        url: `mailto:thecharlesjenkins@gmail.com`,
+      },
+    ]
+  },
+    
   plugins: [
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        pathToConfigModule: `src/utils/typography`,
+        name: `src`,
+        path: `${__dirname}/src/`,
       },
     },
-    `gatsby-plugin-react-helmet`
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-emotion`,
+    `gatsby-transformer-remark`,
+    `gatsby-plugin-dark-mode`
   ],
 }

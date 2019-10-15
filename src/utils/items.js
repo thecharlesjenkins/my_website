@@ -52,4 +52,4 @@ const allItems = [
   [newsletterTitle, newsletterItems],
 ]
 
-export {allItems};
+export { allItems }
