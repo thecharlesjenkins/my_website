@@ -6,7 +6,8 @@ const theme = {
         lightPink: "#F172A1",
         offwhite: '#DCE7FF',
         darkGray: '#333F58',
-        lightGreen: '#D1E8E2',
+        lightGray: '#d3d3d3',
+        lightGreen: '#71d99a',
         darkGreen: '#116466',
     }
 }

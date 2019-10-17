@@ -2,6 +2,7 @@ import React from "react"
 import IconGithub from "./icons/github"
 import IconLinkedin from "./icons/linkedin"
 import IconEmail from "./icons/email"
+import styled from "styled-components"
 
 const FormattedIcon = ({ size, title }) => {
   switch (title) {
@@ -16,9 +17,13 @@ const FormattedIcon = ({ size, title }) => {
   }
 };
 
+const IconHolder = styled.div`
+  padding: 5px
+`
+
 export default ({ link, social }) => {
     return (
-      <div>
+      <IconHolder>
         <a
           href={link}
           target="_blank"
@@ -27,6 +32,6 @@ export default ({ link, social }) => {
         >
           <FormattedIcon title={social} size={35}/>
         </a>
-      </div>
+      </IconHolder>
     )
   }

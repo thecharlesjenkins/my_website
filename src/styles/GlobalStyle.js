@@ -1,8 +1,7 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components"
 import theme from "./theme"
 require("typeface-noto-sans-tc")
-console.log(theme)
-const {colors} = theme
+const { colors } = theme
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -15,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
   }
   body {
+    transition: all 1s ease;
     margin: 0;
     width: 100%;
     min-height: 100%;
@@ -28,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
     }
     
     button {
+      transition: all 1s;
       border: 1px solid;
       border-radius: 5px;
       font-size: 20px;
@@ -44,6 +45,16 @@ const GlobalStyle = createGlobalStyle`
         display: none !important;
       }
     }
+
+    svg {
+      transition: all .25s;
+      path {
+        transition: all .5s;
+      }
+      &:hover {
+        transform: translateY(-3px);
+      }
+    }
   }
   body.light {
     background-color: ${colors.lightBlue};
@@ -54,8 +65,19 @@ const GlobalStyle = createGlobalStyle`
     button {
       color: ${colors.darkGreen};
       background-color: ${colors.lightGreen};
-      &:active {
-        outline: none;
+      &:hover {
+        color: ${colors.lightGreen};
+        background-color: ${colors.darkGreen};
+      }
+    }
+    footer {
+      background-color: ${colors.lightGray};
+    }
+    svg {
+      &:hover {
+        path{
+          fill: ${colors.darkGreen};
+        }
       }
     }
   }
@@ -71,8 +93,19 @@ const GlobalStyle = createGlobalStyle`
     button {
       color: ${colors.lightGreen};
       background-color: ${colors.darkGreen};
-      &:active {
-        outline: none;
+      &:hover {
+        color: ${colors.darkGreen};
+        background-color: ${colors.lightGreen};
+      }
+    }
+    footer {
+      background-color: ${colors.darkGray};
+    }
+    svg {
+      &:hover {
+        path{
+          fill: ${colors.lightGreen};
+        }
       }
     }
   }
@@ -103,11 +136,10 @@ const GlobalStyle = createGlobalStyle`
     border: 0;
     border-radius: 0;
     &:focus,
-
   }
   p {
     margin: 0 0 15px 0;
   }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle
