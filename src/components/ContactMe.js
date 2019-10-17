@@ -3,26 +3,6 @@ import SectionTitle from "./sections_title"
 import { graphql, useStaticQuery } from "gatsby"
 import SocialContainer from "./SocialMediaContainer"
 
-// const SocialContainer = styled.div`
-// width: 40px;
-// position: fixed;
-// align-items: center;
-// white-space: nowrap;
-// bottom: 0;
-// left: 40px;
-
-//   &:after {
-//     content: '';
-//     display: block;
-//     height: 100px;
-//     width: 1px;
-//     background-color: gray
-//     border-radius: 25px;
-//     top: -5px;
-//     margin-left: 16.5px;
-//   }
-// `
-
 export default () => {
   const data = useStaticQuery(graphql`
     {
