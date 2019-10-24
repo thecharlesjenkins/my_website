@@ -6,7 +6,7 @@
 
 module.exports = {
   siteMetadata: {
-    title: `Charles Jenkins`,
+    title: `Charles Jenkins | Software Engineer`,
     social: [
       {
         name: "LinkedIn",

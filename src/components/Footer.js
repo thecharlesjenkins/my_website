@@ -7,7 +7,7 @@ const FooterContainer = styled.footer`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 15px;
+  padding: 10px 0 0 0;
   text-align: center;
   height: auto;
   min-height: 70px;
@@ -17,7 +17,7 @@ export default () => {
     return(
         <FooterContainer>
             <SocialMediaContainer fixed={false}/>
-            <h5 style={{paddingTop:"15px"}}>Created by Charles Jenkins</h5>
+            <h5 style={{paddingTop:"10px"}}>Created by Charles Jenkins</h5>
         </FooterContainer>
     )
 }

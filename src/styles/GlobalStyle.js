@@ -29,13 +29,9 @@ const GlobalStyle = createGlobalStyle`
     
     button {
       transition: all 1s;
-      border: 1px solid;
-      border-radius: 5px;
-      font-size: 20px;
       line-height: 1;
       text-decoration: none;
       cursor: pointer;
-      padding: 1.25rem 1.75rem;
       &:hover,
       &:focus,
       &:active {
@@ -80,6 +76,9 @@ const GlobalStyle = createGlobalStyle`
         }
       }
     }
+    nav {
+      background-color: ${colors.lightGray};
+    }
   }
   body.dark {
     background-color: ${colors.darkBlue}
@@ -107,6 +106,10 @@ const GlobalStyle = createGlobalStyle`
           fill: ${colors.lightGreen};
         }
       }
+    }
+    nav {
+      background-color: ${colors.darkGray};
+    }
     }
   }
   ::selection {

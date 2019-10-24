@@ -1,7 +1,14 @@
 import React from "react"
-import SectionTitle from "./sections_title"
+import SectionTitle from "./SectionTitle"
 import { graphql, useStaticQuery } from "gatsby"
 import SocialContainer from "./SocialMediaContainer"
+import styled from "styled-components"
+
+const Button = styled.button`
+border: 1px solid;
+border-radius: 5px;
+font-size: 20px;
+padding: 1.25rem 1.75rem;`
 
 export default () => {
   const data = useStaticQuery(graphql`
@@ -31,7 +38,7 @@ export default () => {
           }}
         ></div>
         <a href="mailto:thecharlesjenkins@gmail.com">
-          <button>Email me</button>
+          <Button>Email me</Button>
         </a>
       </div>
       <SocialContainer fixed={true} />

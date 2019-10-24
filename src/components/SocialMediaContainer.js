@@ -15,14 +15,14 @@ const FixedContainer = styled.div`
         white-space: nowrap;
         width: 35px;
         position: fixed;
-        bottom: 0;
+        bottom: 0px;
         left: 25px;
         ${media.tablet`display: none;`};
         
         &:after {
             content: '';
             display: block;
-            height: 100px;
+            height: 120px;
             width: 1px;
             background-color: gray
             border-radius: 25px;

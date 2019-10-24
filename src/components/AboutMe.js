@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import SectionTitle from "./sections_title"
+import SectionTitle from "./SectionTitle"
 
 export default () => {
   const data = useStaticQuery(graphql`
