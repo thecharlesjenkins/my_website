@@ -11,24 +11,24 @@ const SocialContainer = styled.div`
 `
 
 const FixedContainer = styled.div`
-        align-items: center;
-        white-space: nowrap;
-        width: 35px;
-        position: fixed;
-        bottom: 0px;
-        left: 25px;
-        ${media.tablet`display: none;`};
-        
-        &:after {
-            content: '';
-            display: block;
-            height: 120px;
-            width: 1px;
-            background-color: gray
-            border-radius: 25px;
-            top: -5px;
-            margin-left: 21.5px;
-          }`
+  align-items: center;
+  white-space: nowrap;
+  width: 35px;
+  position: fixed;
+  bottom: 0px;
+  left: 25px;
+  ${media.tablet`display: none;`};
+
+  &:after {
+    content: "";
+    display: block;
+    height: 120px;
+    width: 1px;
+    background-color: gray;
+    top: -5px;
+    margin-left: 21.5px;
+  }
+`
 
 export default ({ fixed }) => {
   const data = useStaticQuery(graphql`

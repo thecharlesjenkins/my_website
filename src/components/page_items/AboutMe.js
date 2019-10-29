@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import SectionTitle from "../SectionTitle"
-import Section from "../Section"
 
 export default () => {
   const data = useStaticQuery(graphql`
@@ -19,7 +18,7 @@ export default () => {
     }
   `)
   return (
-    <Section id="about">
+    <div>
       <SectionTitle>
         {data.allMarkdownRemark.edges[0].node.frontmatter.title}
       </SectionTitle>
@@ -28,6 +27,6 @@ export default () => {
           __html: data.allMarkdownRemark.edges[0].node.html,
         }}
       ></div>
-    </Section>
+    </div>
   )
 }

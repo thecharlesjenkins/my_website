@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import mixins from "../../styles/mixins"
+import media from "../../styles/media"
 
 const navLinks = [
   {
@@ -37,6 +38,7 @@ const TopNav = styled.ul`
 
 const NavItem = styled.li`
   float: right;
+  ${media.phablet`display: none;`};
 `
 
 const NavItemLink = styled(Link)`
@@ -55,7 +57,7 @@ const Resume = styled.button`
   float: right;
 `
 
-const Title = styled.a`
+const Title = styled(Link)`
   float: left;
   font-size: 30px;
   padding: 0px 10px 10px 10px;
@@ -75,7 +77,7 @@ const ResumeLink = ({ children }) => (
 export default () => (
   <Container>
     <TopNav>
-      <Title>Charles Jenkins</Title>
+      <Title to="/">Charles Jenkins</Title>
       <ResumeLink>Resume</ResumeLink>
       {navLinks &&
         navLinks.map(({ url, name }, i) => (

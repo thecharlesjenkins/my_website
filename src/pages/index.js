@@ -7,11 +7,14 @@ import Projects from "../components/page_items/Projects"
 import GlobalStyle from "../styles/GlobalStyle"
 import Footer from "../components/page_items/Footer"
 import Navigation from "../components/page_items/Navigation"
-import Layout from "../components/Layout"
 
+// https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
+if (typeof window !== "undefined") {
+  // eslint-disable-next-line global-require
+  require("smooth-scroll")('a[href*="#"]')
+}
 
 export default ({ data }) => (
-  <Layout>
   <div>
     <GlobalStyle />
     <Helmet>
@@ -24,16 +27,15 @@ export default ({ data }) => (
     <div style={{ maxWidth: "75vw", margin: "4rem auto" }}>
       <h4>Hello, I am</h4>
       <h1>Charles Jenkins</h1>
-      <h4>a software engineer</h4>
+      <h4 id="about">a software engineer</h4>
       <div>
-        <AboutMe/>
-        <Projects/>
-        <ContactMe/>
+        <AboutMe />
+        <Projects />
+        <ContactMe />
       </div>
     </div>
     <Footer />
   </div>
-  </Layout>
 )
 
 export const query = graphql`

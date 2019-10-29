@@ -51,38 +51,6 @@ const GlobalStyle = createGlobalStyle`
         transform: translateY(-3px);
       }
     }
-
-    // Default is dark mode so load as dark mode
-    background-color: ${colors.darkBlue}
-    color: ${colors.offwhite}
-    h3 {
-      color: ${colors.lightPink}
-    }
-    path {
-      fill: ${colors.offwhite}
-    }
-    button {
-      color: ${colors.lightGreen};
-      background-color: ${colors.darkGreen};
-      &:hover {
-        color: ${colors.darkGreen};
-        background-color: ${colors.lightGreen};
-      }
-    }
-    footer {
-      background-color: ${colors.darkGray};
-    }
-    svg {
-      &:hover {
-        path{
-          fill: ${colors.lightGreen};
-        }
-      }
-    }
-    nav {
-      background-color: ${colors.darkGray};
-    }
-    }
   }
   body.light {
     background-color: ${colors.lightBlue};
@@ -112,7 +80,38 @@ const GlobalStyle = createGlobalStyle`
       background-color: ${colors.lightGray};
     }
   }
-  body.dark {}
+  body.dark {
+    background-color: ${colors.darkBlue};
+    color: ${colors.offwhite};
+    h3 {
+      color: ${colors.lightPink};
+    }
+    path {
+      fill: ${colors.offwhite};
+    }
+    button {
+      color: ${colors.lightGreen};
+      background-color: ${colors.darkGreen};
+      &:hover {
+        color: ${colors.darkGreen};
+        background-color: ${colors.lightGreen};
+      }
+    }
+    footer {
+      background-color: ${colors.darkGray};
+    }
+    svg {
+      &:hover {
+        path{
+          fill: ${colors.lightGreen};
+        }
+      }
+    }
+    nav {
+      background-color: ${colors.darkGray};
+    }
+    }
+  }
   ::selection {
   }
   h1,
