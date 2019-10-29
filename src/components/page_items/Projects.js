@@ -4,8 +4,6 @@ import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import media from "../../styles/media"
-import Section from "../Section"
-
 
 const CardContainer = styled.div`
   text-align: center;
@@ -46,11 +44,11 @@ export default () => {
     }
   `)
   return (
-    <Section id="projects">
+    <div>
       <SectionTitle>My Projects</SectionTitle>
       <CardContainer>
-        {data.allMarkdownRemark.edges.map(edge => (
-          <Card>
+        {data.allMarkdownRemark.edges.map((edge, i) => (
+          <Card key={i}>
             <a
               href={edge.node.frontmatter.link}
               target="_blank"
@@ -65,6 +63,7 @@ export default () => {
           </Card>
         ))}
       </CardContainer>
-    </Section>
+      <div id="contact"></div>
+    </div>
   )
 }

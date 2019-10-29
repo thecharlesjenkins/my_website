@@ -81,13 +81,13 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   body.dark {
-    background-color: ${colors.darkBlue}
-    color: ${colors.offwhite}
+    background-color: ${colors.darkBlue};
+    color: ${colors.offwhite};
     h3 {
-      color: ${colors.lightPink}
+      color: ${colors.lightPink};
     }
     path {
-      fill: ${colors.offwhite}
+      fill: ${colors.offwhite};
     }
     button {
       color: ${colors.lightGreen};

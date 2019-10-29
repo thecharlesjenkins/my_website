@@ -3,7 +3,6 @@ import SectionTitle from "../SectionTitle"
 import { graphql, useStaticQuery } from "gatsby"
 import SocialContainer from "../SocialMediaContainer"
 import styled from "styled-components"
-import Section from "../Section"
 
 const Button = styled.button`
   border: 1px solid;
@@ -29,7 +28,7 @@ export default () => {
   `)
 
   return (
-    <Section id="contact">
+    <div id="contact">
       <SectionTitle>
         {data.allMarkdownRemark.edges[0].node.frontmatter.title}
       </SectionTitle>
@@ -44,6 +43,6 @@ export default () => {
         </a>
       </div>
       <SocialContainer fixed={true} />
-    </Section>
+    </div>
   )
 }
