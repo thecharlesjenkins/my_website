@@ -9,4 +9,3 @@ I am a first-year computer science student at Georgia Tech. Most of my experienc
 - HTML/CSS/Javascript
 - Flutter and Dart
 - Unity
-

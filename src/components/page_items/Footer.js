@@ -1,5 +1,5 @@
 import React from "react"
-import SocialMediaContainer from "./SocialMediaContainer";
+import SocialMediaContainer from "../SocialMediaContainer"
 import styled from "styled-components"
 
 const FooterContainer = styled.footer`
@@ -11,13 +11,13 @@ const FooterContainer = styled.footer`
   text-align: center;
   height: auto;
   min-height: 70px;
-`;
+`
 
 export default () => {
-    return(
-        <FooterContainer>
-            <SocialMediaContainer fixed={false}/>
-            <h5 style={{paddingTop:"10px"}}>Created by Charles Jenkins</h5>
-        </FooterContainer>
-    )
+  return (
+    <FooterContainer>
+      <SocialMediaContainer fixed={false} />
+      <h5 style={{ paddingTop: "10px" }}>Created by Charles Jenkins</h5>
+    </FooterContainer>
+  )
 }
