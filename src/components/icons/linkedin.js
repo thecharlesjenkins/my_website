@@ -1,6 +1,6 @@
 import React from "react"
 
-const IconLinkedin = ({size, title}) => (
+const IconLinkedin = ({ size, title }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 76.624 65.326"
@@ -34,4 +34,4 @@ const IconLinkedin = ({size, title}) => (
   </svg>
 )
 
-export default ({size, title}) => IconLinkedin({size, title})
+export default ({ size, title }) => IconLinkedin({ size, title })

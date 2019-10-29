@@ -20,9 +20,9 @@ module.exports = {
         name: "Email",
         url: `mailto:thecharlesjenkins@gmail.com`,
       },
-    ]
+    ],
   },
-    
+
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
@@ -34,6 +34,14 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-emotion`,
     `gatsby-transformer-remark`,
-    `gatsby-plugin-dark-mode`
+    `gatsby-plugin-dark-mode`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src`,
+      },
+    },
   ],
 }

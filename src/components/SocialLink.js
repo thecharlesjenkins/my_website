@@ -6,32 +6,32 @@ import styled from "styled-components"
 
 const FormattedIcon = ({ size, title }) => {
   switch (title) {
-    case 'Github':
-      return IconGithub({size, title});
-    case 'LinkedIn':
-      return IconLinkedin({size, title});
-    case 'Email':
-      return IconEmail({size, title});
+    case "Github":
+      return IconGithub({ size, title })
+    case "LinkedIn":
+      return IconLinkedin({ size, title })
+    case "Email":
+      return IconEmail({ size, title })
     default:
-      return IconGithub;
+      return IconGithub
   }
-};
+}
 
 const IconHolder = styled.div`
-  padding: 5px
+  padding: 5px;
 `
 
 export default ({ link, social }) => {
-    return (
-      <IconHolder>
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          textDecoration="none"
-        >
-          <FormattedIcon title={social} size={35}/>
-        </a>
-      </IconHolder>
-    )
-  }
+  return (
+    <IconHolder>
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        textDecoration="none"
+      >
+        <FormattedIcon title={social} size={35} />
+      </a>
+    </IconHolder>
+  )
+}

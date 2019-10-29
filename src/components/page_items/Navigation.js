@@ -1,21 +1,17 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
-import mixins from "../styles/mixins"
+import mixins from "../../styles/mixins"
 
 const navLinks = [
   {
     name: "Contact",
     url: "/#contact",
   },
-  // {
-  //   name: "Projects",
-  //   url: "/#projects",
-  // },
-  // {
-  //   name: "Experience",
-  //   url: "/#jobs",
-  // },
+  {
+    name: "Projects",
+    url: "/#projects",
+  },
   {
     name: "About",
     url: "/#about",
@@ -50,42 +46,6 @@ const NavItemLink = styled(Link)`
   ${mixins.underlineAnimation}
 `
 
-// const Navbar = styled.nav`
-// display: flex;
-// justify-content: space-between;
-// align-items: center;
-// position: relative;
-// width: 100%;
-// counter-reset: item 0;
-// z-index: 12;
-// `
-
-// const NavLinks = styled.div`
-//   display: flex;
-//   align-items: center;
-// `
-
-// const NavList = styled.ol`
-//   div {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//   }
-// `
-
-// const NavListItem = styled.li`
-//   margin: 0 10px;
-//   position: relative;
-//   &:before {
-//     text-align: right;
-//   }
-// `
-
-// const NavLink = styled(Link)`
-//   padding: 12px 10px;
-// `
-
-// const ItemList = styled.ul``
 const Resume = styled.button`
   border: 1px solid;
   border-radius: 5px;

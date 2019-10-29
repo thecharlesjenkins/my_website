@@ -5,10 +5,10 @@ import styled from "styled-components"
 import media from "../styles/media"
 
 const SocialContainer = styled.div`
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    `
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+`
 
 const FixedContainer = styled.div`
         align-items: center;
@@ -30,8 +30,7 @@ const FixedContainer = styled.div`
             margin-left: 21.5px;
           }`
 
-
-export default ({fixed}) => {
+export default ({ fixed }) => {
   const data = useStaticQuery(graphql`
     {
       site {
@@ -44,12 +43,18 @@ export default ({fixed}) => {
       }
     }
   `)
-    
-  const socialItems = data.site.siteMetadata.social.map(({ name, url }, i) => <SocialLink link={url} social={name} key={i}/>);
+
+  const socialItems = data.site.siteMetadata.social.map(({ name, url }, i) => (
+    <SocialLink link={url} social={name} key={i} />
+  ))
 
   return (
     <div>
-      {fixed ? <FixedContainer>{socialItems}</FixedContainer> : <SocialContainer>{socialItems}</SocialContainer>}
+      {fixed ? (
+        <FixedContainer>{socialItems}</FixedContainer>
+      ) : (
+        <SocialContainer>{socialItems}</SocialContainer>
+      )}
     </div>
   )
 }
