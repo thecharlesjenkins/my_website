@@ -31,6 +31,17 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Charles Jenkins | Software Engineer`,
+        shortname: `Charles Jenkins`,
+        start_url: `/`,
+        background_color: `#24305E`,
+        theme_color: `#116466`,
+        display: `standalone`,
+      }
+    }
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-emotion`,
     `gatsby-transformer-remark`,
@@ -44,5 +55,6 @@ module.exports = {
         path: `${__dirname}/src`,
       },
     },
+    `gatsby-plugin-offline`
   ],
 }
