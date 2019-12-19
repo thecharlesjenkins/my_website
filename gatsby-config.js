@@ -1,9 +1,3 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
-
 module.exports = {
   siteMetadata: {
     title: `Charles Jenkins | Software Engineer`,
@@ -22,27 +16,33 @@ module.exports = {
       },
     ],
   },
-
   plugins: [
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `src`,
-        path: `${__dirname}/src/`,
-      },
-    },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-emotion`,
-    `gatsby-transformer-remark`,
-    `gatsby-plugin-dark-mode`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src`,
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-dark-mode`,
+    `gatsby-transformer-remark`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-styled-components`,
+
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Charles Jenkins | Software Engineer`,
+        short_name: `Charles Jenkins`,
+        start_url: `/`,
+        background_color: `#24305E`,
+        theme_color: `#116466`,
+        display: `standalone`,
+      }
+    },
+
+    `gatsby-plugin-offline`,
   ],
 }
