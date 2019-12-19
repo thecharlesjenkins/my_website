@@ -1,9 +1,3 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
-
 module.exports = {
   siteMetadata: {
     title: `Charles Jenkins | Software Engineer`,
@@ -22,15 +16,21 @@ module.exports = {
       },
     ],
   },
-
   plugins: [
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `src`,
-        path: `${__dirname}/src/`,
+        path: `${__dirname}/src`,
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-dark-mode`,
+    `gatsby-transformer-remark`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-styled-components`,
+
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -41,20 +41,9 @@ module.exports = {
         theme_color: `#116466`,
         display: `standalone`,
       }
-    }
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-emotion`,
-    `gatsby-transformer-remark`,
-    `gatsby-plugin-dark-mode`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-styled-components`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src`,
-      },
     },
-    `gatsby-plugin-offline`
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.dev/offline
+    // `gatsby-plugin-offline`,
   ],
 }
