@@ -35,15 +35,14 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Charles Jenkins | Software Engineer`,
-        shortname: `Charles Jenkins`,
+        short_name: `Charles Jenkins`,
         start_url: `/`,
         background_color: `#24305E`,
         theme_color: `#116466`,
         display: `standalone`,
       }
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+
+    `gatsby-plugin-offline`,
   ],
 }
