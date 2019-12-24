@@ -34,7 +34,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Charles Jenkins | Software Engineer`,
+        name: `Charles Jenkins, Software Engineer`,
         short_name: `Charles Jenkins`,
         start_url: `/`,
         background_color: `#24305E`,
