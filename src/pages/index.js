@@ -7,6 +7,7 @@ import Projects from "../components/page_items/Projects"
 import GlobalStyle from "../styles/GlobalStyle"
 import Footer from "../components/page_items/Footer"
 import Navigation from "../components/page_items/Navigation"
+import SEO from "../components/SEO"
 
 // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
 if (typeof window !== "undefined") {
@@ -17,8 +18,13 @@ if (typeof window !== "undefined") {
 export default ({ data }) => (
   <div>
     <GlobalStyle />
+    <SEO/>
     <Helmet>
       <meta charSet="utf-8" />
+      <meta
+        name="description"
+        content="Main page for the personal website for Charles Jenkins. He is a computer science student at Georgia Tech that is passionate about programming."
+      ></meta>
       <title>{data.site.siteMetadata.title}</title>
       <link rel="canonical" href="https://thecharlesjenkins.com/" />
       <link rel="icon" href="best_charlemagne.ico" />
