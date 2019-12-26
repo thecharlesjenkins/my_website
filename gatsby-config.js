@@ -34,12 +34,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Charles Jenkins | Software Engineer`,
+        name: `Charles Jenkins, Software Engineer`,
         short_name: `Charles Jenkins`,
         start_url: `/`,
         background_color: `#24305E`,
-        theme_color: `#116466`,
+        theme_color: `#333F58`,
         display: `standalone`,
+        icon: `src/styles/best_charlemagne.jpg`,
+        lang: `en`
       }
     },
 
