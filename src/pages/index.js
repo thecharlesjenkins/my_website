@@ -8,6 +8,7 @@ import GlobalStyle from "../styles/GlobalStyle"
 import Footer from "../components/page_items/Footer"
 import Navigation from "../components/page_items/Navigation"
 import SEO from "../components/SEO"
+import SocialContainer from "../components/SocialMediaContainer"
 
 // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
 if (typeof window !== "undefined") {
@@ -40,6 +41,7 @@ export default ({ data }) => (
         <ContactMe />
       </div>
     </div>
+    <SocialContainer fixed={true} />
     <Footer />
   </div>
 )
