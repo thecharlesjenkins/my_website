@@ -1,6 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: `Charles Jenkins | Software Engineer`,
+    url: `https://www.thecharlesjenkins.com`,
+    image: `best_charlemagne.ico`,
+    description: `Main page for the personal website for Charles Jenkins. He is a computer science student at Georgia Tech that is passionate about programming.`,
     social: [
       {
         name: "LinkedIn",
