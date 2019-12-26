@@ -22,12 +22,8 @@ export default ({ data }) => (
     <SEO/>
     <Helmet>
       <meta charSet="utf-8" />
-      <meta
-        name="description"
-        content="Main page for the personal website for Charles Jenkins. He is a computer science student at Georgia Tech that is passionate about programming."
-      ></meta>
       <title>{data.site.siteMetadata.title}</title>
-      <link rel="canonical" href="https://thecharlesjenkins.com/" />
+      <link rel="canonical" href="https://thecharlesjenkins.com" />
       <link rel="icon" href="best_charlemagne.ico" />
     </Helmet>
     <Navigation />
