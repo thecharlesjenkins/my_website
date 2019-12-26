@@ -1,7 +1,6 @@
 import React from "react"
 import SectionTitle from "../SectionTitle"
 import { graphql, useStaticQuery } from "gatsby"
-import SocialContainer from "../SocialMediaContainer"
 import styled from "styled-components"
 
 const Button = styled.button`
@@ -42,7 +41,6 @@ export default () => {
           <Button>Email me</Button>
         </a>
       </div>
-      <SocialContainer fixed={true} />
     </div>
   )
 }

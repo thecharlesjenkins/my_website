@@ -11,6 +11,7 @@ const FooterContainer = styled.footer`
   text-align: center;
   height: auto;
   min-height: 70px;
+  flex-shrink: 0;
 `
 
 export default () => {

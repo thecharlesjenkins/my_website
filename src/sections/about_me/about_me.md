@@ -7,6 +7,5 @@ I am a first-year computer science student at Georgia Tech. Most of my experienc
 - Java/Kotlin
 - Android Studio
 - HTML/CSS/Javascript
-- Flutter and Dart
-  <div id="projects"></div>
+- Flutter and Dart  <div id="projects"></div>
 - Unity
