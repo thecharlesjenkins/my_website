@@ -69,7 +69,7 @@ const Right = styled.a`
 `
 
 const ResumeLink = ({ children }) => (
-  <Right href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+  <Right href="/charles_jenkins_resume.pdf" target="_blank" rel="noopener noreferrer">
     <Resume>{children}</Resume>
   </Right>
 )
