@@ -3,7 +3,7 @@ module.exports = {
     title: `Charles Jenkins | Software Engineer`,
     url: `https://www.thecharlesjenkins.com`,
     image: `best_charlemagne.ico`,
-    description: `Main page for the personal website for Charles Jenkins. He is a computer science student at Georgia Tech that is passionate about programming.`,
+    description: `Main page for the personal website for Charles Jenkins. He is a computer science student at Georgia Tech and is passionate about programming.`,
     social: [
       {
         name: "LinkedIn",
@@ -44,8 +44,8 @@ module.exports = {
         theme_color: `#333F58`,
         display: `standalone`,
         icon: `src/styles/best_charlemagne.jpg`,
-        lang: `en`
-      }
+        lang: `en`,
+      },
     },
 
     `gatsby-plugin-offline`,

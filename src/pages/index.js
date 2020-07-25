@@ -9,6 +9,7 @@ import Footer from "../components/page_items/Footer"
 import Navigation from "../components/page_items/Navigation"
 import SEO from "../components/SEO"
 import SocialContainer from "../components/SocialMediaContainer"
+import Experience from "../components/page_items/Experience"
 
 // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
 if (typeof window !== "undefined") {
@@ -19,7 +20,7 @@ if (typeof window !== "undefined") {
 export default ({ data }) => (
   <div>
     <GlobalStyle />
-    <SEO/>
+    <SEO />
     <Helmet>
       <meta charSet="utf-8" />
       <title>{data.site.siteMetadata.title}</title>
@@ -34,6 +35,7 @@ export default ({ data }) => (
       <div>
         <AboutMe />
         <Projects />
+        <Experience />
         <ContactMe />
       </div>
     </div>
