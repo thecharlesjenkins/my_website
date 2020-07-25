@@ -35,7 +35,10 @@ const TakeMeBack = styled.div`
 export default ({ data }) => (
   <Body>
     <GlobalStyle />
-    <SEO pathname="/404" description="This is not a path for Charles Jenkins' personal website. Try the root url for better results."/>
+    <SEO
+      pathname="/404"
+      description="This is not a path for Charles Jenkins' personal website. Try the root url for better results."
+    />
     <Helmet>
       <meta charSet="utf-8" />
       <title>{data.site.siteMetadata.title}</title>

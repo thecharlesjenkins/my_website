@@ -26,7 +26,7 @@ export default () => {
         dangerouslySetInnerHTML={{
           __html: data.allMarkdownRemark.edges[0].node.html,
         }}
-      ></div>
+      />
     </div>
   )
 }
