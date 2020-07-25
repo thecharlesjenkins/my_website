@@ -10,6 +10,10 @@ const navLinks = [
     url: "/#contact",
   },
   {
+    name: "Experience",
+    url: "/#experience",
+  },
+  {
     name: "Projects",
     url: "/#projects",
   },
