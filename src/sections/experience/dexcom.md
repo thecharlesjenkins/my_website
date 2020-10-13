@@ -1,6 +1,6 @@
 ---
 company: "Dexcom"
-title: "Android Intern"
+title: "2-Time Android Intern"
 link: "https://www.dexcom.com"
 dates: May 2019 - August 2019 and June 2020 - August 2020
 ---
