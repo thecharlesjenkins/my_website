@@ -7,12 +7,21 @@
   "keywords": [
     "gatsby"
   ],
+  "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thecharlesjenkins/my_website"
+  },
+  "bugs": {
+    "url": "https://github.com/BestCharlemagne/my_website/issues"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
