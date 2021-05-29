@@ -7,14 +7,19 @@ import Projects from "../components/page_items/Projects"
 import GlobalStyle from "../styles/GlobalStyle"
 import Footer from "../components/page_items/Footer"
 import Navigation from "../components/page_items/Navigation"
-import seo from "../components/seo"
+import Seo from "../components/seo"
 import SocialContainer from "../components/SocialMediaContainer"
 import Experience from "../components/page_items/Experience"
+
+if (typeof window !== "undefined") {
+  // eslint-disable-next-line global-require
+  require("smooth-scroll")('a[href*="#"]')
+}
 
 const index = ({ data }) => (
   <div>
     <GlobalStyle />
-    <seo />
+    <Seo/>
     <Helmet>
       <meta charSet="utf-8" />
       <title>{data.site.siteMetadata.title}</title>
