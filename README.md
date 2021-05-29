@@ -17,6 +17,6 @@ Website created by Charles Jenkins with help from Gastbyjs and React.
 
 ## Installation
 
-- Clone this repository with `git clone https://github.com/BestCharlemagne/my_website.git`
+- Clone this repository with `git clone https://github.com/thecharlesjenkins/my_website.git`
 - cd into the repository
 - Run `gatsby develop`, open your favorite internet browser, and go to `localhost:8000` or whatever gatsby tells you after running the command
