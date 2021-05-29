@@ -2,7 +2,7 @@
   "name": "the-charles-jenkins",
   "version": "1.0.0",
   "private": true,
-  "description": "TheCharlesJenkins",
+  "description": "The personal website for Charles Jenkins",
   "author": "Charlie Jenkins",
   "keywords": [
     "gatsby"
@@ -18,7 +18,9 @@
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "babel-plugin-styled-components": "^1.12.0",
+    "fontsource-noto-sans-tc": "^4.0.0",
     "gatsby": "^3.4.1",
+    "gatsby-plugin-dark-mode": "^1.1.2",
     "gatsby-plugin-image": "^1.5.0",
     "gatsby-plugin-manifest": "^3.5.0",
     "gatsby-plugin-mdx": "^2.5.1",
@@ -27,10 +29,12 @@
     "gatsby-plugin-sitemap": "^4.1.0",
     "gatsby-plugin-styled-components": "^4.5.0",
     "gatsby-source-filesystem": "^3.5.0",
+    "gatsby-transformer-remark": "^4.2.0",
     "gatsby-transformer-sharp": "^3.5.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-scroll": "^1.8.2",
     "styled-components": "^5.3.0"
   }
 }
