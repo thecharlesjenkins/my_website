@@ -54,7 +54,7 @@ const Projects = () => {
               <ProjectTitle>{edge.node.frontmatter.title}</ProjectTitle>
 
               <GatsbyImage
-                fixed={edge.node.frontmatter.picture.childImageSharp.gatsbyImageData}
+                image={edge.node.frontmatter.picture.childImageSharp.gatsbyImageData}
               />
             </a>
           </Card>
