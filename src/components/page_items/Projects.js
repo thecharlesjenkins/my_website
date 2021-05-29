@@ -21,7 +21,7 @@ const ProjectTitle = styled.h4`
   white-space: nowrap;
 `
 
-export default () => {
+const Projects = () => {
   const data = useStaticQuery(graphql`{
   allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/projects/"}}) {
     edges {
@@ -64,3 +64,5 @@ export default () => {
     </div>
   )
 }
+
+export default Projects;

@@ -14,4 +14,6 @@ const IconGithub = ({ size, title }) => (
   </svg>
 )
 
-export default ({ size, title }) => IconGithub({ size, title })
+const github = ({ size, title }) => IconGithub({ size, title })
+
+export default github;

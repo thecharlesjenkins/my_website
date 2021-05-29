@@ -7,14 +7,14 @@ import Projects from "../components/page_items/Projects"
 import GlobalStyle from "../styles/GlobalStyle"
 import Footer from "../components/page_items/Footer"
 import Navigation from "../components/page_items/Navigation"
-import SEO from "../components/SEO"
+import seo from "../components/seo"
 import SocialContainer from "../components/SocialMediaContainer"
 import Experience from "../components/page_items/Experience"
 
-export default ({ data }) => (
+const index = ({ data }) => (
   <div>
     <GlobalStyle />
-    <SEO />
+    <seo />
     <Helmet>
       <meta charSet="utf-8" />
       <title>{data.site.siteMetadata.title}</title>
@@ -37,6 +37,8 @@ export default ({ data }) => (
     <Footer />
   </div>
 )
+
+export default index;
 
 export const query = graphql`
   {
