@@ -43,7 +43,7 @@ const errorPage = ({ data }) => (
       <meta charSet="utf-8" />
       <title>{data.site.siteMetadata.title}</title>
       <link rel="canonical" href="https://thecharlesjenkins.com/404" />
-      <link rel="icon" href="best_charlemagne.ico" />
+      <link rel="icon" href="favicon.ico" />
     </Helmet>
     <Navigation />
     <Content>

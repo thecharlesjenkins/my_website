@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Charles Jenkins | Software Engineer`,
     url: `https://www.thecharlesjenkins.com`,
-    image: `best_charlemagne.ico`,
+    image: `favicon.ico`,
     description: `Main page for the personal website for Charles Jenkins. He is a computer science student at Georgia Tech and is passionate about programming.`,
     social: [
       {
@@ -33,7 +33,7 @@ module.exports = {
         background_color: `#24305E`,
         theme_color: `#333F58`,
         display: `standalone`,
-        icon: `src/styles/best_charlemagne.jpg`,
+        icon: `static/me.png`,
         lang: `en`,
       },
     },
