@@ -1,5 +1,7 @@
 Website created by Charles Jenkins with help from Gastbyjs and React.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4254f364-297f-4bd5-ac4d-a775099a7da6/deploy-status)](https://app.netlify.com/sites/upbeat-heyrovsky-3411e7/deploys)
+
 ---
 
 ## Setup
