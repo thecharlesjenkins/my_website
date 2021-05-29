@@ -78,7 +78,7 @@ const ResumeLink = ({ children }) => (
   </Right>
 )
 
-export default () => (
+const Navigation = () => (
   <Container>
     <TopNav>
       <Title to="/">Charles Jenkins</Title>
@@ -92,3 +92,5 @@ export default () => (
     </TopNav>
   </Container>
 )
+
+export default Navigation;

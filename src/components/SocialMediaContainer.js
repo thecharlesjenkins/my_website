@@ -30,7 +30,7 @@ const FixedContainer = styled.div`
   }
 `
 
-export default ({ fixed }) => {
+const SocialMedia = ({ fixed }) => {
   const data = useStaticQuery(graphql`
     {
       site {
@@ -58,3 +58,5 @@ export default ({ fixed }) => {
     </div>
   )
 }
+
+export default SocialMedia;

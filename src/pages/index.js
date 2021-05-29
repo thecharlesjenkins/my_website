@@ -7,20 +7,19 @@ import Projects from "../components/page_items/Projects"
 import GlobalStyle from "../styles/GlobalStyle"
 import Footer from "../components/page_items/Footer"
 import Navigation from "../components/page_items/Navigation"
-import SEO from "../components/SEO"
+import Seo from "../components/seo"
 import SocialContainer from "../components/SocialMediaContainer"
 import Experience from "../components/page_items/Experience"
 
-// https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
   require("smooth-scroll")('a[href*="#"]')
 }
 
-export default ({ data }) => (
+const index = ({ data }) => (
   <div>
     <GlobalStyle />
-    <SEO />
+    <Seo/>
     <Helmet>
       <meta charSet="utf-8" />
       <title>{data.site.siteMetadata.title}</title>
@@ -43,6 +42,8 @@ export default ({ data }) => (
     <Footer />
   </div>
 )
+
+export default index;
 
 export const query = graphql`
   {

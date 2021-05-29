@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components"
 import theme from "./theme"
-require("typeface-noto-sans-tc")
+require("fontsource-noto-sans-tc/latin.css")
 const { colors } = theme
 
 const GlobalStyle = createGlobalStyle`
