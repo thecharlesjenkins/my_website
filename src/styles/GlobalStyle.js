@@ -51,36 +51,6 @@ const GlobalStyle = createGlobalStyle`
         transform: translateY(-3px);
       }
     }
-  }
-  body.light {
-    background-color: ${colors.lightBlue};
-    color: ${colors.darkGray};
-    h3 {
-      color: ${colors.darkPink};
-    }
-    button {
-      color: ${colors.darkGreen};
-      background-color: ${colors.lightGreen};
-      &:hover {
-        color: ${colors.lightGreen};
-        background-color: ${colors.darkGreen};
-      }
-    }
-    footer {
-      background-color: ${colors.lightGray};
-    }
-    svg {
-      &:hover {
-        path{
-          fill: ${colors.darkGreen};
-        }
-      }
-    }
-    nav {
-      background-color: ${colors.lightGray};
-    }
-  }
-  body.dark {
     background-color: ${colors.darkBlue};
     color: ${colors.offwhite};
     h3 {
