@@ -10,7 +10,7 @@ const Button = styled.button`
   padding: 1.25rem 1.75rem;
 `
 
-export default () => {
+const Contact = () => {
   const data = useStaticQuery(graphql`
     {
       allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/contact/" } }) {
@@ -44,3 +44,5 @@ export default () => {
     </div>
   )
 }
+
+export default Contact;

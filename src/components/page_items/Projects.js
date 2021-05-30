@@ -2,7 +2,7 @@ import React from "react"
 import SectionTitle from "../SectionTitle"
 import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import media from "../../styles/media"
 
 const CardContainer = styled.div`
@@ -21,28 +21,25 @@ const ProjectTitle = styled.h4`
   white-space: nowrap;
 `
 
-export default () => {
-  const data = useStaticQuery(graphql`
-    query {
-      allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/projects/" } }) {
-        edges {
-          node {
-            frontmatter {
-              title
-              link
-              picture {
-                childImageSharp {
-                  fixed(width: 300, height: 300) {
-                    ...GatsbyImageSharpFixed
-                  }
-                }
-              }
+const Projects = () => {
+  const data = useStaticQuery(graphql`{
+  allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/projects/"}}) {
+    edges {
+      node {
+        frontmatter {
+          title
+          link
+          picture {
+            childImageSharp {
+              gatsbyImageData(width: 300, height: 300, layout: FIXED)
             }
           }
         }
       }
     }
-  `)
+  }
+}
+`)
   return (
     <div>
       <SectionTitle>My Projects</SectionTitle>
@@ -56,8 +53,8 @@ export default () => {
             >
               <ProjectTitle>{edge.node.frontmatter.title}</ProjectTitle>
 
-              <Img
-                fixed={edge.node.frontmatter.picture.childImageSharp.fixed}
+              <GatsbyImage
+                image={edge.node.frontmatter.picture.childImageSharp.gatsbyImageData}
               />
             </a>
           </Card>
@@ -67,3 +64,5 @@ export default () => {
     </div>
   )
 }
+
+export default Projects;

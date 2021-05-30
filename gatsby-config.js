@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Charles Jenkins | Software Engineer`,
     url: `https://www.thecharlesjenkins.com`,
-    image: `best_charlemagne.ico`,
+    image: `favicon.ico`,
     description: `Main page for the personal website for Charles Jenkins. He is a computer science student at Georgia Tech and is passionate about programming.`,
     social: [
       {
@@ -11,7 +11,7 @@ module.exports = {
       },
       {
         name: "Github",
-        url: `https://github.com/BestCharlemagne`,
+        url: `https://github.com/thecharlesjenkins`,
       },
       {
         name: "Email",
@@ -20,20 +20,9 @@ module.exports = {
     ],
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src`,
-      },
-    },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-dark-mode`,
-    `gatsby-transformer-remark`,
-    `gatsby-plugin-styled-components`,
-    `gatsby-plugin-styled-components`,
-
+    "gatsby-plugin-styled-components",
+    "gatsby-plugin-image",
+    "gatsby-plugin-react-helmet",
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -43,11 +32,33 @@ module.exports = {
         background_color: `#24305E`,
         theme_color: `#333F58`,
         display: `standalone`,
-        icon: `src/styles/best_charlemagne.jpg`,
+        icon: `static/me.png`,
         lang: `en`,
       },
     },
-
-    `gatsby-plugin-offline`,
+    "gatsby-plugin-mdx",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    `gatsby-transformer-remark`,
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "pages",
+        path: "./src/pages/",
+      },
+      __key: "pages",
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+      },
+    },
   ],
-}
+};

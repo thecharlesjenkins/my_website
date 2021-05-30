@@ -11,7 +11,7 @@ const ExperienceContainer = styled.div`
   ${media.tablet`display: block;`};
 `
 
-export default () => {
+const Experience = () => {
   const data = useStaticQuery(graphql`
     query {
       allMarkdownRemark(
@@ -61,3 +61,5 @@ export default () => {
     </div>
   )
 }
+
+export default Experience;
