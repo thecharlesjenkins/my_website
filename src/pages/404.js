@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import SocialContainer from "../components/SocialMediaContainer"
-import seo from "../components/seo"
+import Seo from "../components/seo"
 
 const Button = styled.button`
   border: 1px solid;
@@ -35,7 +35,7 @@ const TakeMeBack = styled.div`
 const errorPage = ({ data }) => (
   <Body>
     <GlobalStyle />
-    <seo
+    <Seo
       pathname="/404"
       description="This is not a path for Charles Jenkins' personal website. Try the root url for better results."
     />
