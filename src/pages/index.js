@@ -7,7 +7,7 @@ import Projects from "../components/page_items/Projects"
 import GlobalStyle from "../styles/GlobalStyle"
 import Footer from "../components/page_items/Footer"
 import Navigation from "../components/page_items/Navigation"
-import Seo from "../components/seo"
+import Seo from "../components/Seo"
 import SocialContainer from "../components/SocialMediaContainer"
 import Experience from "../components/page_items/Experience"
 

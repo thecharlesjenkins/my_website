@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import SocialContainer from "../components/SocialMediaContainer"
-import Seo from "../components/seo"
+import Seo from "../components/Seo"
 
 const Button = styled.button`
   border: 1px solid;
