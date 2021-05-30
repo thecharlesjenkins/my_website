@@ -31,4 +31,6 @@ const IconLinkedin = ({ size, title }) => (
   </svg>
 )
 
-export default ({ size, title }) => IconLinkedin({ size, title })
+const linkedin = ({ size, title }) => IconLinkedin({ size, title })
+
+export default linkedin;

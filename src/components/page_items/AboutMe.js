@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import SectionTitle from "../SectionTitle"
 
-export default () => {
+const AboutMe = () => {
   const data = useStaticQuery(graphql`
     query {
       allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/about_me/" } }) {
@@ -30,3 +30,5 @@ export default () => {
     </div>
   )
 }
+
+export default AboutMe;

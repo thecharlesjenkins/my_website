@@ -1,5 +1,5 @@
 ---
 title: "Activity Tracker"
 link: "https://github.com/davidburns573/ActivityTracker"
-picture: "./activity_tracker.png"
+picture: "../../images/activity_tracker.png"
 ---

@@ -14,7 +14,7 @@ const FooterContainer = styled.footer`
   flex-shrink: 0;
 `
 
-export default () => {
+const Footer = () => {
   return (
     <FooterContainer>
       <SocialMediaContainer fixed={false} />
@@ -22,3 +22,5 @@ export default () => {
     </FooterContainer>
   )
 }
+
+export default Footer;

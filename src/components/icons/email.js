@@ -12,4 +12,6 @@ const IconEmail = ({ size, title }) => (
   </svg>
 )
 
-export default ({ size, title }) => IconEmail({ size, title })
+const email = ({ size, title }) => IconEmail({ size, title })
+
+export default email;

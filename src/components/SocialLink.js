@@ -21,7 +21,7 @@ const IconHolder = styled.div`
   padding: 5px;
 `
 
-export default ({ link, social }) => {
+const SocialLink = ({ link, social }) => {
   return (
     <IconHolder>
       <a
@@ -35,3 +35,5 @@ export default ({ link, social }) => {
     </IconHolder>
   )
 }
+
+export default SocialLink;

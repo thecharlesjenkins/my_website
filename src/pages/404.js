@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import SocialContainer from "../components/SocialMediaContainer"
-import SEO from "../components/SEO"
+import Seo from "../components/Seo"
 
 const Button = styled.button`
   border: 1px solid;
@@ -32,10 +32,10 @@ const TakeMeBack = styled.div`
   text-align: center;
 `
 
-export default ({ data }) => (
+const errorPage = ({ data }) => (
   <Body>
     <GlobalStyle />
-    <SEO
+    <Seo
       pathname="/404"
       description="This is not a path for Charles Jenkins' personal website. Try the root url for better results."
     />
@@ -43,7 +43,7 @@ export default ({ data }) => (
       <meta charSet="utf-8" />
       <title>{data.site.siteMetadata.title}</title>
       <link rel="canonical" href="https://thecharlesjenkins.com/404" />
-      <link rel="icon" href="best_charlemagne.ico" />
+      <link rel="icon" href="favicon.ico" />
     </Helmet>
     <Navigation />
     <Content>
@@ -60,6 +60,8 @@ export default ({ data }) => (
     <Footer />
   </Body>
 )
+
+export default errorPage;
 
 export const query = graphql`
   {
