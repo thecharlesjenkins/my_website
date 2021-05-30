@@ -20,3 +20,4 @@ Website created by Charles Jenkins with help from Gastbyjs and React.
 - Clone this repository with `git clone https://github.com/thecharlesjenkins/my_website.git`
 - cd into the repository
 - Run `gatsby develop`, open your favorite internet browser, and go to `localhost:8000` or whatever gatsby tells you after running the command
+- View to your delight :heart: 
