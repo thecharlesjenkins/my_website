@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import SectionTitle from "../SectionTitle"
+import ClimbingAnimation from "../icons/climbing"
 
 const AboutMe = () => {
   const data = useStaticQuery(graphql`
@@ -17,6 +18,7 @@ const AboutMe = () => {
       }
     }
   `)
+
   return (
     <div>
       <SectionTitle>
@@ -27,6 +29,7 @@ const AboutMe = () => {
           __html: data.allMarkdownRemark.edges[0].node.html,
         }}
       />
+      <ClimbingAnimation/>
     </div>
   )
 }

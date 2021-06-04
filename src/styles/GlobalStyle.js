@@ -42,13 +42,16 @@ const GlobalStyle = createGlobalStyle`
       }
     }
 
-    svg {
+    .raise {
       transition: all .25s;
       path {
         transition: all .5s;
       }
       &:hover {
         transform: translateY(-3px);
+        path{
+          fill: ${colors.lightGreen};
+        }
       }
     }
     background-color: ${colors.darkBlue};
@@ -69,13 +72,6 @@ const GlobalStyle = createGlobalStyle`
     }
     footer {
       background-color: ${colors.darkGray};
-    }
-    svg {
-      &:hover {
-        path{
-          fill: ${colors.lightGreen};
-        }
-      }
     }
     nav {
       background-color: ${colors.darkGray};
