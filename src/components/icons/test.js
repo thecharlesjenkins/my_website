@@ -1,7 +1,7 @@
 import React from "react"
 
-const SvgComponent = React.forwardRef((props, ref, top_blue_ref) => (
-    <svg ref={ref} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+const SvgComponent = React.forwardRef((props, ref) => (
+    <svg ref={ref.intersection} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
       <defs>
         <filter id="prefix__c" x="-500%" y="-500%" width="1000%" height="1000%">
           <feGaussianBlur in="SourceAlpha" />
@@ -45,35 +45,40 @@ const SvgComponent = React.forwardRef((props, ref, top_blue_ref) => (
       <path
         d="M133.165 112.895a13.115 13.115 0 11-5.614-24.966v13.114z"
         css="fill:rgb(66, 230, 245)"
-        ref={top_blue_ref}
+        ref={ref.top_blue_ref}
       />
-      <circle cx={214.881} cy={239.525} r={7.537} css="fill:#c10202" />
+      <path
+        css="fill:#e57017"
+        stroke="transparent"
+        d="M135.66 124.123l17.466 12.476 9.981-30.566-6.862-7.485z"
+        ref={ref.top_orange_ref}
+      />
+      <path
+        d="M179.15699999999998 140.902a8.688 8.867-68.963 10-6.237 16.218 8.688 8.867-68.963 106.237-16.218zM177.91 144.146a5.213 5.32-68.963 01-3.743 9.73 5.213 5.32-68.963 013.743-9.73z"
+        css="fill:#d921d0"
+        ref={ref.top_pink_ref}
+      />
+      <path css="fill:#e57017" d="M183.068 174.028h18.714v14.97h-18.714z" ref={ref.lower_orange_ref}/>
       <path
         xmlns="http://www.w3.org/2000/svg"
         d="M218.453 201.468c-7.615-3.67-3.83-1.324-22.486-3.53-10.238-1.211-2.789 20.043 19.62 23.474 4.358.668 12.162-3.719 15.196-6.927"
         stroke="transparent"
         css="fill:#c10202"
+        ref={ref.upper_red_ref}
       />
-      <path
-        d="M247.189 302.291l-8.465 4.994-8.028-6.335 3.503-8.91 10.193.83z"
-        css="fill:#15b70c"
-      />
-      <path css="fill:#e57017" d="M183.068 174.028h18.714v14.97h-18.714z" />
+      <circle cx={214.881} cy={239.525} r={7.537} css="fill:#c10202" ref={ref.lower_red_ref}/>
       <ellipse
         cx={238.897}
         cy={278.823}
         rx={10.916}
         ry={3.743}
         css="fill:#42e6f5"
+        ref={ref.bottom_blue_ref}
       />
       <path
-        d="M179.15699999999998 140.902a8.688 8.867-68.963 10-6.237 16.218 8.688 8.867-68.963 106.237-16.218zM177.91 144.146a5.213 5.32-68.963 01-3.743 9.73 5.213 5.32-68.963 013.743-9.73z"
-        css="fill:#d921d0"
-      />
-      <path
-        css="fill:#e57017"
-        stroke="transparent"
-        d="M135.66 124.123l17.466 12.476 9.981-30.566-6.862-7.485z"
+        d="M247.189 302.291l-8.465 4.994-8.028-6.335 3.503-8.91 10.193.83z"
+        css="fill:#15b70c"
+        ref={ref.bottom_green_ref}
       />
       <path
         d="M78.205 86.812c98.549 8.47 116.81 94.296 176.368 251.456l137.37 9.895c-177.733-293.397.637-.339-178.697-292.782L78.205 86.812z"
