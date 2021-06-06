@@ -1,10 +1,13 @@
 import React, {useRef} from "react"
 import SvgComponent from "./test"
 import { useIntersectionObserver } from '@researchgate/react-intersection-observer';
+import { linearAnimation } from "../../util/animations"
 
 const top_blue_animation = (ref, ratio) => {
+    let curr = linearAnimation(ratio, {x: 70, y: 50}, .5, .9);
+    console.log(curr)
     ref.current.style.transform =
-     `translate(${1000*ratio-1000}px, 0px)`;
+     `translate(${curr.x}px, ${curr.y}px)`;
 }
 const top_orange_animation = (ref, ratio) => {
 
@@ -44,8 +47,7 @@ const useAnimationRefs = () => (
 const ClimbingAnimation = () => {
     let animationRefs = useAnimationRefs();
     const handleChange = (entry) => {
-        console.log(entry.intersectionRatio);
-        Object.values(useAnimationRefs).forEach((value) => {
+        Object.values(animationRefs).forEach((value) => {
             value[1](value[0], entry.intersectionRatio);
         })
       };
@@ -57,10 +59,12 @@ const ClimbingAnimation = () => {
 
     Object.entries(animationRefs).forEach(entry => {
         const [key, value] = entry;
-        ref[key] = value;
+        ref[key] = value[0];
     })
 
-    return (<SvgComponent ref={animationRefs}/>);
+    console.log(ref)
+
+    return (<SvgComponent ref={ref}/>);
 }
 
 export default ClimbingAnimation;

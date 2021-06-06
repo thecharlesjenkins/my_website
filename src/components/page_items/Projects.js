@@ -55,6 +55,7 @@ const Projects = () => {
 
               <GatsbyImage
                 image={edge.node.frontmatter.picture.childImageSharp.gatsbyImageData}
+                alt={edge.node.frontmatter.title}
               />
             </a>
           </Card>

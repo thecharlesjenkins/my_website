@@ -58,7 +58,11 @@ const SvgComponent = React.forwardRef((props, ref) => (
         css="fill:#d921d0"
         ref={ref.top_pink_ref}
       />
-      <path css="fill:#e57017" d="M183.068 174.028h18.714v14.97h-18.714z" ref={ref.lower_orange_ref}/>
+      <path 
+        css="fill:#e57017" 
+        d="M183.068 174.028h18.714v14.97h-18.714z" 
+        ref={ref.lower_orange_ref}
+      />
       <path
         xmlns="http://www.w3.org/2000/svg"
         d="M218.453 201.468c-7.615-3.67-3.83-1.324-22.486-3.53-10.238-1.211-2.789 20.043 19.62 23.474 4.358.668 12.162-3.719 15.196-6.927"
@@ -66,7 +70,12 @@ const SvgComponent = React.forwardRef((props, ref) => (
         css="fill:#c10202"
         ref={ref.upper_red_ref}
       />
-      <circle cx={214.881} cy={239.525} r={7.537} css="fill:#c10202" ref={ref.lower_red_ref}/>
+      <circle cx={214.881} 
+        cy={239.525} 
+        r={7.537} 
+        css="fill:#c10202" 
+        ref={ref.lower_red_ref}
+      />
       <ellipse
         cx={238.897}
         cy={278.823}
