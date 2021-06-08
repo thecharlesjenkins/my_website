@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import SectionTitle from "../SectionTitle"
-import ClimbingAnimation from "../icons/climbing"
+import ClimbingAnimation from "../animations/climbing"
 
 const AboutMe = () => {
   const data = useStaticQuery(graphql`

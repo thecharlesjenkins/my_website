@@ -3,7 +3,7 @@ import ClimbingSvg, { useAnimationRefs } from "./climbingsvg"
 import { useIntersectionObserver } from '@researchgate/react-intersection-observer';
 
 const ClimbingAnimation = () => {
-    // Collect animations from the climbinsvg file
+    // Collect animations from the climbingsvg file
     let animationRefs = useAnimationRefs();
     const handleChange = (entry) => {
         Object.values(animationRefs).forEach((value) => {
