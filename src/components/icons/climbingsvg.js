@@ -1,6 +1,7 @@
-import React from "react"
+import React, {useRef} from "react"
+import { linearAnimation } from "../../util/animations"
 
-const SvgComponent = React.forwardRef((props, ref) => (
+const ClimbingSvg = React.forwardRef((props, ref) => (
     <svg ref={ref.intersection} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
       <defs>
         <filter id="prefix__c" x="-500%" y="-500%" width="1000%" height="1000%">
@@ -95,11 +96,19 @@ const SvgComponent = React.forwardRef((props, ref) => (
         stroke="url(#prefix__a)"
         css="fill:#6b634f"
         filter="url(#prefix__b)"
+        ref={ref.wall_ref}
       />
       <path
         d="M289.291 437.718c-28.426-11.246-70.431-138.533-70.431-138.533"
         stroke="#000"
         css="fill:transparent"
+        ref={ref.rope_ref}
+      />
+      <circle cx={213} 
+        cy={270} 
+        r={7.537} 
+        css="fill:#d8d8d8"
+        ref={ref.head_ref}
       />
       <ellipse
         cx={213.912}
@@ -108,9 +117,78 @@ const SvgComponent = React.forwardRef((props, ref) => (
         ry={23.574}
         css="fill:#d8d8d8"
         filter="url(#prefix__c)"
+        ref={ref.person_ref}
       />
     </svg>
   )
 );
 
-export default SvgComponent
+const top_blue_animation = (ref, ratio) => {
+  let curr = linearAnimation(ratio, {x: 70, y: 50}, .5, .9);
+  ref.current.style.transform =
+   `translate(${curr.x}px, ${curr.y}px)`;
+}
+const top_orange_animation = (ref, ratio) => {
+  let curr = linearAnimation(ratio, {x: 100, y: 0}, .1, .6);
+  ref.current.style.transform =
+   `translate(${curr.x}px, ${curr.y}px)`;
+}
+const top_pink_animation = (ref, ratio) => {
+  let curr = linearAnimation(ratio, {x: 30, y: -50}, 0, .8);
+  ref.current.style.transform =
+   `translate(${curr.x}px, ${curr.y}px)`;
+}
+const lower_orange_animation = (ref, ratio) => {
+  let curr = linearAnimation(ratio, {x: 70, y: -50}, .36, .9);
+  ref.current.style.transform =
+   `translate(${curr.x}px, ${curr.y}px)`;
+}
+const upper_red_animation = (ref, ratio) => {
+  let curr = linearAnimation(ratio, {x: 34, y: -10}, .5, .9);
+  ref.current.style.transform =
+   `translate(${curr.x}px, ${curr.y}px)`;
+}
+const lower_red_animation = (ref, ratio) => {
+  let curr = linearAnimation(ratio, {x: 60, y: 50}, .1, .9);
+  ref.current.style.transform =
+   `translate(${curr.x}px, ${curr.y}px)`;
+}
+const bottom_blue_animation = (ref, ratio) => {
+  let curr = linearAnimation(ratio, {x: 70, y: 35}, .5, .9);
+  ref.current.style.transform =
+   `translate(${curr.x}px, ${curr.y}px)`;
+}
+const bottom_green_animation = (ref, ratio) => {
+  let curr = linearAnimation(ratio, {x: 40, y: -40}, .5, .9);
+  ref.current.style.transform =
+   `translate(${curr.x}px, ${curr.y}px)`;
+}
+const wall_animation = (ref, ratio) => {
+  let curr = linearAnimation(ratio, {x: -100, y: -40}, 0, .9);
+  ref.current.style.transform =
+   `translate(${curr.x}px, ${curr.y}px)`;
+}
+const person_animation = (ref, ratio) => {
+  let curr = linearAnimation(ratio, {x: 10, y: -120}, .1, .9);
+  ref.current.style.transform =
+   `translate(${curr.x}px, ${curr.y}px)`;
+}
+
+export const useAnimationRefs = () => (
+  {
+      top_blue_ref: [useRef(null), top_blue_animation],
+      top_orange_ref: [useRef(null), top_orange_animation],
+      top_pink_ref: [useRef(null), top_pink_animation],
+      lower_orange_ref: [useRef(null), lower_orange_animation],
+      upper_red_ref: [useRef(null), upper_red_animation],
+      lower_red_ref: [useRef(null), lower_red_animation],
+      bottom_blue_ref: [useRef(null), bottom_blue_animation],
+      bottom_green_ref: [useRef(null), bottom_green_animation],
+      wall_ref: [useRef(null), wall_animation],
+      person_ref: [useRef(null), person_animation],
+      rope_ref: [useRef(null), person_animation],
+      head_ref: [useRef(null), person_animation],
+  }
+);
+
+export default ClimbingSvg

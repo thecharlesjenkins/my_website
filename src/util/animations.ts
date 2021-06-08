@@ -3,6 +3,15 @@ interface Point {
     readonly y: number;
 }
 
+/**
+ * Take a number and force it to be between two other numbers:
+ * clamp(num: 2, begin: 4, end: 5) -> 4
+ * clamp(num: 5, begin: 2, end: 9) -> 5
+ * clamp(num: 10, begin: 0, end: 7) -> 7 
+ * @param num number to clamp
+ * @param begin lower bound
+ * @param end upper bound
+ */
 const clamp = (num: number, begin: number, end: number) => Math.max(Math.min(num, Math.max(begin, end)), Math.min(begin, end));
 
 /**
