@@ -2,7 +2,7 @@ import React, {useRef} from "react"
 import { linearAnimation } from "../../util/animations"
 
 const ClimbingSvg = React.forwardRef((props, ref) => (
-    <svg ref={ref.intersection} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+    <svg height="20%" width="20%" ref={ref.intersection} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
       <defs>
         <filter id="prefix__c" x="-500%" y="-500%" width="1000%" height="1000%">
           <feGaussianBlur in="SourceAlpha" />

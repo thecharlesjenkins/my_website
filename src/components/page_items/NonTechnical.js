@@ -1,11 +1,12 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import SectionTitle from "../SectionTitle"
+import ClimbingAnimation from "../animations/climbing"
 
-const AboutMe = () => {
+const NonTechnical = () => {
   const data = useStaticQuery(graphql`
     query {
-      allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/about_me/" } }) {
+      allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/non_technical/" } }) {
         edges {
           node {
             frontmatter {
@@ -23,13 +24,16 @@ const AboutMe = () => {
       <SectionTitle>
         {data.allMarkdownRemark.edges[0].node.frontmatter.title}
       </SectionTitle>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: data.allMarkdownRemark.edges[0].node.html,
-        }}
-      />
+      <div>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: data.allMarkdownRemark.edges[0].node.html,
+          }}
+        />
+        <ClimbingAnimation/>
+      </div>
     </div>
   )
 }
 
-export default AboutMe;
+export default NonTechnical;

@@ -21,8 +21,6 @@ const ClimbingAnimation = () => {
         ref[key] = value[0];
     })
 
-    console.log(ref)
-
     return (<ClimbingSvg ref={ref}/>);
 }
 
