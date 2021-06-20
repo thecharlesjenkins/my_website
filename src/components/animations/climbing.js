@@ -2,7 +2,7 @@ import React from "react"
 import ClimbingSvg, { useAnimationRefs } from "./climbingsvg"
 import { useIntersectionObserver } from '@researchgate/react-intersection-observer';
 
-const ClimbingAnimation = () => {
+const ClimbingAnimation = (props) => {
     // Collect animations from the climbingsvg file
     let animationRefs = useAnimationRefs();
     const handleChange = (entry) => {
@@ -21,7 +21,7 @@ const ClimbingAnimation = () => {
         ref[key] = value[0];
     })
 
-    return (<ClimbingSvg ref={ref}/>);
+    return (<ClimbingSvg {...props} ref={ref}/>);
 }
 
 export default ClimbingAnimation;

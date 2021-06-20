@@ -25,7 +25,7 @@ const clamp = (num: number, begin: number, end: number) => Math.max(Math.min(num
  */
 export function linearAnimation(ratio: number, start: Point, begin: number, end: number): Point {
     ratio = clamp(ratio, begin, end);
-    console.log(ratio);
+    // console.log(ratio);
     return {x: (start.x/(end - begin))*(ratio - begin) - start.x, 
             y: (start.y/(end - begin))*(ratio - begin) - start.y}; // Same algorithm for x and y
 }

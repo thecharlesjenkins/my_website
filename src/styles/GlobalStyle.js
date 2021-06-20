@@ -89,6 +89,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 0 10px 0;
   }
   a {
+    color: inherit;
+  }
+  .no-underline {
     display: inline-block;
     text-decoration: none;
     text-decoration-skip-ink: auto;

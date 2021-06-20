@@ -24,7 +24,7 @@ const IconHolder = styled.div`
 const SocialLink = ({ link, social }) => {
   return (
     <IconHolder>
-      <a
+      <a className="no-underline"
         href={link}
         target="_blank"
         rel="noopener noreferrer"

@@ -46,7 +46,7 @@ const Projects = () => {
       <CardContainer>
         {data.allMarkdownRemark.edges.map((edge, i) => (
           <Card key={i}>
-            <a
+            <a className="no-underline"
               href={edge.node.frontmatter.link}
               target="_blank"
               rel="noopener noreferrer"
