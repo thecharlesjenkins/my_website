@@ -42,13 +42,16 @@ const GlobalStyle = createGlobalStyle`
       }
     }
 
-    svg {
+    .raise {
       transition: all .25s;
       path {
         transition: all .5s;
       }
       &:hover {
         transform: translateY(-3px);
+        path{
+          fill: ${colors.lightGreen};
+        }
       }
     }
     background-color: ${colors.darkBlue};
@@ -70,13 +73,6 @@ const GlobalStyle = createGlobalStyle`
     footer {
       background-color: ${colors.darkGray};
     }
-    svg {
-      &:hover {
-        path{
-          fill: ${colors.lightGreen};
-        }
-      }
-    }
     nav {
       background-color: ${colors.darkGray};
     }
@@ -93,6 +89,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 0 10px 0;
   }
   a {
+    color: inherit;
+  }
+  .no-underline {
     display: inline-block;
     text-decoration: none;
     text-decoration-skip-ink: auto;

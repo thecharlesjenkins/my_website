@@ -5,7 +5,13 @@ import SectionTitle from "../SectionTitle"
 const AboutMe = () => {
   const data = useStaticQuery(graphql`
     query {
-      allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/about_me/" } }) {
+      allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/about_me/" } }
+        sort: {
+          fields: [frontmatter___title]
+          order: ASC
+        }
+      ) {
         edges {
           node {
             frontmatter {
@@ -17,18 +23,21 @@ const AboutMe = () => {
       }
     }
   `)
+
   return (
     <div>
-      <SectionTitle>
-        {data.allMarkdownRemark.edges[0].node.frontmatter.title}
-      </SectionTitle>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: data.allMarkdownRemark.edges[0].node.html,
-        }}
-      />
+      {data.allMarkdownRemark.edges.map((edge, i) => (
+        <div key={i}>
+          <SectionTitle>{edge.node.frontmatter.title}</SectionTitle>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: edge.node.html,
+            }}
+          />
+        </div>
+      ))}
     </div>
   )
 }
 
-export default AboutMe;
+export default AboutMe

@@ -81,12 +81,12 @@ const ResumeLink = ({ children }) => (
 const Navigation = () => (
   <Container>
     <TopNav>
-      <Title to="/">Charles Jenkins</Title>
+      <Title className="no-underline" to="/">Charles Jenkins</Title>
       <ResumeLink>Resume</ResumeLink>
       {navLinks &&
         navLinks.map(({ url, name }, i) => (
           <NavItem key={i}>
-            <NavItemLink to={url}>{name}</NavItemLink>
+            <NavItemLink className="no-underline" to={url}>{name}</NavItemLink>
           </NavItem>
         ))}
     </TopNav>
