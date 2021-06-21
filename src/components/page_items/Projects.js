@@ -46,7 +46,7 @@ const Projects = () => {
       <CardContainer>
         {data.allMarkdownRemark.edges.map((edge, i) => (
           <Card key={i}>
-            <a
+            <a className="no-underline"
               href={edge.node.frontmatter.link}
               target="_blank"
               rel="noopener noreferrer"
@@ -55,6 +55,7 @@ const Projects = () => {
 
               <GatsbyImage
                 image={edge.node.frontmatter.picture.childImageSharp.gatsbyImageData}
+                alt={edge.node.frontmatter.title}
               />
             </a>
           </Card>

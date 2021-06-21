@@ -10,6 +10,7 @@ import Navigation from "../components/page_items/Navigation"
 import Seo from "../components/Seo"
 import SocialContainer from "../components/SocialMediaContainer"
 import Experience from "../components/page_items/Experience"
+import NonTechnical from "../components/page_items/NonTechnical"
 
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
@@ -35,6 +36,7 @@ const index = ({ data }) => (
         <AboutMe />
         <Projects />
         <Experience />
+        <NonTechnical />
         <ContactMe />
       </div>
     </div>
