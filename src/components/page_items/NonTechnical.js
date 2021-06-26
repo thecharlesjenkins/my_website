@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import SectionTitle from "../SectionTitle"
 import ClimbingAnimation from "../animations/climbing"
 
-const images = [<ClimbingAnimation/>]
+const images = [<ClimbingAnimation />]
 
 const NonTechnical = () => {
   const data = useStaticQuery(graphql`
@@ -30,7 +30,13 @@ const NonTechnical = () => {
       <SectionTitle>Non-Technical Things</SectionTitle>
       {data.allMarkdownRemark.edges.map((edge, i) => {
         const items = [
-          <div style={{width: "100%", marginTop: "auto", marginBottom: "auto"}}>
+          <div
+            style={{
+              width: "100%",
+              marginTop: "auto",
+              marginBottom: "auto",
+            }}
+          >
             <div>
               <h2>{edge.node.frontmatter.title}</h2>
               <p>{edge.node.frontmatter.text}</p>
@@ -48,9 +54,9 @@ const NonTechnical = () => {
             key={i}
           >
             {/* Alternates between having image on the left and right */}
-            {items[i%2]}
+            {items[i % 2]}
             {/* Gets other item */}
-            {items[~(i%2) + 2]}
+            {items[~(i % 2) + 2]}
           </div>
         )
       })}

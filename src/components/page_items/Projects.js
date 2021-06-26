@@ -22,31 +22,33 @@ const ProjectTitle = styled.h4`
 `
 
 const Projects = () => {
-  const data = useStaticQuery(graphql`{
-  allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/projects/"}}) {
-    edges {
-      node {
-        frontmatter {
-          title
-          link
-          picture {
-            childImageSharp {
-              gatsbyImageData(width: 300, height: 300, layout: FIXED)
+  const data = useStaticQuery(graphql`
+    {
+      allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/projects/" } }) {
+        edges {
+          node {
+            frontmatter {
+              title
+              link
+              picture {
+                childImageSharp {
+                  gatsbyImageData(width: 300, height: 300, layout: FIXED)
+                }
+              }
             }
           }
         }
       }
     }
-  }
-}
-`)
+  `)
   return (
     <div>
       <SectionTitle>My Projects</SectionTitle>
       <CardContainer>
         {data.allMarkdownRemark.edges.map((edge, i) => (
           <Card key={i}>
-            <a className="no-underline"
+            <a
+              className="no-underline"
               href={edge.node.frontmatter.link}
               target="_blank"
               rel="noopener noreferrer"
@@ -54,7 +56,9 @@ const Projects = () => {
               <ProjectTitle>{edge.node.frontmatter.title}</ProjectTitle>
 
               <GatsbyImage
-                image={edge.node.frontmatter.picture.childImageSharp.gatsbyImageData}
+                image={
+                  edge.node.frontmatter.picture.childImageSharp.gatsbyImageData
+                }
                 alt={edge.node.frontmatter.title}
               />
             </a>
@@ -66,4 +70,4 @@ const Projects = () => {
   )
 }
 
-export default Projects;
+export default Projects

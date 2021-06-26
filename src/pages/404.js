@@ -61,7 +61,7 @@ const errorPage = ({ data }) => (
   </Body>
 )
 
-export default errorPage;
+export default errorPage
 
 export const query = graphql`
   {

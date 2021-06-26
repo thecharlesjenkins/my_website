@@ -59,4 +59,4 @@ const SocialMedia = ({ fixed }) => {
   )
 }
 
-export default SocialMedia;
+export default SocialMedia

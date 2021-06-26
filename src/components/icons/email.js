@@ -15,4 +15,4 @@ const IconEmail = ({ size, title }) => (
 
 const email = ({ size, title }) => IconEmail({ size, title })
 
-export default email;
+export default email

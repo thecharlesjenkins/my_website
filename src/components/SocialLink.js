@@ -24,7 +24,8 @@ const IconHolder = styled.div`
 const SocialLink = ({ link, social }) => {
   return (
     <IconHolder>
-      <a className="no-underline"
+      <a
+        className="no-underline"
         href={link}
         target="_blank"
         rel="noopener noreferrer"
@@ -36,4 +37,4 @@ const SocialLink = ({ link, social }) => {
   )
 }
 
-export default SocialLink;
+export default SocialLink

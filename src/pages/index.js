@@ -11,6 +11,7 @@ import Seo from "../components/Seo"
 import SocialContainer from "../components/SocialMediaContainer"
 import Experience from "../components/page_items/Experience"
 import NonTechnical from "../components/page_items/NonTechnical"
+import FancyButtons from "../components/page_items/FancyButtons"
 
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
@@ -20,7 +21,7 @@ if (typeof window !== "undefined") {
 const index = ({ data }) => (
   <div>
     <GlobalStyle />
-    <Seo/>
+    <Seo />
     <Helmet>
       <meta charSet="utf-8" />
       <title>{data.site.siteMetadata.title}</title>
@@ -33,6 +34,7 @@ const index = ({ data }) => (
       <h1>Charles Jenkins</h1>
       <h4 id="about">a software engineer</h4>
       <div>
+        <FancyButtons />
         <AboutMe />
         <Projects />
         <Experience />
@@ -45,7 +47,7 @@ const index = ({ data }) => (
   </div>
 )
 
-export default index;
+export default index
 
 export const query = graphql`
   {

@@ -17,4 +17,4 @@ const IconGithub = ({ size, title }) => (
 
 const github = ({ size, title }) => IconGithub({ size, title })
 
-export default github;
+export default github

@@ -34,4 +34,4 @@ const IconLinkedin = ({ size, title }) => (
 
 const linkedin = ({ size, title }) => IconLinkedin({ size, title })
 
-export default linkedin;
+export default linkedin

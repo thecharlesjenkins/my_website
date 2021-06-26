@@ -37,7 +37,11 @@ const Contact = () => {
             __html: data.allMarkdownRemark.edges[0].node.html,
           }}
         ></div>
-        <a href="mailto:thecharlesjenkins@gmail.com" target="_blank" rel="noopener noreferrer">
+        <a
+          href="mailto:thecharlesjenkins@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Button>Email me</Button>
         </a>
       </div>
@@ -45,4 +49,4 @@ const Contact = () => {
   )
 }
 
-export default Contact;
+export default Contact

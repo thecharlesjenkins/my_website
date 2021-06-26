@@ -73,7 +73,11 @@ const Right = styled.a`
 `
 
 const ResumeLink = ({ children }) => (
-  <Right href="/charles_jenkins_resume.pdf" target="_blank" rel="noopener noreferrer">
+  <Right
+    href="/charles_jenkins_resume.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     <Resume>{children}</Resume>
   </Right>
 )
@@ -81,16 +85,20 @@ const ResumeLink = ({ children }) => (
 const Navigation = () => (
   <Container>
     <TopNav>
-      <Title className="no-underline" to="/">Charles Jenkins</Title>
+      <Title className="no-underline" to="/">
+        Charles Jenkins
+      </Title>
       <ResumeLink>Resume</ResumeLink>
       {navLinks &&
         navLinks.map(({ url, name }, i) => (
           <NavItem key={i}>
-            <NavItemLink className="no-underline" to={url}>{name}</NavItemLink>
+            <NavItemLink className="no-underline" to={url}>
+              {name}
+            </NavItemLink>
           </NavItem>
         ))}
     </TopNav>
   </Container>
 )
 
-export default Navigation;
+export default Navigation

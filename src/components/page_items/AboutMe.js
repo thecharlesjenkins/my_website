@@ -7,10 +7,7 @@ const AboutMe = () => {
     query {
       allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/about_me/" } }
-        sort: {
-          fields: [frontmatter___title]
-          order: ASC
-        }
+        sort: { fields: [frontmatter___title], order: ASC }
       ) {
         edges {
           node {
