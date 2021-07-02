@@ -1,5 +1,7 @@
 import React from "react"
 import "../../styles/buttons.css"
+import theme from "../../styles/theme"
+const { colors } = theme
 
 const Footer = () => {
   return (
@@ -7,7 +9,7 @@ const Footer = () => {
       <div class="about_me_button">
         <p id="clicky">About Me</p>
       </div>
-      <div class="contact_me">
+      <div class="contact_me_button">
         <ContactMeButton/>
       </div>
     </div>
@@ -113,7 +115,7 @@ function ContactMeButton(props) {
         <circle cx={99.897} cy={49.348} r={39.323} fill="#e51a80" />
         <circle cx={67.796} cy={94.288} r={23.273} fill="#e51a80" />
       </g>
-      <g>
+      <g style={{"cursor": "pointer"}}>
         <circle cx={39} cy={44} r={18} fill="#24305e">
           <animate
             attributeName="r"
@@ -137,9 +139,9 @@ function ContactMeButton(props) {
         </circle>
         <circle cx={68.315} cy={89.509} r={18.248} fill="#24305e" />
         <text
-          x={40}
+          x={35}
           y={60}
-          fill="#dce7ff"
+          fill={colors.offwhite}
           strokeWidth={0.265}
         >
           <tspan dx={0} dy={0}>
