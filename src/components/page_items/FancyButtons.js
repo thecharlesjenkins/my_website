@@ -5,22 +5,33 @@ const { colors } = theme
 
 const Footer = () => {
   return (
-    <div>
-      <div class="about_me_button">
+    <div className="fancy_buttons">
+      <div className="about_me_button">
         <p id="clicky">About Me</p>
       </div>
-      <div class="contact_me_button">
+      <div className="contact_me_button">
         <ContactMeButton />
       </div>
-      <div class="project_button">
-        <div class="bounding">
-          <div class="bouncing">
+      <div className="project_button">
+        <div className="bounding">
+          <div className="bouncing">
             <p>Projects</p>
-            {[...Array(11).keys()].map(() => {
-              return <div class="bubble"/>
+            {[...Array(11).keys()].map((index) => {
+              return <div className="bubble" key={`bubble_${index}`}/>
             })}
           </div>
         </div>
+      </div>
+      <div className="ripple">
+        <p>Clubs</p>
+      </div>
+      <div className="dash_container">
+        <div className="speedy">
+          <p>Contact Me</p>
+        </div>
+        {[...Array(11).keys()].map((index) => {
+              return <div className="line" key={`line_${index}`}/>
+        })}
       </div>
     </div>
   )

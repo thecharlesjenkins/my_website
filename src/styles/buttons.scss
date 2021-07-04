@@ -1,140 +1,243 @@
-text {
-  text-align: center;
-  font-size: 20px;
+@use 'sass:math';
 
-  padding-left: 50px;
-  padding-right: 50px;
-  width: fit-content;
-  color: #dce7ff;
+.fancy_buttons {
+  text {
+    text-align: center;
+    font-size: 20px;
 
-  text-shadow: 0px 5px hsl(220, 80%, 30%), 0px 10px 10px #0003;
-  box-shadow: 0px 0px 0px 15px hsl(330, 80%, 50%),
-    0px 10px 0px 15px hsl(330, 80%, 40%), 0px 20px 20px 15px #0003;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: fit-content;
+    color: #dce7ff;
+
+    text-shadow: 0px 5px hsl(200, 87%, 27%), 0px 10px 10px #0003;
+    box-shadow: 0px 0px 0px 15px hsl(330, 80%, 50%),
+      0px 10px 0px 15px hsl(330, 80%, 40%), 0px 20px 20px 15px #0003;
+  }
+
+  p {
+    padding: 15px;
+    // padding-bottom: 0px;
+    text-align: center;
+    font-size: 42px;
+    color: rgb(220, 231, 255);
+    text-shadow: 0px 5px hsl(200, 87%, 27%), 0px 10px 10px #0003;
+  }
+
+  .about_me_button {
+    /* position: fixed; */
+    text-align: center;
+    font-size: 42px;
+
+    padding-left: 50px;
+    padding-right: 50px;
+    width: fit-content;
+
+    text-shadow: 0px 5px hsl(220, 80%, 30%), 0px 10px 10px #0003;
+    box-shadow: 0px 0px 0px 15px hsl(330, 80%, 50%),
+      0px 10px 0px 15px hsl(330, 80%, 40%), 0px 20px 20px 15px #0003;
+    cursor: pointer;
+    border-radius: 100px 30px 100px 30px;
+    animation: 2s morph ease infinite;
+
+    p {
+      padding-top: 0;
+      margin-top: 20px;
+      animation: 2s rot ease infinite;
+    }
+  }
+
+  @keyframes morph {
+    0% {
+      border-radius: 100px 30px 100px 30px;
+      transform: skew(50deg) translate(0px);
+    }
+    50% {
+      border-radius: 30px 100px 30px 100px;
+      transform: skew(27deg) translate(5%, 10%);
+    }
+    100% {
+      border-radius: 100px 30px 100px 30px;
+      transform: skew(50deg) translate(0px);
+    }
+  }
+
+  @keyframes rot {
+    0% {
+      transform: skew(-47deg);
+      opacity: var(--about-opacity);
+    }
+    50% {
+      transform: skew(-27deg);
+      opacity: var(--about-opacity);
+    }
+    100% {
+      transform: skew(-47deg);
+      opacity: var(--about-opacity);
+    }
+  }
+
+  /* Bounce ball, when hits "ground" on both sides trigger animation to create rainbow circles momentarily that quickly fade away */
+  .project_button {
+    // display: inline-block;
+    transform-style: preserve-3d;
+
+    .bouncing {
+      /* transform-origin: bottom right; */
+      display: inline-block;
+      border-radius: 100%;
+      background-color: rgb(36, 48, 94);
+      box-shadow: 0px 0px 0px 15px hsl(330, 80%, 50%),
+        0px 10px 0px 15px hsl(330, 80%, 40%), 0px 20px 20px 15px #0003;
+
+      animation: bounce 1s;
+      animation-direction: alternate;
+      animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
+      animation-iteration-count: infinite;
+      cursor: pointer;
+    }
+
+    // p {
+    //   padding-top: 0px;
+    // }
+
+    @keyframes bounce {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+      to {
+        transform: translate3d(0, 50%, 0);
+      }
+    }
+
+    .bubble {
+      position: absolute;
+      opacity: 0.7;
+      border-radius: 50%;
+    }
+
+    @for $i from 1 through 11 {
+      .bubble:nth-child(#{$i}) {
+        $size: random(30) + px;
+        height: $size;
+        width: $size;
+        margin-left: calc(50% - #{$size/2});
+        transform: translate3d(0, 0, -2000px);
+        background: hsl(random(360), 70%, 50%);
+        animation: move#{$i} 2s infinite;
+        animation-delay: 0.85s;
+      }
+
+      @keyframes move#{$i} {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 100%;
+        }
+        100% {
+          transform: translate3d(
+            50 - (random(100) * 1px),
+            -(random(100) * 1px),
+            (random(2000) * 1px)
+          );
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  $ripple-color: hsl(330, 80%, 50%);
+
+  .ripple {
+    margin: 60px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background-color: rgb(36, 48, 94);
+    border-radius: 100px;
+    animation: ripple 0.7s linear infinite;
+  }
+
+  @keyframes ripple {
+    0% {
+      box-shadow: 0 0 0 0 rgba($ripple-color, 1),
+        0 0 0 10px rgba($ripple-color, 1), 0 0 0 30px rgba($ripple-color, 0.3),
+        0 0 0 60px rgba($ripple-color, 0.3);
+    }
+    100% {
+      box-shadow: 0 0 0 10px rgba($ripple-color, 1),
+        0 0 0 30px rgba($ripple-color, 0.3), 0 0 0 60px rgba($ripple-color, 0.3),
+        0 0 0 90px rgba($ripple-color, 0);
+    }
+  }
 }
 
-.about_me_button {
-  /* position: fixed; */
+
+.speedy {
+  margin-left: 50%;
+  display: inline-block;
   text-align: center;
   font-size: 42px;
-
-  padding-left: 50px;
-  padding-right: 50px;
-  width: fit-content;
+  font-family: "Raleway", sans-serif;
+  color: rgb(220, 231, 255);
+  background-color: rgb(36, 48, 94);
 
   text-shadow: 0px 5px hsl(220, 80%, 30%), 0px 10px 10px #0003;
   box-shadow: 0px 0px 0px 15px hsl(330, 80%, 50%),
     0px 10px 0px 15px hsl(330, 80%, 40%), 0px 20px 20px 15px #0003;
   cursor: pointer;
-  border-radius: 100px 30px 100px 30px;
-  animation: 2s morph ease infinite;
-}
-
-.about_me_button p {
-  margin-top: 20px;
-  animation: 2s rot ease infinite;
-}
-
-@keyframes morph {
-  0% {
-    border-radius: 100px 30px 100px 30px;
-    transform: skew(50deg) translate(0px);
-  }
-  50% {
-    border-radius: 30px 100px 30px 100px;
-    transform: skew(27deg) translate(5%, 10%);
-  }
-  100% {
-    border-radius: 100px 30px 100px 30px;
-    transform: skew(50deg) translate(0px);
-  }
-}
-
-@keyframes rot {
-  0% {
-    transform: skew(-47deg);
-    opacity: var(--about-opacity);
-  }
-  50% {
-    transform: skew(-27deg);
-    opacity: var(--about-opacity);
-  }
-  100% {
-    transform: skew(-47deg);
-    opacity: var(--about-opacity);
-  }
-}
-
-/* Bounce ball, when hits "ground" on both sides trigger animation to create rainbow circles momentarily that quickly fade away */
-.project_button {
-  // display: inline-block;
-  transform-style: preserve-3d;
-
-  .bouncing {
-    /* transform-origin: bottom right; */
-    display: inline-block;
-    border-radius: 100%;
-    background-color: rgb(36, 48, 94);
-    box-shadow: 0px 0px 0px 15px hsl(330, 80%, 50%),
-      0px 10px 0px 15px hsl(330, 80%, 40%), 0px 20px 20px 15px #0003;
-
-    animation: bounce 1s;
-    animation-direction: alternate;
-    animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
-    animation-iteration-count: infinite;
-  }
+  border-radius: 25%;
+  animation: 0.2s shake ease alternate infinite;
 
   p {
-    padding: 15px;
-    padding-bottom: 0px;
-    text-align: center;
-    font-size: 42px;
-    font-family: "Raleway", sans-serif;
-    color: rgb(220, 231, 255);
-    text-shadow: 0px 5px hsl(220, 80%, 30%), 0px 10px 10px #0003;
+    padding-left: 20px;
+    padding-right: 20px;
+    animation: 0.2s stabilize ease alternate infinite;
   }
 
-  @keyframes bounce {
+  @keyframes shake {
     from {
-      transform: translate3d(0, 0, 0);
+      transform: skew(-40deg);
     }
     to {
-      transform: translate3d(0, 50%, 0);
+      transform: skew(-50deg);
     }
   }
 
-  .bubble {
-    position: absolute;
-    opacity: 0.7;
-    border-radius: 50%;
+  @keyframes stabilize {
+    from {
+      transform: skew(43deg);
+    }
+    to {
+      transform: skew(53deg);
+    }
   }
+}
 
-  @for $i from 1 through 11 {
-    .bubble:nth-child(#{$i}) {
-      $size: random(30) + px;
-      height: $size;
-      width: $size;
-      margin-left: calc(50% - #{$size/2});
-      transform: translate3d(0, 0, -2000px);
-      background: hsl(random(360), 70%, 50%);
-      animation: move#{$i} 2s infinite;
-      animation-delay: 0.85s;
+.dash_container {
+  @for $i from 1 through 5 {
+    .line:nth-child(#{$i}) {
+      position: absolute;
+      z-index: -1;
+      width: 50px;
+      height: 10px;
+      border-radius: 35%;
+      background-color: hsl(330, 80%, 50%);
+      animation: 1s zoom#{$i} linear infinite;
+      animation-delay: math.div(random(200), 100) + s;
     }
 
-    @keyframes move#{$i} {
-      0% {
-        opacity: 0;
+    @keyframes zoom#{$i} {
+      $y-pos: -1 * random(100) + px;
+      from {
+        transform: translate(2000px, #{$y-pos});
       }
-      50% {
-        opacity: 100%;
-      }
-      100% {
-        transform: translate3d(
-          50 - (random(100) * 1px),
-          -(random(100) * 1px),
-          (random(2000) * 1px)
-        );
-        opacity: 0;
+      to {
+        transform: translate(0, #{$y-pos});
       }
     }
   }
 }
+
