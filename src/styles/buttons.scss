@@ -8,7 +8,7 @@
     padding-left: 50px;
     padding-right: 50px;
     width: fit-content;
-    color: #dce7ff;
+    fill: #dce7ff;
 
     text-shadow: 0px 5px hsl(200, 87%, 27%), 0px 10px 10px #0003;
     box-shadow: 0px 0px 0px 15px hsl(330, 80%, 50%),
@@ -172,72 +172,226 @@
         0 0 0 90px rgba($ripple-color, 0);
     }
   }
-}
 
+  .speedy {
+    margin-left: 50%;
+    display: inline-block;
+    text-align: center;
+    font-size: 42px;
+    font-family: "Raleway", sans-serif;
+    color: rgb(220, 231, 255);
+    background-color: rgb(36, 48, 94);
 
-.speedy {
-  margin-left: 50%;
-  display: inline-block;
-  text-align: center;
-  font-size: 42px;
-  font-family: "Raleway", sans-serif;
-  color: rgb(220, 231, 255);
-  background-color: rgb(36, 48, 94);
+    text-shadow: 0px 5px hsl(220, 80%, 30%), 0px 10px 10px #0003;
+    box-shadow: 0px 0px 0px 15px hsl(330, 80%, 50%),
+      0px 10px 0px 15px hsl(330, 80%, 40%), 0px 20px 20px 15px #0003;
+    cursor: pointer;
+    border-radius: 25%;
+    animation: 0.2s shake ease alternate infinite;
 
-  text-shadow: 0px 5px hsl(220, 80%, 30%), 0px 10px 10px #0003;
-  box-shadow: 0px 0px 0px 15px hsl(330, 80%, 50%),
-    0px 10px 0px 15px hsl(330, 80%, 40%), 0px 20px 20px 15px #0003;
-  cursor: pointer;
-  border-radius: 25%;
-  animation: 0.2s shake ease alternate infinite;
-
-  p {
-    padding-left: 20px;
-    padding-right: 20px;
-    animation: 0.2s stabilize ease alternate infinite;
-  }
-
-  @keyframes shake {
-    from {
-      transform: skew(-40deg);
-    }
-    to {
-      transform: skew(-50deg);
-    }
-  }
-
-  @keyframes stabilize {
-    from {
-      transform: skew(43deg);
-    }
-    to {
-      transform: skew(53deg);
-    }
-  }
-}
-
-.dash_container {
-  @for $i from 1 through 5 {
-    .line:nth-child(#{$i}) {
-      position: absolute;
-      z-index: -1;
-      width: 50px;
-      height: 10px;
-      border-radius: 35%;
-      background-color: hsl(330, 80%, 50%);
-      animation: 1s zoom#{$i} linear infinite;
-      animation-delay: math.div(random(200), 100) + s;
+    p {
+      padding-left: 20px;
+      padding-right: 20px;
+      animation: 0.2s stabilize ease alternate infinite;
     }
 
-    @keyframes zoom#{$i} {
-      $y-pos: -1 * random(100) + px;
+    @keyframes shake {
       from {
-        transform: translate(2000px, #{$y-pos});
+        transform: skew(-40deg);
       }
       to {
-        transform: translate(0, #{$y-pos});
+        transform: skew(-50deg);
+      }
+    }
+
+    @keyframes stabilize {
+      from {
+        transform: skew(43deg);
+      }
+      to {
+        transform: skew(53deg);
       }
     }
   }
-}
 
+  .dash_container {
+    @for $i from 1 through 5 {
+      .line:nth-child(#{$i}) {
+        position: absolute;
+        z-index: -1;
+        width: 50px;
+        height: 10px;
+        border-radius: 35%;
+        background-color: hsl(330, 80%, 50%);
+        animation: 1s zoom#{$i} linear infinite;
+        animation-delay: math.div(random(200), 100) + s;
+      }
+
+      @keyframes zoom#{$i} {
+        $y-pos: -1 * random(100) + px;
+        from {
+          transform: translate(2000px, #{$y-pos});
+        }
+        to {
+          transform: translate(0, #{$y-pos});
+        }
+      }
+    }
+  }
+
+  .rotation_container {
+    div {
+      display: inline-block;
+      background-color: rgb(36, 48, 94);
+
+      text-shadow: 0px 5px hsl(220, 80%, 30%), 0px 10px 10px #0003;
+      box-shadow: 0px 0px 0px 15px hsl(330, 80%, 50%),
+        0px 10px 0px 15px hsl(330, 80%, 40%);
+      cursor: pointer;
+      border-radius: 25%;
+    }
+    .rotated {
+      position: absolute;
+      transform: rotate(45deg);
+      height: 10em;
+      width: 10em;
+      animation: 1s grow_rotate alternate infinite;
+    }
+    .stationary {
+      position: absolute;
+      transform: rotate(0deg);
+      margin-top: 1.8em;
+      margin-left: -2.8em;
+    }
+
+    @keyframes grow {
+      from {
+        transform: rotate(0deg), scale(0, 0);
+      }
+      to {
+        transform: scale(1.25, 1.25) rotate(0deg);
+      }
+    }
+
+    @keyframes grow_rotate {
+      from {
+        transform: rotate(45deg), scale(0, 0);
+      }
+      to {
+        transform: scale(1.25, 1.25) rotate(45deg);
+      }
+    }
+  }
+
+  // Credit to: https://codepen.io/joshy/pen/eNvZyN
+
+  .book-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    $dark-blue: #24305e;
+    $light-pink: #e51a80;
+    .book {
+      position: relative;
+      border: 5px solid $light-pink;
+      width: 100px;
+      height: 60px;
+    }
+    .book__page {
+      position: absolute;
+      left: 50%;
+      top: -5px;
+      margin: 0 auto;
+      border-top: 5px solid $light-pink;
+      border-bottom: 5px solid $light-pink;
+      border-right: 5px solid $light-pink;
+      background: $dark-blue;
+      width: 50px;
+      height: 60px;
+      transform-origin: 0% 50%;
+      animation: flip 2s infinite linear;
+    }
+
+    @keyframes flip {
+      0% {
+        transform: perspective(600px) rotateY(-0deg);
+      }
+
+      20% {
+        background: darken($dark-blue, 10%);
+      }
+
+      29.9% {
+        background: darken($dark-blue, 10%);
+      }
+      30% {
+        transform: perspective(200px) rotateY(-90deg);
+        background: $dark-blue;
+      }
+
+      60% {
+        transform: perspective(200px) rotateY(-180deg);
+        background: $dark-blue;
+      }
+
+      100% {
+        transform: perspective(200px) rotateY(-180deg);
+        background: $dark-blue;
+      }
+    }
+  }
+
+  #bottom_morphy {
+    animation: bottom_morphy linear infinite 10s;
+  }
+
+  #top_morphy {
+    animation: top_morphy linear infinite 10s;
+  }
+
+  @keyframes bottom_morphy {
+    0% {
+      d: path(
+        "M 36.212387,48.40328 C 26.467231,51.017755 16.959896,57.435208 9.710517,51.849667 2.4611405,46.264127 -2.5300074,28.676277 0.67890864,21.070111 3.8878225,13.463945 15.296164,15.840684 29.676204,13.582579 c 14.380041,-2.258104 31.73024,-9.1506503 43.13929,-7.4866263 11.40904,1.664025 16.87565,11.8842123 14.73634,20.3218363 -2.13932,8.437626 -11.88414,15.092632 -21.74797,17.826021 -9.863829,2.733387 -19.846322,1.544993 -29.591477,4.15947 z"
+      );
+    }
+    25% {
+      d: path(
+        "M 42.782436,49.774049 C 34.405774,50.049386 23.944923,48.686068 16.288966,42.275721 8.6330073,35.865375 3.7828362,24.408485 5.9852715,18.509101 8.1877068,12.609717 17.442363,12.268896 29.26701,11.403671 41.091656,10.538445 55.484887,9.1489342 66.03788,16.07085 c 10.552992,6.921916 17.264585,22.15409 16.242141,28.472696 -1.022444,6.318606 -9.779152,3.723055 -17.303916,3.382167 -7.524764,-0.340889 -13.817007,1.573 -22.193669,1.848336 z"
+      );
+    }
+    50% {
+      d: path(
+        "M 47.1194,52.181058 C 40.711271,50.899553 34.893632,47.126728 27.390721,48.825886 19.887808,50.525043 10.700732,57.696146 5.9052837,51.417608 1.1098361,45.139069 0.70664152,25.411327 14.689848,15.143483 28.673057,4.8756411 57.040713,4.0692496 71.48446,12.508202 85.928205,20.947154 86.4466,38.630133 83.465823,46.593612 80.485046,54.557091 74.005141,52.800315 67.26556,52.526637 60.525978,52.252957 53.527529,53.462565 47.1194,52.181058 Z"
+      );
+    }
+    75% {
+      d: path(
+        "M 40.2946,53.338829 C 30.734848,53.469818 18.68715,52.509497 11.920811,44.870387 5.1544709,37.231278 3.6703638,22.914013 16.402579,15.085428 29.134794,7.2568441 56.081532,5.9182391 69.65744,11.345903 c 13.575908,5.427663 13.77961,17.620634 11.844329,25.769017 -1.935282,8.148382 -6.009309,12.251503 -9.283097,13.852173 -3.273789,1.600669 -5.747297,0.698566 -10.52007,0.858542 -4.772773,0.159976 -11.844251,1.382206 -21.404002,1.513194 z"
+      );
+    }
+  }
+
+  @keyframes top_morphy {
+    0% {
+      d: path(
+        "M 36.000204,46.151836 C 27.400508,48.459002 19.010679,54.122138 12.613403,49.19313 6.2161276,44.264122 1.8116474,28.743574 4.6433819,22.031448 7.4751164,15.319321 17.542505,17.416695 30.232294,15.424011 42.922084,13.431328 58.232916,7.3489418 68.300925,8.8173742 78.368935,10.285807 83.192991,19.304698 81.305135,26.750552 79.41728,34.196407 70.817877,40.069174 62.113458,42.481276 53.409039,44.893377 44.5999,43.844669 36.000204,46.151836 Z"
+      );
+    }
+    25% {
+      d: path(
+        "m 43.436537,45.969476 c -7.167576,0.235595 -16.118508,-0.930942 -22.669405,-6.41602 -6.550898,-5.485077 -10.700996,-15.28828 -8.81646,-20.336148 1.884536,-5.047867 9.803376,-5.339494 19.921254,-6.079832 10.117878,-0.740339 22.433591,-1.929288 31.463365,3.993519 9.029774,5.922807 14.772616,18.95637 13.897752,24.362948 -0.874865,5.406579 -8.36763,3.18567 -14.80627,2.893986 -6.43864,-0.291685 -11.822661,1.345953 -18.990236,1.581547 z"
+      );
+    }
+    50% {
+      d: path(
+        "M 46.061067,50.064392 C 40.227557,48.897799 34.931588,45.463285 28.101465,47.010079 21.271342,48.556872 12.908074,55.08494 8.5426355,49.369401 4.177197,43.653861 3.8101571,25.695112 16.539485,16.34799 29.268814,7.0008683 55.092732,6.2667864 68.241303,13.949014 81.389874,21.631243 81.86178,37.728583 79.148292,44.977974 76.434804,52.227365 70.535949,50.62812 64.40071,50.378982 58.265472,50.129843 51.894576,51.230985 46.061067,50.064392 Z"
+      );
+    }
+    75% {
+      d: path(
+        "M 40.917516,50.429504 C 32.304862,50.547516 21.450747,49.682335 15.354758,42.800043 9.2587695,35.917751 7.9216945,23.018918 19.392511,15.965923 30.863328,8.912928 55.140414,7.7069405 67.371338,12.596877 79.60226,17.486814 79.78578,28.47181 78.04223,35.812921 c -1.74355,7.34111 -5.41396,11.037729 -8.363405,12.479818 -2.94945,1.44209 -5.177904,0.629359 -9.477832,0.773485 -4.299928,0.144127 -10.670824,1.245269 -19.283477,1.36328 z"
+      );
+    }
+  }
+}

@@ -124,7 +124,6 @@ const ClimbingSvg = React.forwardRef((props, ref) => (
 ))
 
 const top_blue_animation = (ref, ratio) => {
-  console.log(ratio)
   let curr = linearAnimation(ratio, { x: 70, y: 50 }, 0.5, 0.9)
   ref.current.style.transform = `translate(${curr.x}px, ${curr.y}px)`
 }

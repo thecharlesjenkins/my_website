@@ -59,9 +59,6 @@ const GlobalStyle = createGlobalStyle`
     h3 {
       color: ${colors.lightPink};
     }
-    path {
-      fill: ${colors.offwhite};
-    }
     button {
       color: ${colors.lightGreen};
       background-color: ${colors.darkGreen};

@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import SocialLink from "./SocialLink"
 import styled from "styled-components"
 import media from "../styles/media"
+// import colors from "../styles/theme"
 
 const SocialContainer = styled.div`
   display: flex;

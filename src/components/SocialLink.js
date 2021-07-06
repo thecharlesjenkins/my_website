@@ -3,6 +3,7 @@ import IconGithub from "./icons/github"
 import IconLinkedin from "./icons/linkedin"
 import IconEmail from "./icons/email"
 import styled from "styled-components"
+import colors from "../styles/theme"
 
 const FormattedIcon = ({ size, title }) => {
   switch (title) {
@@ -19,6 +20,9 @@ const FormattedIcon = ({ size, title }) => {
 
 const IconHolder = styled.div`
   padding: 5px;
+  path {
+    fill: ${colors.offwhite};
+  }
 `
 
 const SocialLink = ({ link, social }) => {
