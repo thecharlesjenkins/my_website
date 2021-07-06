@@ -1,16 +1,17 @@
 import React from "react"
-import "../../styles/buttons.scss"
+import "../../styles/titles.scss"
 
-const Footer = () => {
-  return (
-    <div className="fancy_buttons">
-      <div className="about_me_button">
+const titles = {
+    "about_me": (
+      <div className="fancy_titles about_me_button">
         <p id="clicky">About Me</p>
       </div>
-      <div className="contact_me_button">
-        <ContactMeButton />
-      </div>
-      <div className="project_button">
+    ),
+    "contact_me": (
+      <ContactMeButton className="fancy_titles"/>
+    ),
+    "project": (
+      <div className="fancy_titles project_button">
         <div className="bounding">
           <div className="bouncing">
             <p>Projects</p>
@@ -20,33 +21,42 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="ripple">
+    ),
+    "clubs": (
+      <div className="fancy_titles ripple">
         <p>Clubs</p>
       </div>
-      <div className="dash_container">
+    ),
+    "non_techical": (
+      <div className="fancy_titles dash_container">
         <div className="speedy">
-          <p>Contact Me</p>
+          <p>Non-Technical</p>
         </div>
         {[...Array(11).keys()].map((index) => {
           return <div className="line" key={`line_${index}`} />
         })}
       </div>
-      <div className="rotation_container">
+    ),
+    "Experience": (
+      <div className="fancy_titles rotation_container">
         <div className="rotated" />
         <div className="stationary">
           <p>Experience</p>
         </div>
       </div>
-      <div class="book-container">
+    ),
+    "Research": (
+      <div className="fancy_titles book-container">
         <p>Research</p>
-        <div class="book">
-          <div class="book__page" />
+        <div className="book">
+          <div className="book__page" />
         </div>
       </div>
-      <TAButton/>
-    </div>
-  )
-}
+    ),
+    "TA": (
+      <TAButton className="fancy_titles"/>
+    )
+  };
 
 function TAButton() {
   return (
@@ -59,7 +69,7 @@ function TAButton() {
     >
       <defs>
         <filter id="shadow">
-        <feDropShadow dx="4" dy="3" stdDeviation="0" flood-color="#b71566" flood-opacity="1" />
+        <feDropShadow dx="4" dy="3" stdDeviation="0" floodColor="#b71566" floodOpacity="1" />
         </filter>
       </defs>
       <path
@@ -221,4 +231,4 @@ function ContactMeButton(props) {
   )
 }
 
-export default Footer
+export default titles;

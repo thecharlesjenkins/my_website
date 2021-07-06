@@ -11,7 +11,7 @@ import Seo from "../components/Seo"
 import SocialContainer from "../components/SocialMediaContainer"
 import Experience from "../components/page_items/Experience"
 import NonTechnical from "../components/page_items/NonTechnical"
-import FancyButtons from "../components/page_items/FancyButtons"
+import FancyTitles from "../components/page_items/FancyTitles"
 
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
@@ -34,7 +34,7 @@ const index = ({ data }) => (
       <h1>Charles Jenkins</h1>
       <h4 id="about">a software engineer</h4>
       <div>
-        <FancyButtons />
+        <FancyTitles />
         <AboutMe />
         <Projects />
         <Experience />
