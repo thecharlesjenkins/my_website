@@ -34,7 +34,6 @@ const index = ({ data }) => (
       <h1>Charles Jenkins</h1>
       <h4 id="about">a software engineer</h4>
       <div>
-        <FancyTitles />
         <AboutMe />
         <Projects />
         <Experience />

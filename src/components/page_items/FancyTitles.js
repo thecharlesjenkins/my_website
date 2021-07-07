@@ -2,16 +2,21 @@ import React from "react"
 import "../../styles/titles.scss"
 
 const titles = {
-    "about_me": (
-      <div className="fancy_titles about_me_button">
+  about_me: (
+    <div className="fancy_titles">
+      <div className="about_me_button">
         <p id="clicky">About Me</p>
       </div>
-    ),
-    "contact_me": (
-      <ContactMeButton className="fancy_titles"/>
-    ),
-    "project": (
-      <div className="fancy_titles project_button">
+    </div>
+  ),
+  contact_me: (
+    <div className="fancy_titles">
+      <ContactMeButton />
+    </div>
+  ),
+  project: (
+    <div className="fancy_titles">
+      <div className="project_button">
         <div className="bounding">
           <div className="bouncing">
             <p>Projects</p>
@@ -21,13 +26,17 @@ const titles = {
           </div>
         </div>
       </div>
-    ),
-    "clubs": (
-      <div className="fancy_titles ripple">
+    </div>
+  ),
+  clubs: (
+    <div className="fancy_titles">
+      <div className="ripple">
         <p>Clubs</p>
       </div>
-    ),
-    "non_techical": (
+    </div>
+  ),
+  non_techical: (
+    <div className="fancy_titles">
       <div className="fancy_titles dash_container">
         <div className="speedy">
           <p>Non-Technical</p>
@@ -36,29 +45,36 @@ const titles = {
           return <div className="line" key={`line_${index}`} />
         })}
       </div>
-    ),
-    "Experience": (
-      <div className="fancy_titles rotation_container">
+    </div>
+  ),
+  Experience: (
+    <div className="fancy_titles">
+      <div className="rotation_container">
         <div className="rotated" />
         <div className="stationary">
           <p>Experience</p>
         </div>
       </div>
-    ),
-    "Research": (
-      <div className="fancy_titles book-container">
+    </div>
+  ),
+  Research: (
+    <div className="fancy_titles">
+      <div className="book-container">
         <p>Research</p>
         <div className="book">
           <div className="book__page" />
         </div>
       </div>
-    ),
-    "TA": (
-      <TAButton className="fancy_titles"/>
-    )
-  };
+    </div>
+  ),
+  TA: (
+    <div className="fancy_titles">
+      <TaButton />
+    </div>
+  ),
+}
 
-function TAButton() {
+function TaButton() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -69,32 +85,34 @@ function TAButton() {
     >
       <defs>
         <filter id="shadow">
-        <feDropShadow dx="4" dy="3" stdDeviation="0" floodColor="#b71566" floodOpacity="1" />
+          <feDropShadow
+            dx="4"
+            dy="3"
+            stdDeviation="0"
+            floodColor="#b71566"
+            floodOpacity="1"
+          />
         </filter>
       </defs>
       <path
         fill="#e51a80"
         d="M36.212 48.403c-9.745 2.615-19.252 9.032-26.501 3.447C2.46 46.264-2.53 28.676.679 21.07c3.209-7.606 14.617-5.23 28.997-7.487 14.38-2.259 31.73-9.151 43.14-7.487C84.224 7.76 89.69 17.98 87.551 26.418c-2.14 8.437-11.884 15.092-21.748 17.826-9.864 2.733-19.846 1.545-29.592 4.16z"
         filter="url(#shadow)"
-        id= "bottom_morphy"
+        id="bottom_morphy"
       ></path>
       <path
         fill="#24305e"
         d="M36 46.152c-8.6 2.307-16.99 7.97-23.387 3.041-6.397-4.929-10.801-20.45-7.97-27.162 2.832-6.712 12.9-4.614 25.59-6.607 12.69-1.993 28-8.075 38.068-6.607 10.068 1.469 14.892 10.488 13.004 17.934-1.888 7.445-10.487 13.318-19.192 15.73C53.41 44.893 44.6 43.845 36 46.151z"
-        id= "top_morphy"
+        id="top_morphy"
       ></path>
-      <text
-        x="29.386"
-        y="36.78"
-      >
+      <text x="29.386" y="36.78">
         <tspan x="34" y="38" strokeWidth="0.529">
           TA
         </tspan>
       </text>
     </svg>
-  );
+  )
 }
-
 
 function ContactMeButton(props) {
   return (
@@ -231,4 +249,4 @@ function ContactMeButton(props) {
   )
 }
 
-export default titles;
+export default titles
