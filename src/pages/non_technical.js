@@ -1,32 +1,16 @@
-import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
-import SectionTitle from "../SectionTitle"
-import ClimbingAnimation from "../animations/climbing"
+import React, { useEffect } from "react"
+import { graphql } from "gatsby"
+import SectionTitle from "../components/SectionTitle"
+import ClimbingAnimation from "../components/animations/climbing"
 
 const images = [<ClimbingAnimation />]
 
-const NonTechnical = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/non_technical/" } }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              title
-              imageNum
-              text
-            }
-            html
-          }
-        }
-      }
-    }
-  `)
-
+const NonTechnical = ({ data, transitionStatus }) => {
+  useEffect(() => {
+    console.log('Non_Technical', transitionStatus);
+  }, [transitionStatus]);
   return (
-    <div>
+    <>
       <SectionTitle>Non-Technical Things</SectionTitle>
       {data.allMarkdownRemark.edges.map((edge, i) => {
         const items = [
@@ -60,8 +44,27 @@ const NonTechnical = () => {
           </div>
         )
       })}
-    </div>
+    </>
   )
 }
 
 export default NonTechnical
+
+export const query = graphql`
+  query {
+    allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/non_technical/" } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            imageNum
+            text
+          }
+          html
+        }
+      }
+    }
+  }
+`

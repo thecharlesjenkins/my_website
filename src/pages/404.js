@@ -1,7 +1,6 @@
 import React from "react"
 import GlobalStyle from "../styles/GlobalStyle"
 import Footer from "../components/page_items/Footer"
-import Navigation from "../components/page_items/Navigation"
 import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import styled from "styled-components"
@@ -45,7 +44,6 @@ const errorPage = ({ data }) => (
       <link rel="canonical" href="https://thecharlesjenkins.com/404" />
       <link rel="icon" href="favicon.ico" />
     </Helmet>
-    <Navigation />
     <Content>
       <TakeMeBack>
         <h1>404</h1>

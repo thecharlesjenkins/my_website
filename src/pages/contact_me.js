@@ -1,6 +1,6 @@
-import React from "react"
-import SectionTitle from "../SectionTitle"
-import { graphql, useStaticQuery } from "gatsby"
+import React, { useEffect } from "react"
+import SectionTitle from "../components/SectionTitle"
+import { graphql } from "gatsby"
 import styled from "styled-components"
 
 const Button = styled.button`
@@ -10,22 +10,10 @@ const Button = styled.button`
   padding: 1.25rem 1.75rem;
 `
 
-const Contact = () => {
-  const data = useStaticQuery(graphql`
-    {
-      allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/contact/" } }) {
-        edges {
-          node {
-            frontmatter {
-              title
-            }
-            html
-          }
-        }
-      }
-    }
-  `)
-
+const Contact = ({ data, transitionStatus }) => {
+  useEffect(() => {
+    console.log('ContactMe', transitionStatus);
+  }, [transitionStatus]);
   return (
     <div id="contact">
       <SectionTitle>
@@ -50,3 +38,18 @@ const Contact = () => {
 }
 
 export default Contact
+
+export const query = graphql`
+  {
+    allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/contact/" } }) {
+      edges {
+        node {
+          frontmatter {
+            title
+          }
+          html
+        }
+      }
+    }
+  }
+`

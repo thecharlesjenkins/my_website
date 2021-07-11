@@ -1,8 +1,8 @@
-import React from "react"
-import SectionTitle from "../SectionTitle"
+import React, { useEffect } from "react"
+import SectionTitle from "../components/SectionTitle"
 import styled from "styled-components"
-import { useStaticQuery, graphql } from "gatsby"
-import media from "../../styles/media"
+import { graphql } from "gatsby"
+import media from "../styles/media"
 
 const ExperienceContainer = styled.div`
   text-align: left;
@@ -11,26 +11,10 @@ const ExperienceContainer = styled.div`
   ${media.tablet`display: block;`};
 `
 
-const Experience = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/experience/" } }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              company
-              title
-              link
-              dates
-            }
-            html
-          }
-        }
-      }
-    }
-  `)
+const Experience = ({ data, transitionStatus }) => {
+  useEffect(() => {
+    console.log('Experience', transitionStatus);
+  }, [transitionStatus]);
   return (
     <div id="experience">
       <SectionTitle>My Experience</SectionTitle>
@@ -63,3 +47,21 @@ const Experience = () => {
 }
 
 export default Experience
+
+export const query = graphql`
+  query {
+    allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/experience/" } }) {
+      edges {
+        node {
+          frontmatter {
+            company
+            title
+            link
+            dates
+          }
+          html
+        }
+      }
+    }
+  }
+`

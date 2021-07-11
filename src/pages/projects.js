@@ -1,9 +1,9 @@
-import React from "react"
-import SectionTitle from "../SectionTitle"
+import React, { useEffect } from "react"
+import SectionTitle from "../components/SectionTitle"
 import styled from "styled-components"
-import { useStaticQuery, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import media from "../../styles/media"
+import media from "../styles/media"
 
 const CardContainer = styled.div`
   text-align: center;
@@ -21,28 +21,12 @@ const ProjectTitle = styled.h4`
   white-space: nowrap;
 `
 
-const Projects = () => {
-  const data = useStaticQuery(graphql`
-    {
-      allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/projects/" } }) {
-        edges {
-          node {
-            frontmatter {
-              title
-              link
-              picture {
-                childImageSharp {
-                  gatsbyImageData(width: 300, height: 300, layout: FIXED)
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
+const Projects = ({ data, transitionStatus }) => {
+  useEffect(() => {
+    console.log('Projects', transitionStatus);
+  }, [transitionStatus]);
   return (
-    <div>
+    <>
       <SectionTitle>My Projects</SectionTitle>
       <CardContainer>
         {data.allMarkdownRemark.edges.map((edge, i) => (
@@ -66,8 +50,28 @@ const Projects = () => {
         ))}
       </CardContainer>
       <div id="contact"></div>
-    </div>
+    </>
   )
 }
 
 export default Projects
+
+export const query = graphql`
+  {
+    allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/projects/" } }) {
+      edges {
+        node {
+          frontmatter {
+            title
+            link
+            picture {
+              childImageSharp {
+                gatsbyImageData(width: 300, height: 300, layout: FIXED)
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
