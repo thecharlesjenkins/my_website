@@ -36,18 +36,17 @@ const Container = styled.nav`
   position: fixed;
   top: 0;
   z-index: 11;
-  width: 100%;
+  height: 100%;
 `
 
-const TopNav = styled.ul`
+const SideNav = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 100%;
+  height: 100%;
 `
 
 const NavItem = styled.li`
-  float: right;
   ${media.phablet`display: none;`};
 `
 
@@ -59,33 +58,29 @@ const NavItemLink = styled(Link)`
 `
 
 const Resume = styled.button`
+  display: flex;
+  margin: 0 auto;
   border: 1px solid;
   border-radius: 5px;
   font-size: 15px;
   padding: 1rem 1rem;
-  margin-right: 10px;
-  float: right;
+  text-decoration: none;
 `
 
 const Title = styled(Link)`
-  float: left;
   font-size: 30px;
   padding: 0px 10px 10px 10px;
   ${mixins.underlineAnimation}
 `
 
-const Right = styled.a`
-  float: right;
-`
-
 const ResumeLink = ({ children }) => (
-  <Right
+  <a
     href="/charles_jenkins_resume.pdf"
     target="_blank"
     rel="noopener noreferrer"
   >
     <Resume>{children}</Resume>
-  </Right>
+  </a>
 )
 
 const query = graphql`
@@ -103,20 +98,19 @@ const NavigationLayout = (props) => (
     query={query}
     render={(data) => (
       <div>
+        <GlobalStyle />
+        <Seo />
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>{data.site.siteMetadata.title}</title>
+          <link rel="canonical" href="https://thecharlesjenkins.com" />
+          <link rel="icon" href="favicon.ico" />
+        </Helmet>
         <Container>
-          <GlobalStyle />
-          <Seo />
-          <Helmet>
-            <meta charSet="utf-8" />
-            <title>{data.site.siteMetadata.title}</title>
-            <link rel="canonical" href="https://thecharlesjenkins.com" />
-            <link rel="icon" href="favicon.ico" />
-          </Helmet>
-          <TopNav>
+          <SideNav>
             <Title className="no-underline" to="/">
               Charles Jenkins
             </Title>
-            <ResumeLink>Resume</ResumeLink>
             {navLinks &&
               navLinks.map(({ url, name }, i) => (
                 <NavItem key={i}>
@@ -125,7 +119,8 @@ const NavigationLayout = (props) => (
                   </NavItemLink>
                 </NavItem>
               ))}
-          </TopNav>
+            <ResumeLink>Resume</ResumeLink>
+          </SideNav>
         </Container>
         {props.children}
         <SocialContainer fixed={true} />
