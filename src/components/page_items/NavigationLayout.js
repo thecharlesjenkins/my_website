@@ -30,16 +30,16 @@ const navLinks = [
 ]
 
 const Container = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
   top: 0;
   z-index: 11;
   height: 100%;
 `
 
 const SideNav = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -51,26 +51,32 @@ const NavItem = styled.li`
 `
 
 const NavItemLink = styled(Link)`
-  display: block;
-  text-align: center;
   padding: 14px 16px;
   ${mixins.underlineAnimation}
 `
 
 const Resume = styled.button`
-  display: flex;
-  margin: 0 auto;
   border: 1px solid;
   border-radius: 5px;
   font-size: 15px;
   padding: 1rem 1rem;
-  text-decoration: none;
+  margin: 15px;
 `
 
 const Title = styled(Link)`
   font-size: 30px;
   padding: 0px 10px 10px 10px;
   ${mixins.underlineAnimation}
+`
+
+const Body = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+`
+
+const MainSection = styled.div`
+  flex: 1 0 auto;
 `
 
 const ResumeLink = ({ children }) => (
@@ -106,25 +112,29 @@ const NavigationLayout = (props) => (
           <link rel="canonical" href="https://thecharlesjenkins.com" />
           <link rel="icon" href="favicon.ico" />
         </Helmet>
-        <Container>
-          <SideNav>
-            <Title className="no-underline" to="/">
-              Charles Jenkins
-            </Title>
-            {navLinks &&
-              navLinks.map(({ url, name }, i) => (
-                <NavItem key={i}>
-                  <NavItemLink className="no-underline" to={url}>
-                    {name}
-                  </NavItemLink>
-                </NavItem>
-              ))}
-            <ResumeLink>Resume</ResumeLink>
-          </SideNav>
-        </Container>
-        {props.children}
+        <Body>
+          <Container>
+            <SideNav>
+              <Title className="no-underline" to="/">
+                Charles Jenkins
+              </Title>
+              {navLinks &&
+                navLinks.map(({ url, name }, i) => (
+                  <NavItem key={i}>
+                    <NavItemLink className="no-underline" to={url}>
+                      {name}
+                    </NavItemLink>
+                  </NavItem>
+                ))}
+              <ResumeLink>Resume</ResumeLink>
+            </SideNav>
+          </Container>
+          <MainSection>
+            {props.children}
+            <Footer />
+          </MainSection>
+        </Body>
         <SocialContainer fixed={true} />
-        <Footer />
       </div>
     )}
   />

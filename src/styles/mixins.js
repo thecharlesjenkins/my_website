@@ -1,4 +1,5 @@
 import { css } from "styled-components"
+import colors from "../styles/theme"
 
 const mixins = {
   underlineAnimation: css`
@@ -9,7 +10,7 @@ const mixins = {
       height: 2px;
       left: 0;
       bottom: 10px;
-      background-color: #000;
+      background-color: ${colors.colors.lightPink};
       visibility: hidden;
       -webkit-transform: scaleX(0);
       transform: scaleX(0);
