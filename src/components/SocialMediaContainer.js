@@ -17,7 +17,7 @@ const FixedContainer = styled.div`
   width: 35px;
   position: fixed;
   bottom: 0px;
-  left: 25px;
+  right: 50px;
   ${media.tablet`display: none;`};
 
   &:after {

@@ -1,13 +1,19 @@
 import React, { useEffect } from "react"
 import { graphql } from "gatsby"
 import SectionTitle from "../components/SectionTitle"
+import "../styles/titles.scss"
 
 const AboutMe = ({ data, transitionStatus }) => {
   useEffect(() => {
-    console.log('AboutMe', transitionStatus);
-  }, [transitionStatus]);
+    console.log("AboutMe", transitionStatus)
+  }, [transitionStatus])
   return (
     <>
+      <div className="fancy_titles">
+        <div className="about_me_button">
+          <p id="clicky">About Me</p>
+        </div>
+      </div>
       {data.allMarkdownRemark.edges.map((edge, i) => (
         <div key={i}>
           <SectionTitle>{edge.node.frontmatter.title}</SectionTitle>
