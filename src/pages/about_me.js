@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import "../styles/titles.scss"
-import Topic from "../components/topic"
+import Topic from "../components/Topic"
 
 const Animation = () => {
   return (
@@ -14,7 +14,7 @@ const Animation = () => {
 }
 
 const AboutMe = ({ data, transitionStatus }) => {
-  return Topic(data, transitionStatus, Animation);
+  return (<Topic data={data} transitionStatus={transitionStatus} Animation={Animation}/>);
 }
 
 export default AboutMe

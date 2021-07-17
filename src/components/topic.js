@@ -2,26 +2,35 @@ import React, { useEffect } from "react"
 import SectionTitle from "./SectionTitle"
 import "../styles/titles.scss"
 
-const Topic = (data, transitionStatus, Animation) => {
+const Topic = (props) => {
   useEffect(() => {
-    console.log("topic", transitionStatus)
-  }, [transitionStatus])
+    console.log("topic", props.transitionStatus)
+  }, [props.transitionStatus])
 
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
-        <Animation />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <props.Animation />
       </div>
-      {data.allMarkdownRemark.edges.map((edge, i) => (
-        <div key={i}>
-          <SectionTitle>{edge.node.frontmatter.title}</SectionTitle>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: edge.node.html,
-            }}
-          />
-        </div>
-      ))}
+      <div>
+        {props.data.allMarkdownRemark.edges.map((edge, i) => (
+          <div key={i}>
+            <SectionTitle>{edge.node.frontmatter.title}</SectionTitle>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: edge.node.html,
+              }}
+            />
+          </div>
+        ))}
+        {props.children}
+      </div>
     </>
   )
 }
