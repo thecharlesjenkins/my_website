@@ -1,9 +1,9 @@
-import React, { useEffect } from "react"
-import SectionTitle from "../components/SectionTitle"
+import React from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import Topic from "../components/Topic"
 import "../styles/titles.scss"
+import BasicPageQuery from "../components/BasicPageQuery"
 
 const Button = styled.button`
   border: 1px solid;
@@ -27,6 +27,7 @@ const Contact = ({ data, transitionStatus }) => {
       transitionStatus={transitionStatus}
       Animation={Animation}
     >
+      <BasicPageQuery data={data} />
       <a
         href="mailto:thecharlesjenkins@gmail.com"
         target="_blank"
@@ -35,33 +36,6 @@ const Contact = ({ data, transitionStatus }) => {
         <Button>Email me</Button>
       </a>
     </Topic>
-  )
-}
-
-const Contacty = ({ data, transitionStatus }) => {
-  useEffect(() => {
-    console.log("ContactMe", transitionStatus)
-  }, [transitionStatus])
-  return (
-    <div id="contact">
-      <SectionTitle>
-        {data.allMarkdownRemark.edges[0].node.frontmatter.title}
-      </SectionTitle>
-      <div align="center">
-        <div
-          dangerouslySetInnerHTML={{
-            __html: data.allMarkdownRemark.edges[0].node.html,
-          }}
-        ></div>
-        <a
-          href="mailto:thecharlesjenkins@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button>Email me</Button>
-        </a>
-      </div>
-    </div>
   )
 }
 

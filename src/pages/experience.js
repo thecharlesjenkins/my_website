@@ -1,8 +1,10 @@
-import React, { useEffect } from "react"
+import React from "react"
 import SectionTitle from "../components/SectionTitle"
 import styled from "styled-components"
 import { graphql } from "gatsby"
 import media from "../styles/media"
+import "../styles/titles.scss"
+import Topic from "../components/Topic"
 
 const ExperienceContainer = styled.div`
   text-align: left;
@@ -11,12 +13,24 @@ const ExperienceContainer = styled.div`
   ${media.tablet`display: block;`};
 `
 
+const Animation = () => (
+  <div className="fancy_titles">
+    <div className="rotation_container">
+      <div className="rotated" />
+      <div className="stationary">
+        <p>Experience</p>
+      </div>
+    </div>
+  </div>
+)
+
 const Experience = ({ data, transitionStatus }) => {
-  useEffect(() => {
-    console.log('Experience', transitionStatus);
-  }, [transitionStatus]);
   return (
-    <div id="experience">
+    <Topic
+      data={data}
+      transitionStatus={transitionStatus}
+      Animation={Animation}
+    >
       <SectionTitle>My Experience</SectionTitle>
       <ExperienceContainer>
         {data.allMarkdownRemark.edges.map((edge, i) => (
@@ -42,7 +56,7 @@ const Experience = ({ data, transitionStatus }) => {
           </div>
         ))}
       </ExperienceContainer>
-    </div>
+    </Topic>
   )
 }
 
