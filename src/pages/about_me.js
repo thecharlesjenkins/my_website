@@ -14,7 +14,7 @@ const Animation = () => {
 }
 
 const AboutMe = ({ data, transitionStatus }) => {
-  return Topic(data, transitionStatus, query, Animation)
+  return Topic(data, transitionStatus, Animation);
 }
 
 export default AboutMe

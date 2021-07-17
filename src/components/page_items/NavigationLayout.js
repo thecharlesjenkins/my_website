@@ -81,8 +81,8 @@ const MainSection = styled.div`
 `
 
 const Children = styled.div`
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 10vw;
+  padding-right: 10vw;
 `
 
 const ResumeLink = ({ children }) => (
