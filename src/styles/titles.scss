@@ -81,6 +81,7 @@
   .project_button {
     // display: inline-block;
     transform-style: preserve-3d;
+    padding: 25px;
 
     .bouncing {
       /* transform-origin: bottom right; */
@@ -174,20 +175,16 @@
   }
 
   .speedy {
-    margin-left: 50%;
+    // margin-left: 50%;
     display: inline-block;
-    text-align: center;
-    font-size: 42px;
-    font-family: "Raleway", sans-serif;
-    color: rgb(220, 231, 255);
     background-color: rgb(36, 48, 94);
 
-    text-shadow: 0px 5px hsl(220, 80%, 30%), 0px 10px 10px #0003;
     box-shadow: 0px 0px 0px 15px hsl(330, 80%, 50%),
       0px 10px 0px 15px hsl(330, 80%, 40%), 0px 20px 20px 15px #0003;
     cursor: pointer;
     border-radius: 25%;
     animation: 0.2s shake ease alternate infinite;
+    margin-top: 20px;
 
     p {
       padding-left: 20px;
@@ -230,38 +227,47 @@
       @keyframes zoom#{$i} {
         $y-pos: -1 * random(100) + px;
         from {
-          transform: translate(2000px, #{$y-pos});
+          transform: translate(100vw, #{$y-pos});
         }
         to {
-          transform: translate(0, #{$y-pos});
+          transform: translate(-100vw, #{$y-pos});
         }
       }
     }
   }
 
   .rotation_container {
+    display: grid;
+    margin-top: 30%;
+    margin-bottom: 30%;
+
     div {
       display: inline-block;
       background-color: rgb(36, 48, 94);
 
-      text-shadow: 0px 5px hsl(220, 80%, 30%), 0px 10px 10px #0003;
       box-shadow: 0px 0px 0px 15px hsl(330, 80%, 50%),
         0px 10px 0px 15px hsl(330, 80%, 40%);
       cursor: pointer;
       border-radius: 25%;
     }
     .rotated {
-      position: absolute;
+      // position: absolute;
+      grid-column: 1;
+      grid-row: 1;
       transform: rotate(45deg);
       height: 10em;
       width: 10em;
       animation: 1s grow_rotate alternate infinite;
     }
     .stationary {
-      position: absolute;
+      grid-column: 1;
+      grid-row: 1;
       transform: rotate(0deg);
-      margin-top: 1.8em;
       margin-left: -2.8em;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      flex-direction: column;
     }
 
     @keyframes grow {

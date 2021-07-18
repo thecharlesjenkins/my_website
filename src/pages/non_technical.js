@@ -1,16 +1,32 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import SectionTitle from "../components/SectionTitle"
 import ClimbingAnimation from "../components/animations/climbing"
+import Topic from "../components/Topic"
+
 
 const images = [<ClimbingAnimation />]
 
+const Animation = () => (
+  <div className="fancy_titles">
+    <div className="fancy_titles dash_container">
+      <div className="speedy">
+        <p>Non-Technical</p>
+      </div>
+      {[...Array(11).keys()].map((index) => {
+        return <div className="line" key={`line_${index}`} />
+      })}
+    </div>
+  </div>
+)
+
 const NonTechnical = ({ data, transitionStatus }) => {
-  useEffect(() => {
-    console.log('Non_Technical', transitionStatus);
-  }, [transitionStatus]);
   return (
-    <>
+    <Topic
+      data={data}
+      transitionStatus={transitionStatus}
+      Animation={Animation}
+    >
       <SectionTitle>Non-Technical Things</SectionTitle>
       {data.allMarkdownRemark.edges.map((edge, i) => {
         const items = [
@@ -44,7 +60,7 @@ const NonTechnical = ({ data, transitionStatus }) => {
           </div>
         )
       })}
-    </>
+    </Topic>
   )
 }
 

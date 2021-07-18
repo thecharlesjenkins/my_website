@@ -24,6 +24,10 @@ const navLinks = [
     url: "/projects",
   },
   {
+    name: "Non Technical",
+    url: "/non_technical",
+  },
+  {
     name: "Contact",
     url: "/contact_me",
   },

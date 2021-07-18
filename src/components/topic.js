@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import SectionTitle from "./SectionTitle"
 import "../styles/titles.scss"
 
 const Topic = (props) => {

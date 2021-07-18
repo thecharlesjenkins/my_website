@@ -37,7 +37,7 @@ const titles = {
   ),
   non_technical: (
     <div className="fancy_titles">
-      <div className="fancy_titles dash_container">
+      <div className="dash_container">
         <div className="speedy">
           <p>Non-Technical</p>
         </div>

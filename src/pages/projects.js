@@ -1,9 +1,10 @@
-import React, { useEffect } from "react"
+import React from "react"
 import SectionTitle from "../components/SectionTitle"
 import styled from "styled-components"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import media from "../styles/media"
+import Topic from "../components/Topic"
 
 const CardContainer = styled.div`
   text-align: center;
@@ -21,12 +22,28 @@ const ProjectTitle = styled.h4`
   white-space: nowrap;
 `
 
+const Animation = () => (
+  <div className="fancy_titles">
+    <div className="project_button">
+      <div className="bounding">
+        <div className="bouncing">
+          <p>Projects</p>
+          {[...Array(11).keys()].map((index) => {
+            return <div className="bubble" key={`bubble_${index}`} />
+          })}
+        </div>
+      </div>
+    </div>
+  </div>
+)
+
 const Projects = ({ data, transitionStatus }) => {
-  useEffect(() => {
-    console.log('Projects', transitionStatus);
-  }, [transitionStatus]);
   return (
-    <>
+    <Topic
+      data={data}
+      transitionStatus={transitionStatus}
+      Animation={Animation}
+    >
       <SectionTitle>My Projects</SectionTitle>
       <CardContainer>
         {data.allMarkdownRemark.edges.map((edge, i) => (
@@ -50,7 +67,7 @@ const Projects = ({ data, transitionStatus }) => {
         ))}
       </CardContainer>
       <div id="contact"></div>
-    </>
+    </Topic>
   )
 }
 
