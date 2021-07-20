@@ -130,7 +130,14 @@ const NavigationLayout = (props) => (
             {navLinks &&
               navLinks.map(({ url, name }, i) => (
                 <NavItem key={i}>
-                  <NavItemLink className="no-underline" to={url}>
+                  <NavItemLink
+                    className="no-underline"
+                    to={url}
+                    exit={{
+                      length: 1,
+                    }}
+                    entry={{ length: 1 }}
+                  >
                     {name}
                   </NavItemLink>
                 </NavItem>
