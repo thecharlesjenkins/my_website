@@ -4,19 +4,19 @@ import gsap from "gsap"
 
 const Topic = (props) => {
   let topicRef = useRef(null)
-  useEffect(() => {
-    gsap.to(topicRef.current, {
-      autoAlpha: 1,
-      duration: 1,
-    })
-  }, []) //THIS IS RUN THE FIRST TIME THE SITE IS OPENED
+ //THIS IS RUN THE FIRST TIME THE SITE IS OPENED
 
   useEffect(() => {
     if (props.transitionStatus === "entering") {
       console.log("topic", props.transitionStatus)
       gsap.to(topicRef.current, {
+        autoAlpha: 0,
+        duration: 0,
+      })
+      gsap.to(topicRef.current, {
         autoAlpha: 1,
         duration: 1,
+        delay: 1
       })
     }
     if (props.transitionStatus === "exiting") {
