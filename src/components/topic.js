@@ -4,8 +4,6 @@ import gsap from "gsap"
 
 const Topic = (props) => {
   let topicRef = useRef(null)
- //THIS IS RUN THE FIRST TIME THE SITE IS OPENED
-
   useEffect(() => {
     if (props.transitionStatus === "entering") {
       console.log("topic", props.transitionStatus)

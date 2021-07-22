@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Link from "gatsby-plugin-transition-link"
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 import mixins from "../../styles/mixins"
 import media from "../../styles/media"
 import { graphql, StaticQuery } from "gatsby"
@@ -50,7 +51,7 @@ const NavItem = styled.li`
   ${media.phablet`display: none;`};
 `
 
-const NavItemLink = styled(Link)`
+const NavItemLink = styled(AniLink)`
   padding: 14px 16px;
   ${mixins.underlineAnimation}
 `
@@ -131,6 +132,7 @@ const NavigationLayout = (props) => (
               navLinks.map(({ url, name }, i) => (
                 <NavItem key={i}>
                   <NavItemLink
+                    paintDrip
                     className="no-underline"
                     to={url}
                     exit={{
