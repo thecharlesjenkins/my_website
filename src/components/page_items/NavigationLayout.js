@@ -51,7 +51,7 @@ const NavItem = styled.li`
   ${media.phablet`display: none;`};
 `
 
-const NavItemLink = styled(AniLink)`
+const NavItemLink = styled(Link)`
   padding: 14px 16px;
   ${mixins.underlineAnimation}
 `
@@ -132,7 +132,6 @@ const NavigationLayout = (props) => (
               navLinks.map(({ url, name }, i) => (
                 <NavItem key={i}>
                   <NavItemLink
-                    paintDrip
                     className="no-underline"
                     to={url}
                     exit={{

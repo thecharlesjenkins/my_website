@@ -4,6 +4,7 @@ import gsap from "gsap"
 
 const Topic = (props) => {
   let topicRef = useRef(null)
+  let animationRef = useRef(null)
   useEffect(() => {
     if (props.transitionStatus === "entering") {
       console.log("topic", props.transitionStatus)
@@ -19,9 +20,13 @@ const Topic = (props) => {
     }
     if (props.transitionStatus === "exiting") {
       console.log("topic", props.transitionStatus)
-      gsap.to(topicRef.current, { autoAlpha: 0, duration: 1 })
+      if (props.exitAnimation) {
+        props.exitAnimation(animationRef.current, topicRef.current)
+      } else {
+        gsap.to(topicRef.current, { autoAlpha: 0, duration: 1 })
+      }
     }
-  }, [props.transitionStatus])
+  }, [props])
 
   return (
     <div ref={topicRef}>
@@ -32,7 +37,7 @@ const Topic = (props) => {
           flexDirection: "column",
         }}
       >
-        <props.Animation />
+        <props.Animation ref={animationRef}/>
       </div>
       <div>{props.children}</div>
     </div>

@@ -4,6 +4,7 @@ import styled from "styled-components"
 import Topic from "../components/Topic"
 import "../styles/titles.scss"
 import BasicPageQuery from "../components/BasicPageQuery"
+import gsap from "gsap"
 
 const Button = styled.button`
   border: 1px solid;
@@ -12,12 +13,19 @@ const Button = styled.button`
   padding: 1.25rem 1.75rem;
 `
 
-const Animation = () => {
+const Animation = React.forwardRef((props, ref) => {
   return (
-    <div className="fancy_titles">
+    <div className="fancy_titles" {...props} ref={ref}>
       <ContactMeButton />
     </div>
   )
+});
+
+const exitAnimation = (animationRef, pageRef) => {
+  let timeline = gsap.timeline()
+  timeline.to(animationRef, {x: "100vw", duration: 1})
+  timeline.to(pageRef, {x: "100vw", duration: 1}, ">.5")
+  return timeline
 }
 
 const Contact = ({ data, transitionStatus }) => {
@@ -26,6 +34,7 @@ const Contact = ({ data, transitionStatus }) => {
       data={data}
       transitionStatus={transitionStatus}
       Animation={Animation}
+      exitAnimation={exitAnimation}
     >
       <BasicPageQuery data={data} />
       <a
