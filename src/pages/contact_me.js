@@ -13,20 +13,11 @@ const Button = styled.button`
   padding: 1.25rem 1.75rem;
 `
 
-const Animation = React.forwardRef((props, ref) => {
-  return (
-    <div className="fancy_titles" {...props} ref={ref}>
-      <ContactMeButton />
-    </div>
-  )
-});
-
-const exitAnimation = (animationRef, pageRef) => {
-  let timeline = gsap.timeline()
-  timeline.to(animationRef, {x: "100vw", duration: 1})
-  timeline.to(pageRef, {x: "100vw", duration: 1}, ">.5")
-  return timeline
-}
+const Animation = React.forwardRef((props, ref) => (
+  <div className="fancy_titles" {...props} ref={ref}>
+    <ContactMeButton />
+  </div>
+))
 
 const Contact = ({ data, transitionStatus }) => {
   return (
@@ -34,7 +25,6 @@ const Contact = ({ data, transitionStatus }) => {
       data={data}
       transitionStatus={transitionStatus}
       Animation={Animation}
-      exitAnimation={exitAnimation}
     >
       <BasicPageQuery data={data} />
       <a

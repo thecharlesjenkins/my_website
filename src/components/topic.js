@@ -14,8 +14,8 @@ const Topic = (props) => {
       })
       gsap.to(topicRef.current, {
         autoAlpha: 1,
-        duration: 1,
-        delay: 1
+        duration: 1.5,
+        delay: 1.5
       })
     }
     if (props.transitionStatus === "exiting") {

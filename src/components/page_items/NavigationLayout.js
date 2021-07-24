@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 import Link from "gatsby-plugin-transition-link"
-import AniLink from "gatsby-plugin-transition-link/AniLink";
 import mixins from "../../styles/mixins"
 import media from "../../styles/media"
 import { graphql, StaticQuery } from "gatsby"
@@ -135,9 +134,9 @@ const NavigationLayout = (props) => (
                     className="no-underline"
                     to={url}
                     exit={{
-                      length: 1,
+                      length: 2,
                     }}
-                    entry={{ length: 1 }}
+                    entry={{ length: 1.5 }}
                   >
                     {name}
                   </NavItemLink>

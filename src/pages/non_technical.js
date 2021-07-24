@@ -3,12 +3,12 @@ import { graphql } from "gatsby"
 import SectionTitle from "../components/SectionTitle"
 import ClimbingAnimation from "../components/animations/climbing"
 import Topic from "../components/Topic"
-
+import { gsap } from "gsap"
 
 const images = [<ClimbingAnimation />]
 
-const Animation = () => (
-  <div className="fancy_titles">
+const Animation = React.forwardRef((props, ref) => (
+  <div className="fancy_titles" ref={ref} {...props}>
     <div className="fancy_titles dash_container">
       <div className="speedy">
         <p>Non-Technical</p>
@@ -18,7 +18,14 @@ const Animation = () => (
       })}
     </div>
   </div>
-)
+))
+
+const exitAnimation = (animationRef, pageRef) => {
+  let timeline = gsap.timeline()
+  timeline.to(animationRef, { x: "100vw", duration: 1 })
+  timeline.to(pageRef, { x: "100vw", duration: 1 }, ">.2")
+  return timeline
+}
 
 const NonTechnical = ({ data, transitionStatus }) => {
   return (
@@ -26,6 +33,7 @@ const NonTechnical = ({ data, transitionStatus }) => {
       data={data}
       transitionStatus={transitionStatus}
       Animation={Animation}
+      exitAnimation={exitAnimation}
     >
       <SectionTitle>Non-Technical Things</SectionTitle>
       {data.allMarkdownRemark.edges.map((edge, i) => {
