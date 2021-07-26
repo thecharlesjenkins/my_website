@@ -5,6 +5,7 @@ import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import media from "../styles/media"
 import Topic from "../components/Topic"
+import { gsap } from "gsap"
 
 const CardContainer = styled.div`
   text-align: center;
@@ -22,8 +23,8 @@ const ProjectTitle = styled.h4`
   white-space: nowrap;
 `
 
-const Animation = () => (
-  <div className="fancy_titles">
+const Animation = React.forwardRef((props, ref) => (
+  <div className="fancy_titles" ref={ref} {...props}>
     <div className="project_button">
       <div className="bounding">
         <div className="bouncing">
@@ -35,7 +36,21 @@ const Animation = () => (
       </div>
     </div>
   </div>
-)
+))
+
+const enterAnimation = (animationRef, pageRef) => {
+  let timeline = gsap.timeline()
+  timeline.from(animationRef, { x: "-100vw", duration: 1 })
+  timeline.from(pageRef, { x: "-100vw", duration: 1 })
+  return timeline
+}
+
+const exitAnimation = (animationRef, pageRef) => {
+  let timeline = gsap.timeline()
+  timeline.to(animationRef, { x: "100vw", duration: 1 })
+  timeline.to(pageRef, { x: "100vw", duration: 1 }, "<.2")
+  return timeline
+}
 
 const Projects = ({ data, transitionStatus }) => {
   return (
@@ -43,6 +58,8 @@ const Projects = ({ data, transitionStatus }) => {
       data={data}
       transitionStatus={transitionStatus}
       Animation={Animation}
+      exitAnimation={exitAnimation}
+      enterAnimation={enterAnimation}
     >
       <SectionTitle>My Projects</SectionTitle>
       <CardContainer>

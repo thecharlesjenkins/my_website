@@ -5,6 +5,7 @@ import { graphql } from "gatsby"
 import media from "../styles/media"
 import "../styles/titles.scss"
 import Topic from "../components/Topic"
+import { gsap } from "gsap"
 
 const ExperienceContainer = styled.div`
   text-align: left;
@@ -13,8 +14,8 @@ const ExperienceContainer = styled.div`
   ${media.tablet`display: block;`};
 `
 
-const Animation = () => (
-  <div className="fancy_titles">
+const Animation = React.forwardRef((props, ref) => (
+  <div className="fancy_titles" ref={ref} {...props}>
     <div className="rotation_container">
       <div className="rotated" />
       <div className="stationary">
@@ -22,7 +23,21 @@ const Animation = () => (
       </div>
     </div>
   </div>
-)
+))
+
+const enterAnimation = (animationRef, pageRef) => {
+  let timeline = gsap.timeline()
+  timeline.from(animationRef, { x: "-100vw", duration: 1 })
+  timeline.from(pageRef, { x: "-100vw", duration: 1 })
+  return timeline
+}
+
+const exitAnimation = (animationRef, pageRef) => {
+  let timeline = gsap.timeline()
+  timeline.to(animationRef, { x: "100vw", duration: 1 })
+  timeline.to(pageRef, { x: "100vw", duration: 1 }, "<.2")
+  return timeline
+}
 
 const Experience = ({ data, transitionStatus }) => {
   return (
@@ -30,6 +45,8 @@ const Experience = ({ data, transitionStatus }) => {
       data={data}
       transitionStatus={transitionStatus}
       Animation={Animation}
+      exitAnimation={exitAnimation}
+      enterAnimation={enterAnimation}
     >
       <SectionTitle>My Experience</SectionTitle>
       <ExperienceContainer>

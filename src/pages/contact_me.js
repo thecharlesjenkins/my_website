@@ -19,12 +19,28 @@ const Animation = React.forwardRef((props, ref) => (
   </div>
 ))
 
+const enterAnimation = (animationRef, pageRef) => {
+  let timeline = gsap.timeline()
+  timeline.from(animationRef, { x: "-100vw", duration: 1 })
+  timeline.from(pageRef, { x: "-100vw", duration: 1 })
+  return timeline
+}
+
+const exitAnimation = (animationRef, pageRef) => {
+  let timeline = gsap.timeline()
+  timeline.to(animationRef, { x: "100vw", duration: 1 })
+  timeline.to(pageRef, { x: "100vw", duration: 1 }, "<.2")
+  return timeline
+}
+
 const Contact = ({ data, transitionStatus }) => {
   return (
     <Topic
       data={data}
       transitionStatus={transitionStatus}
       Animation={Animation}
+      exitAnimation={exitAnimation}
+      enterAnimation={enterAnimation}
     >
       <BasicPageQuery data={data} />
       <a
