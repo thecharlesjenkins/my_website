@@ -1,14 +1,16 @@
 import React from "react"
+import SectionTitle from "../components/SectionTitle"
 import { graphql } from "gatsby"
-import "../styles/titles.scss"
 import Topic from "../components/Topic"
-import BasicPageQuery from "../components/BasicPageQuery"
 import { gsap } from "gsap"
 
 const Animation = React.forwardRef((props, ref) => (
   <div className="fancy_titles" ref={ref} {...props}>
-    <div className="about_me_button">
-      <p id="clicky">About Me</p>
+    <div className="book-container">
+      <p>Research</p>
+      <div className="book">
+        <div className="book__page" />
+      </div>
     </div>
   </div>
 ))
@@ -27,7 +29,7 @@ const exitAnimation = (animationRef, pageRef) => {
   return timeline
 }
 
-const AboutMe = ({ data, transitionStatus }) => {
+const Research = ({ data, transitionStatus }) => {
   return (
     <Topic
       data={data}
@@ -36,27 +38,10 @@ const AboutMe = ({ data, transitionStatus }) => {
       exitAnimation={exitAnimation}
       enterAnimation={enterAnimation}
     >
-      <BasicPageQuery data={data} />
+      <SectionTitle>Research</SectionTitle>
+
     </Topic>
   )
 }
 
-export default AboutMe
-
-export const query = graphql`
-  query {
-    allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/about_me/" } }
-      sort: { fields: [frontmatter___title], order: ASC }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            title
-          }
-          html
-        }
-      }
-    }
-  }
-`
+export default Research

@@ -83,7 +83,6 @@ const Projects = ({ data, transitionStatus }) => {
           </Card>
         ))}
       </CardContainer>
-      <div id="contact"></div>
     </Topic>
   )
 }

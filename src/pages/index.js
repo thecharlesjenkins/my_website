@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import SectionTitle from "../components/SectionTitle"
 
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
@@ -15,6 +16,7 @@ const Index = ({ transitionStatus }) => {
         <h4>Hello, I am</h4>
         <h1>Charles Jenkins</h1>
         <h4 id="about">a software engineer</h4>
+        <SectionTitle>Welcome to my website!</SectionTitle>
       </div>
     </>
   )

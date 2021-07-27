@@ -27,15 +27,15 @@ const Animation = React.forwardRef((props, ref) => (
 
 const enterAnimation = (animationRef, pageRef) => {
   let timeline = gsap.timeline()
-  timeline.from(animationRef, { x: "-100vw", duration: 1 })
-  timeline.from(pageRef, { x: "-100vw", duration: 1 })
+  // timeline.from(animationRef, { x: "-100vw", duration: 1 })
+  // timeline.from(pageRef, { x: "-100vw", duration: 1 })
   return timeline
 }
 
 const exitAnimation = (animationRef, pageRef) => {
   let timeline = gsap.timeline()
-  timeline.to(animationRef, { x: "100vw", duration: 1 })
-  timeline.to(pageRef, { x: "100vw", duration: 1 }, "<.2")
+  // timeline.to(animationRef, { x: "100vw", duration: 1 })
+  // timeline.to(pageRef, { x: "100vw", duration: 1 }, "<.2")
   return timeline
 }
 
