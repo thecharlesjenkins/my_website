@@ -4,23 +4,24 @@ import "../styles/titles.scss"
 const Topic = (props) => {
   let topicRef = useRef(null)
   let animationRef = useRef(null)
+  let bodyRef = useRef(null)
   useEffect(() => {
     if (props.transitionStatus === "entering") {
       console.log("topic", props.transitionStatus)
       if (props.enterAnimation) {
-        props.enterAnimation(animationRef.current, topicRef.current)
+        props.enterAnimation(animationRef.current, bodyRef.current, topicRef.current)
       }
     }
     if (props.transitionStatus === "exiting") {
       console.log("topic", props.transitionStatus)
       if (props.exitAnimation) {
-        props.exitAnimation(animationRef.current, topicRef.current)
+        props.exitAnimation(animationRef.current, bodyRef.current, topicRef.current)
       }
     }
   }, [props])
 
   return (
-    <div ref={topicRef}>
+    <div ref={topicRef} style={{...props.starting}}>
       <div
         style={{
           display: "flex",
@@ -30,7 +31,7 @@ const Topic = (props) => {
       >
         <props.Animation ref={animationRef} />
       </div>
-      <div>{props.children}</div>
+      <div ref={bodyRef}>{props.children}</div>
     </div>
   )
 }

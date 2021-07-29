@@ -13,31 +13,38 @@ const Animation = React.forwardRef((props, ref) => (
   </div>
 ))
 
-const enterAnimation = (animationRef, pageRef) => {
+const enterAnimation = (animationRef, bodyRef, pageRef) => {
   let timeline = gsap.timeline()
-  // timeline.from(animationRef, { x: "-100vw", duration: 1 })
-  // timeline.from(pageRef, { x: "-100vw", duration: 1 })
+  timeline.to(pageRef, { rotate: 45 }, 0)
+  timeline.to(pageRef, { opacity: 1 })
+  timeline.from(bodyRef, { x: "-100vw" })
+  timeline.from(animationRef, { x: "-100vw" })
+  timeline.to(pageRef, { rotate: 0 })
   return timeline
 }
 
-const exitAnimation = (animationRef, pageRef) => {
+const exitAnimation = (animationRef, bodyRef, pageRef) => {
   let timeline = gsap.timeline()
-  // timeline.to(animationRef, { x: "100vw", duration: 1 })
-  // timeline.to(pageRef, { x: "100vw", duration: 1 }, "<.2")
+  timeline.to(pageRef, { rotation: 45 })
+  timeline.to(animationRef, { x: "100vw" })
+  timeline.to(bodyRef, { x: "100vw" })
   return timeline
 }
 
 const AboutMe = ({ data, transitionStatus }) => {
   return (
-    <Topic
-      data={data}
-      transitionStatus={transitionStatus}
-      Animation={Animation}
-      exitAnimation={exitAnimation}
-      enterAnimation={enterAnimation}
-    >
-      <BasicPageQuery data={data} />
-    </Topic>
+    <div style={{ overflow: "hidden" }}>
+      <Topic
+        data={data}
+        transitionStatus={transitionStatus}
+        Animation={Animation}
+        exitAnimation={exitAnimation}
+        enterAnimation={enterAnimation}
+        starting={{ opacity: 0, overflow: "hidden" }}
+      >
+        <BasicPageQuery data={data} />
+      </Topic>
+    </div>
   )
 }
 
