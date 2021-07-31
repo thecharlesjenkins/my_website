@@ -140,7 +140,7 @@ const NavigationLayout = (props) => (
                     exit={{
                       length: 2,
                     }}
-                    entry={{ length: 1.5 }}
+                    entry={{ delay: 2 }}
                   >
                     {name}
                   </NavItemLink>
