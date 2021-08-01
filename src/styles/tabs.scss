@@ -1,7 +1,6 @@
 @use './colors.scss';
 
 /* Inactive tab */
-/* Inactive tab */
 .colored-tabs li > button {
   transition: all 1s;
   line-height: 1;
@@ -28,9 +27,3 @@
   color: colors.$lightGreen;
   background-color: colors.$darkGreen;
 }
-
-// /* Disabled tab */
-// .colored-tabs ul > li.disabled > button {
-//   background-color: lightgray;
-//   color: darkgray;
-// }
