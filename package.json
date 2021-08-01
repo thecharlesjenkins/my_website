@@ -26,6 +26,7 @@
   "dependencies": {
     "@fontsource/noto-sans-tc": "^4.4.0",
     "@tensorflow/tfjs": "^3.7.0",
+    "bootstrap": "^5.0.2",
     "gatsby": "^3.4.1",
     "gatsby-plugin-image": "^1.6.0",
     "gatsby-plugin-manifest": "^3.6.0",
@@ -39,6 +40,7 @@
     "gatsby-transformer-remark": "^4.2.0",
     "gatsby-transformer-sharp": "^3.5.0",
     "gsap": "^3.7.1",
+    "react-bootstrap": "^2.0.0-beta.4",
     "react-helmet": "^6.1.0",
     "react-scroll": "^1.8.2",
     "sass": "^1.35.1",

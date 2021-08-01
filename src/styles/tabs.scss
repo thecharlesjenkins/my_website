@@ -1,0 +1,36 @@
+@use './colors.scss';
+
+/* Inactive tab */
+/* Inactive tab */
+.colored-tabs li > button {
+  transition: all 1s;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  &:after {
+    display: none !important;
+  }
+  color: colors.$lightGreen;
+  background-color: colors.$darkGreen;
+  &:hover {
+    color: colors.$darkGreen;
+    background-color: colors.$lightGreen;
+  }
+}
+
+/* Active tab */
+.colored-tabs .nav-link.active {
+  color: colors.$lightGreen;
+  background-color: colors.$darkGreen;
+}
+
+// /* Disabled tab */
+// .colored-tabs ul > li.disabled > button {
+//   background-color: lightgray;
+//   color: darkgray;
+// }

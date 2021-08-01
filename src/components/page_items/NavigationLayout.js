@@ -4,11 +4,13 @@ import Link from "gatsby-plugin-transition-link"
 import mixins from "../../styles/mixins"
 import media from "../../styles/media"
 import { graphql, StaticQuery } from "gatsby"
-import GlobalStyle from "../../styles/GlobalStyle"
 import Seo from "../Seo"
 import Helmet from "react-helmet"
 import SocialContainer from "../SocialMediaContainer"
 import Footer from "../page_items/Footer"
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import GlobalStyle from "../../styles/GlobalStyle"
 
 const navLinks = [
   {
@@ -26,10 +28,6 @@ const navLinks = [
   {
     name: "Non Technical",
     url: "/non_technical",
-  },
-  {
-    name: "Research",
-    url: "/research",
   },
   {
     name: "Contact",
@@ -140,7 +138,7 @@ const NavigationLayout = (props) => (
                     exit={{
                       length: 2,
                     }}
-                    entry={{ delay: 2 }}
+                    entry={{ delay: .5}}
                   >
                     {name}
                   </NavItemLink>

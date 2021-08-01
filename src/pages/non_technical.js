@@ -7,7 +7,7 @@ import { gsap } from "gsap"
 
 const images = [<ClimbingAnimation />]
 
-const Animation = React.forwardRef((props, bodyRef, ref) => (
+const Animation = React.forwardRef((props, ref) => (
   <div className="fancy_titles" ref={ref} {...props}>
     <div className="fancy_titles dash_container">
       <div className="speedy">
@@ -27,7 +27,7 @@ const enterAnimation = (animationRef, bodyRef, pageRef) => {
   return timeline
 }
 
-const exitAnimation = (animationRef, pageRef) => {
+const exitAnimation = (animationRef, bodyRef, pageRef) => {
   let timeline = gsap.timeline()
   timeline.to(animationRef, { x: "100vw", duration: 1 })
   timeline.to(pageRef, { x: "100vw", duration: 1 }, "<.2")

@@ -86,7 +86,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 0 10px 0;
   }
   a {
-    color: inherit;
+    color: ${colors.offwhite};
+  }
+  a:hover {
+    color: color: ${colors.offwhite};
   }
   .no-underline {
     display: inline-block;

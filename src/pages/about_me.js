@@ -40,7 +40,6 @@ const AboutMe = ({ data, transitionStatus }) => {
         Animation={Animation}
         exitAnimation={exitAnimation}
         enterAnimation={enterAnimation}
-        starting={{ opacity: 0, overflow: "hidden" }}
       >
         <BasicPageQuery data={data} />
       </Topic>
