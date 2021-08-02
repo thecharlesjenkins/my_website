@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import Link from "gatsby-plugin-transition-link"
 import mixins from "../../styles/mixins"
@@ -9,8 +9,14 @@ import Helmet from "react-helmet"
 import SocialContainer from "../SocialMediaContainer"
 import Footer from "../page_items/Footer"
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css"
 import GlobalStyle from "../../styles/GlobalStyle"
+
+import AboutMe from "../../pages/about_me"
+import Experience from "../../pages/experience"
+import Projects from "../../pages/projects"
+import NonTechnical from "../../pages/non_technical"
+import Contact from "../../pages/contact_me"
 
 const navLinks = [
   {
@@ -101,6 +107,87 @@ const ResumeLink = ({ children }) => (
   </a>
 )
 
+const MobileLayout = (props) => (
+  <div {...props}>
+    <AboutMe/>
+    <Experience/>
+    <Projects/>
+    <NonTechnical/>
+    <Contact/>
+  </div>  
+)
+
+const NavigationLayout = (props) => {
+  const isMobile = (width) => width <= 800
+
+  const [mobileWidth, setMobileWidth] = useState(isMobile(window.innerWidth))
+
+  useEffect(() => {
+    const resizeEvent = (event) => {
+      setMobileWidth(isMobile(event.target.innerWidth))
+    }
+
+    window.addEventListener("resize", resizeEvent)
+
+    // cleanup this component
+    return () => {
+      window.removeEventListener("resize", resizeEvent)
+    }
+  }, [])
+
+  console.log("mobile", mobileWidth)
+
+  return (
+    <StaticQuery
+      query={query}
+      render={(data) => (
+        <div>
+          <GlobalStyle />
+          <Seo />
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>{data.site.siteMetadata.title}</title>
+            <link rel="canonical" href="https://thecharlesjenkins.com" />
+            <link rel="icon" href="favicon.ico" />
+          </Helmet>
+          <Body>
+            <SideNav>
+              <Title className="no-underline" to="/">
+                Charles Jenkins
+              </Title>
+              {navLinks &&
+                navLinks.map(({ url, name }, i) => (
+                  <NavItem key={i}>
+                    <NavItemLink
+                      className="no-underline"
+                      to={url}
+                      exit={{
+                        length: 2,
+                      }}
+                      entry={{ delay: 0.5 }}
+                    >
+                      {name}
+                    </NavItemLink>
+                  </NavItem>
+                ))}
+              <ResumeLink>Resume</ResumeLink>
+            </SideNav>
+            <MainSection>
+              <Children>
+                {mobileWidth ? props.children : <MobileLayout/>}
+              </Children>
+              <Footer />
+            </MainSection>
+          </Body>
+          <SocialContainer fixed={true} />
+        </div>
+      )}
+    />
+  )
+}
+
+export default NavigationLayout
+
 const query = graphql`
   {
     site {
@@ -110,51 +197,3 @@ const query = graphql`
     }
   }
 `
-
-const NavigationLayout = (props) => (
-  <StaticQuery
-    query={query}
-    render={(data) => (
-      <div>
-        <GlobalStyle />
-        <Seo />
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>{data.site.siteMetadata.title}</title>
-          <link rel="canonical" href="https://thecharlesjenkins.com" />
-          <link rel="icon" href="favicon.ico" />
-        </Helmet>
-        <Body>
-          <SideNav>
-            <Title className="no-underline" to="/">
-              Charles Jenkins
-            </Title>
-            {navLinks &&
-              navLinks.map(({ url, name }, i) => (
-                <NavItem key={i}>
-                  <NavItemLink
-                    className="no-underline"
-                    to={url}
-                    exit={{
-                      length: 2,
-                    }}
-                    entry={{ delay: .5}}
-                  >
-                    {name}
-                  </NavItemLink>
-                </NavItem>
-              ))}
-            <ResumeLink>Resume</ResumeLink>
-          </SideNav>
-          <MainSection>
-            <Children>{props.children}</Children>
-            <Footer />
-          </MainSection>
-        </Body>
-        <SocialContainer fixed={true} />
-      </div>
-    )}
-  />
-)
-
-export default NavigationLayout
