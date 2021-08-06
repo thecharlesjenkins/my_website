@@ -10,6 +10,7 @@ const Index = ({ transitionStatus }) => {
   useEffect(() => {
     console.log("HomePage", transitionStatus)
   }, [transitionStatus])
+
   return (
     <>
       <div style={{ maxWidth: "75vw", margin: "4rem auto" }}>

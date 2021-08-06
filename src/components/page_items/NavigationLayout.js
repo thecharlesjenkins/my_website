@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import styled from "styled-components"
 import Link from "gatsby-plugin-transition-link"
+import { Consumer as TransitionLinkConsumer } from "gatsby-plugin-transition-link/context/createTransitionContext"
+import { triggerTransition } from "gatsby-plugin-transition-link/utils/triggerTransition"
 import mixins from "../../styles/mixins"
 import media from "../../styles/media"
 import { graphql, StaticQuery } from "gatsby"
@@ -40,6 +42,14 @@ const navLinks = [
     url: "/contact_me",
   },
 ]
+
+const order = {
+  "/about_me": [null, "/experience"],
+  "/experience": ["/about_me", "/projects"],
+  "/projects": ["/experience", "/non_technical"],
+  "/non_technical": ["/projects", "/contact_me"],
+  "/contact_me": ["/non_techincal", null],
+}
 
 const SideNav = styled.nav`
   display: flex;
@@ -109,13 +119,57 @@ const ResumeLink = ({ children }) => (
 
 const MobileLayout = (props) => (
   <div {...props}>
-    <AboutMe/>
-    <Experience/>
-    <Projects/>
-    <NonTechnical/>
-    <Contact/>
-  </div>  
+    <AboutMe />
+    <Experience />
+    <Projects />
+    <NonTechnical />
+    <Contact />
+  </div>
 )
+
+const transitionUp = (location, transitionLinkContext) => {
+  const next = order[location.pathname[0]]
+  if (next != null) {
+    // TransitionLink expects an event to be passed, so we create a fake one:
+    const FakeEvent = new Event("click")
+    FakeEvent.persist = () => {}
+
+    // We can finally call "triggerTransition"
+    triggerTransition({
+      event: FakeEvent,
+      to: next,
+      exit: {
+        length: 0.3,
+      },
+      entry: {
+        length: 0.3,
+      },
+      ...transitionLinkContext,
+    })
+  }
+}
+
+const transitionDown = (location, transitionLinkContext) => {
+  const next = order[location.pathname[1]]
+  if (next != null) {
+    // TransitionLink expects an event to be passed, so we create a fake one:
+    const FakeEvent = new Event("click")
+    FakeEvent.persist = () => {}
+
+    // We can finally call "triggerTransition"
+    triggerTransition({
+      event: FakeEvent,
+      to: next,
+      exit: {
+        length: 0.3,
+      },
+      entry: {
+        length: 0.3,
+      },
+      ...transitionLinkContext,
+    })
+  }
+}
 
 const NavigationLayout = (props) => {
   const isMobile = (width) => width <= 800
@@ -136,6 +190,26 @@ const NavigationLayout = (props) => {
   }, [])
 
   console.log("mobile", mobileWidth)
+
+  const transitionLinkContext = useContext(TransitionLinkConsumer)
+
+  const handleScroll = () => {
+    if (mobileWidth) {
+      if (window.scrollY === window.innerHeight) {
+        transitionDown(props.location, transitionLinkContext)
+      } else if (window.scrollY === 0) {
+        transitionUp(props.location, transitionLinkContext)
+      }
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   return (
     <StaticQuery
@@ -174,7 +248,7 @@ const NavigationLayout = (props) => {
             </SideNav>
             <MainSection>
               <Children>
-                {mobileWidth ? props.children : <MobileLayout/>}
+                {mobileWidth ? props.children : <MobileLayout />}
               </Children>
               <Footer />
             </MainSection>
