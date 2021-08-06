@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useState, useEffect, useContext, useRef } from "react"
+import { Context as TransitionLinkContext } from "gatsby-plugin-transition-link/context/createTransitionContext"
 import styled from "styled-components"
 import Link from "gatsby-plugin-transition-link"
 import mixins from "../../styles/mixins"
@@ -9,7 +10,7 @@ import Helmet from "react-helmet"
 import SocialContainer from "../SocialMediaContainer"
 import Footer from "../page_items/Footer"
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css"
 import GlobalStyle from "../../styles/GlobalStyle"
 
 const navLinks = [
@@ -101,60 +102,90 @@ const ResumeLink = ({ children }) => (
   </a>
 )
 
-const query = graphql`
-  {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`
+const NavigationLayout = (props) => {
+  const isMobile = (width) => width <= 800
 
-const NavigationLayout = (props) => (
-  <StaticQuery
-    query={query}
-    render={(data) => (
-      <div>
-        <GlobalStyle />
-        <Seo />
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>{data.site.siteMetadata.title}</title>
-          <link rel="canonical" href="https://thecharlesjenkins.com" />
-          <link rel="icon" href="favicon.ico" />
-        </Helmet>
-        <Body>
-          <SideNav>
-            <Title className="no-underline" to="/">
-              Charles Jenkins
-            </Title>
-            {navLinks &&
-              navLinks.map(({ url, name }, i) => (
-                <NavItem key={i}>
-                  <NavItemLink
-                    className="no-underline"
-                    to={url}
-                    exit={{
-                      length: 2,
-                    }}
-                    entry={{ delay: .5}}
-                  >
-                    {name}
-                  </NavItemLink>
-                </NavItem>
-              ))}
-            <ResumeLink>Resume</ResumeLink>
-          </SideNav>
-          <MainSection>
-            <Children>{props.children}</Children>
-            <Footer />
-          </MainSection>
-        </Body>
-        <SocialContainer fixed={true} />
-      </div>
-    )}
-  />
-)
+  const [mobileWidth, setMobileWidth] = useState(false)
+
+  useEffect(() => {
+    const resizeEvent = (event) => {
+      setMobileWidth(isMobile(event.target.innerWidth))
+    }
+
+    window.addEventListener("resize", resizeEvent)
+
+    // cleanup this component
+    return () => {
+      window.removeEventListener("resize", resizeEvent)
+    }
+  }, [])
+
+  console.log("mobile", mobileWidth)
+
+  const transitionLinkContext = useContext(TransitionLinkContext)
+
+  const bodyRef = useRef()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // if (mobileWidth) {
+        if (bodyRef.current.scrollTop === bodyRef.current.scrollTopMax) {
+          // transitionDown(props.location, transitionLinkContext)
+          console.log("Transition down")
+        } else if (bodyRef.current.scrollTop === 0) {
+          // transitionUp(props.location, transitionLinkContext)
+          console.log("Transition up")
+        }
+      // }
+    }
+
+    bodyRef.current.addEventListener("scroll", handleScroll)
+
+    return () => {
+      bodyRef.current.removeEventListener("scroll", handleScroll)
+    }
+  }, [mobileWidth, props.location, transitionLinkContext])
+
+  return (
+    <div>
+      <GlobalStyle />
+      <Seo />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Charles Jenkins | Software Engineer</title>
+        <link rel="canonical" href="https://thecharlesjenkins.com" />
+        <link rel="icon" href="favicon.ico" />
+      </Helmet>
+      <Body>
+        <SideNav>
+          <Title className="no-underline" to="/">
+            Charles Jenkins
+          </Title>
+          {navLinks &&
+            navLinks.map(({ url, name }, i) => (
+              <NavItem key={i}>
+                <NavItemLink
+                  className="no-underline"
+                  to={url}
+                  exit={{
+                    length: 2,
+                  }}
+                  entry={{ delay: 0.5 }}
+                >
+                  {name}
+                </NavItemLink>
+              </NavItem>
+            ))}
+          <ResumeLink>Resume</ResumeLink>
+        </SideNav>
+        <MainSection ref={bodyRef}>
+          <Children>{props.children}</Children>
+          <Footer />
+        </MainSection>
+      </Body>
+      <SocialContainer fixed={true} />
+    </div>
+  )
+}
 
 export default NavigationLayout
