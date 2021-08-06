@@ -193,23 +193,23 @@ const NavigationLayout = (props) => {
 
   const transitionLinkContext = useContext(TransitionLinkConsumer)
 
-  const handleScroll = () => {
-    if (mobileWidth) {
-      if (window.scrollY === window.innerHeight) {
-        transitionDown(props.location, transitionLinkContext)
-      } else if (window.scrollY === 0) {
-        transitionUp(props.location, transitionLinkContext)
+  useEffect(() => {
+    const handleScroll = () => {
+      if (mobileWidth) {
+        if (window.scrollY === window.innerHeight) {
+          transitionDown(props.location, transitionLinkContext)
+        } else if (window.scrollY === 0) {
+          transitionUp(props.location, transitionLinkContext)
+        }
       }
     }
-  }
 
-  useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true })
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
-  }, [])
+  }, [mobileWidth, props.location, transitionLinkContext])
 
   return (
     <StaticQuery
