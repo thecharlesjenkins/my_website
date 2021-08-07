@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext, useRef } from "react"
 import { Context as TransitionLinkContext } from "gatsby-plugin-transition-link/context/createTransitionContext"
+import { triggerTransition } from "gatsby-plugin-transition-link/utils/triggerTransition"
 import styled from "styled-components"
 import Link from "gatsby-plugin-transition-link"
 import mixins from "../../styles/mixins"
 import media from "../../styles/media"
-import { graphql, StaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import Seo from "../Seo"
 import Helmet from "react-helmet"
 import SocialContainer from "../SocialMediaContainer"
@@ -102,6 +103,61 @@ const ResumeLink = ({ children }) => (
   </a>
 )
 
+const order = {
+  "/about_me": [null, "/experience"],
+  "/experience": ["/about_me", "/projects"],
+  "/projects": ["/experience", "/non_technical"],
+  "/non_technical": ["/projects", "/contact_me"],
+  "/contact_me": ["/non_technical", null],
+}
+
+const transitionUp = (location, transitionLinkContext) => {
+  const next = order[location.pathname][0]
+  if (next != null) {
+    // TransitionLink expects an event to be passed, so we create a fake one:
+    const FakeEvent = new Event("click")
+    FakeEvent.persist = () => {}
+
+    // We can finally call "triggerTransition"
+    triggerTransition({
+      event: FakeEvent,
+      to: next,
+      exit: {
+        length: 0.3,
+      },
+      entry: {
+        length: 0.3,
+      },
+      ...transitionLinkContext,
+    })
+  }
+}
+
+const transitionDown = (location, transitionLinkContext) => {
+  console.log(location.pathname)
+  const next = order[location.pathname][1]
+  console.log(next)
+  if (next != null) {
+    console.log("triggering down")
+    // TransitionLink expects an event to be passed, so we create a fake one:
+    const FakeEvent = new Event("click")
+    FakeEvent.persist = () => {}
+
+    // We can finally call "triggerTransition"
+    triggerTransition({
+      event: FakeEvent,
+      to: next,
+      exit: {
+        length: 0.3,
+      },
+      entry: {
+        length: 0.3,
+      },
+      ...transitionLinkContext,
+    })
+  }
+}
+
 const NavigationLayout = (props) => {
   const isMobile = (width) => width <= 800
 
@@ -122,27 +178,30 @@ const NavigationLayout = (props) => {
 
   console.log("mobile", mobileWidth)
 
+  const data = useStaticQuery(query)
+
   const transitionLinkContext = useContext(TransitionLinkContext)
 
   const bodyRef = useRef()
 
   useEffect(() => {
+    const ref = bodyRef.current
     const handleScroll = () => {
       // if (mobileWidth) {
-        if (bodyRef.current.scrollTop === bodyRef.current.scrollTopMax) {
-          // transitionDown(props.location, transitionLinkContext)
-          console.log("Transition down")
-        } else if (bodyRef.current.scrollTop === 0) {
-          // transitionUp(props.location, transitionLinkContext)
-          console.log("Transition up")
-        }
+      if (ref.scrollTop === bodyRef.current.scrollTopMax) {
+        transitionDown(props.location, transitionLinkContext)
+        console.log("Transition down")
+      } else if (ref.scrollTop === 0) {
+        transitionUp(props.location, transitionLinkContext)
+        console.log("Transition up")
+      }
       // }
     }
 
-    bodyRef.current.addEventListener("scroll", handleScroll)
+    ref.addEventListener("scroll", handleScroll)
 
     return () => {
-      bodyRef.current.removeEventListener("scroll", handleScroll)
+      ref.removeEventListener("scroll", handleScroll)
     }
   }, [mobileWidth, props.location, transitionLinkContext])
 
@@ -152,32 +211,34 @@ const NavigationLayout = (props) => {
       <Seo />
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Charles Jenkins | Software Engineer</title>
+        <title>{data.site.siteMetadata.title}</title>
         <link rel="canonical" href="https://thecharlesjenkins.com" />
         <link rel="icon" href="favicon.ico" />
       </Helmet>
       <Body>
-        <SideNav>
-          <Title className="no-underline" to="/">
-            Charles Jenkins
-          </Title>
-          {navLinks &&
-            navLinks.map(({ url, name }, i) => (
-              <NavItem key={i}>
-                <NavItemLink
-                  className="no-underline"
-                  to={url}
-                  exit={{
-                    length: 2,
-                  }}
-                  entry={{ delay: 0.5 }}
-                >
-                  {name}
-                </NavItemLink>
-              </NavItem>
-            ))}
-          <ResumeLink>Resume</ResumeLink>
-        </SideNav>
+        {!mobileWidth && (
+          <SideNav>
+            <Title className="no-underline" to="/">
+              Charles Jenkins
+            </Title>
+            {navLinks &&
+              navLinks.map(({ url, name }, i) => (
+                <NavItem key={i}>
+                  <NavItemLink
+                    className="no-underline"
+                    to={url}
+                    exit={{
+                      length: 2,
+                    }}
+                    entry={{ delay: 0.5 }}
+                  >
+                    {name}
+                  </NavItemLink>
+                </NavItem>
+              ))}
+            <ResumeLink>Resume</ResumeLink>
+          </SideNav>
+        )}
         <MainSection ref={bodyRef}>
           <Children>{props.children}</Children>
           <Footer />
@@ -189,3 +250,13 @@ const NavigationLayout = (props) => {
 }
 
 export default NavigationLayout
+
+const query = graphql`
+  query MyQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
