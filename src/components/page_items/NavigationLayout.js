@@ -10,6 +10,7 @@ import Seo from "../Seo"
 import Helmet from "react-helmet"
 import SocialContainer from "../SocialMediaContainer"
 import Footer from "../page_items/Footer"
+import Hammer from "hammerjs"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import GlobalStyle from "../../styles/GlobalStyle"
@@ -158,6 +159,7 @@ const transitionDown = (location, transitionLinkContext) => {
   }
 }
 
+
 const NavigationLayout = (props) => {
   const isMobile = (width) => width <= 800
 
@@ -186,7 +188,7 @@ const NavigationLayout = (props) => {
 
   useEffect(() => {
     const ref = bodyRef.current
-    const handleScroll = () => {
+    const handleScroll = (event) => {
       // if (mobileWidth) {
       if (ref.scrollTop === bodyRef.current.scrollTopMax) {
         transitionDown(props.location, transitionLinkContext)
@@ -199,9 +201,17 @@ const NavigationLayout = (props) => {
     }
 
     ref.addEventListener("scroll", handleScroll)
+    // ref.addEventListener("wheel", handleSwipe)
+
+    const hammertime = new Hammer(bodyRef.current);
+    hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+    hammertime.on('swipe', function(ev) {
+      console.log(ev);
+    });
 
     return () => {
       ref.removeEventListener("scroll", handleScroll)
+      // ref.removeEventListener("wheel", handleSwipe)
     }
   }, [mobileWidth, props.location, transitionLinkContext])
 
@@ -241,7 +251,9 @@ const NavigationLayout = (props) => {
         )}
         <MainSection ref={bodyRef}>
           <Children>{props.children}</Children>
-          <Footer />
+          {(!mobileWidth || props.location.pathname === "/contact_me") && (
+            <Footer />
+          )}
         </MainSection>
       </Body>
       <SocialContainer fixed={true} />
