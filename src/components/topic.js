@@ -7,13 +7,13 @@ const Topic = (props) => {
   let bodyRef = useRef(null)
   useEffect(() => {
     if (props.transitionStatus === "entering") {
-      console.log("topic", props.transitionStatus)
+      // console.log("topic", props.transitionStatus)
       if (props.enterAnimation) {
         props.enterAnimation(animationRef.current, bodyRef.current, topicRef.current)
       }
     }
     if (props.transitionStatus === "exiting") {
-      console.log("topic", props.transitionStatus)
+      // console.log("topic", props.transitionStatus)
       if (props.exitAnimation) {
         props.exitAnimation(animationRef.current, bodyRef.current, topicRef.current)
       }

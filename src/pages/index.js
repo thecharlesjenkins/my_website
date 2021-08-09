@@ -8,7 +8,7 @@ if (typeof window !== "undefined") {
 
 const Index = ({ transitionStatus }) => {
   useEffect(() => {
-    console.log("HomePage", transitionStatus)
+    // console.log("HomePage", transitionStatus)
   }, [transitionStatus])
   return (
     <>

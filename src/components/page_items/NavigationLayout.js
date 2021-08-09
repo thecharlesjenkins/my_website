@@ -10,7 +10,6 @@ import Seo from "../Seo"
 import Helmet from "react-helmet"
 import SocialContainer from "../SocialMediaContainer"
 import Footer from "../page_items/Footer"
-import Hammer from "hammerjs"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import GlobalStyle from "../../styles/GlobalStyle"
@@ -105,60 +104,93 @@ const ResumeLink = ({ children }) => (
 )
 
 const order = {
-  "/about_me": [null, "/experience"],
-  "/experience": ["/about_me", "/projects"],
-  "/projects": ["/experience", "/non_technical"],
-  "/non_technical": ["/projects", "/contact_me"],
-  "/contact_me": ["/non_technical", null],
+  about_me: [null, "/experience"],
+  experience: ["/about_me", "/projects"],
+  projects: ["/experience", "/non_technical"],
+  non_technical: ["/projects", "/contact_me"],
+  contact_me: ["/non_technical", null],
 }
 
-const transitionUp = (location, transitionLinkContext) => {
-  const next = order[location.pathname][0]
-  if (next != null) {
-    // TransitionLink expects an event to be passed, so we create a fake one:
-    const FakeEvent = new Event("click")
-    FakeEvent.persist = () => {}
+function transition(location, transitionLinkContext) {
+  let inUse = false
 
-    // We can finally call "triggerTransition"
-    triggerTransition({
-      event: FakeEvent,
-      to: next,
-      exit: {
-        length: 0.3,
-      },
-      entry: {
-        length: 0.3,
-      },
-      ...transitionLinkContext,
-    })
+  const performTransition = (next) => {
+    if (!inUse) {
+      if (next != null) {
+        // console.log("triggering down")
+        // TransitionLink expects an event to be passed, so we create a fake one:
+        const FakeEvent = new Event("click")
+        FakeEvent.persist = () => {}
+
+        // We can finally call "triggerTransition"
+        triggerTransition({
+          event: FakeEvent,
+          to: next,
+          exit: {
+            length: 0.3,
+          },
+          entry: {
+            length: 0.3,
+          },
+          ...transitionLinkContext,
+        })
+      }
+      setTimeout(() => (inUse = false), 100)
+      inUse = true
+    }
+  }
+
+  return {
+    up: () =>
+      performTransition(order[location.pathname.replaceAll("/", "")][0]),
+    down: () =>
+      performTransition(order[location.pathname.replaceAll("/", "")][1]),
   }
 }
 
-const transitionDown = (location, transitionLinkContext) => {
-  console.log(location.pathname)
-  const next = order[location.pathname][1]
-  console.log(next)
-  if (next != null) {
-    console.log("triggering down")
-    // TransitionLink expects an event to be passed, so we create a fake one:
-    const FakeEvent = new Event("click")
-    FakeEvent.persist = () => {}
+function addSwipeListeners(ref, trans) {
+  function process_touchstart(ev) {
+    function handle_one_touch() {
+      const beginning = ev.touches[0].clientY
 
-    // We can finally call "triggerTransition"
-    triggerTransition({
-      event: FakeEvent,
-      to: next,
-      exit: {
-        length: 0.3,
-      },
-      entry: {
-        length: 0.3,
-      },
-      ...transitionLinkContext,
-    })
+      let lastMove = null
+
+      function process_touchmove(move_ev) {
+        lastMove = move_ev.touches[0].clientY
+        move_ev.preventDefault()
+      }
+
+      function process_touchend() {
+        if (lastMove != null) {
+          const diff = lastMove - beginning
+          if (diff >= 15 && (ref.scrollTop === 0)) {
+            trans.up()
+          } else if (diff <= -15 && (ref.scrollTop === ref.scrollTopMax)) {
+            trans.down()
+          }
+        }
+
+        ref.removeEventListener("touchend", process_touchend)
+        ref.removeEventListener("touchmove", process_touchmove)
+      }
+      ref.addEventListener("touchend", process_touchend, false)
+      ref.addEventListener("touchmove", process_touchmove, false)
+    }
+
+    // Use the event's data to call out to the appropriate gesture handlers
+    switch (ev.touches.length) {
+      case 1:
+        handle_one_touch()
+        break
+      default:
+        break
+    }
   }
-}
 
+  ref.addEventListener("touchstart", process_touchstart, false)
+
+  return () => ref.removeEventListener("touchstart", addSwipeListeners)
+}
 
 const NavigationLayout = (props) => {
   const isMobile = (width) => width <= 800
@@ -166,11 +198,12 @@ const NavigationLayout = (props) => {
   const [mobileWidth, setMobileWidth] = useState(false)
 
   useEffect(() => {
-    const resizeEvent = (event) => {
-      setMobileWidth(isMobile(event.target.innerWidth))
+    const resizeEvent = () => {
+      setMobileWidth(isMobile(window.innerWidth))
     }
 
     window.addEventListener("resize", resizeEvent)
+    resizeEvent()
 
     // cleanup this component
     return () => {
@@ -178,7 +211,7 @@ const NavigationLayout = (props) => {
     }
   }, [])
 
-  console.log("mobile", mobileWidth)
+  // console.log("mobile", mobileWidth)
 
   const data = useStaticQuery(query)
 
@@ -187,30 +220,28 @@ const NavigationLayout = (props) => {
   const bodyRef = useRef()
 
   useEffect(() => {
+    const trans = transition(props.location, transitionLinkContext)
     const ref = bodyRef.current
     const handleScroll = (event) => {
-      // if (mobileWidth) {
-      if (ref.scrollTop === bodyRef.current.scrollTopMax) {
-        transitionDown(props.location, transitionLinkContext)
-        console.log("Transition down")
-      } else if (ref.scrollTop === 0) {
-        transitionUp(props.location, transitionLinkContext)
-        console.log("Transition up")
+      if (mobileWidth) {
+        if (ref.scrollTop === ref.scrollTopMax) {
+          trans.down()
+          // console.log("Transition down")
+        } else if (ref.scrollTop === 0) {
+          trans.up()
+          // console.log("Transition up")
+        }
       }
-      // }
     }
 
     ref.addEventListener("scroll", handleScroll)
     // ref.addEventListener("wheel", handleSwipe)
 
-    const hammertime = new Hammer(bodyRef.current);
-    hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
-    hammertime.on('swipe', function(ev) {
-      console.log(ev);
-    });
+    const removeListeners = addSwipeListeners(ref, trans)
 
     return () => {
       ref.removeEventListener("scroll", handleScroll)
+      removeListeners()
       // ref.removeEventListener("wheel", handleSwipe)
     }
   }, [mobileWidth, props.location, transitionLinkContext])

@@ -108,7 +108,7 @@ const Ta = ({ data, props }) =>
   ))
 
 const Experience = ({ data, transitionStatus }) => {
-  console.log(data)
+  // console.log(data)
   return (
     <div style={{ overflow: "hidden" }}>
       <Topic
