@@ -111,10 +111,12 @@ const order = {
   contact_me: ["/non_technical", null],
 }
 
-function transition(location, transitionLinkContext) {
+function transition(path, transitionLinkContext) {
   let inUse = false
 
   const performTransition = (next) => {
+    console.log("performTransition")
+    console.log(inUse)
     if (!inUse) {
       if (next != null) {
         // console.log("triggering down")
@@ -141,10 +143,8 @@ function transition(location, transitionLinkContext) {
   }
 
   return {
-    up: () =>
-      performTransition(order[location.pathname.replaceAll("/", "")][0]),
-    down: () =>
-      performTransition(order[location.pathname.replaceAll("/", "")][1]),
+    up: () => performTransition(order[path][0]),
+    down: () => performTransition(order[path][1]),
   }
 }
 
@@ -157,7 +157,8 @@ function addSwipeListeners(ref, trans) {
 
       function process_touchmove(move_ev) {
         lastMove = move_ev.touches[0].clientY
-        move_ev.preventDefault()
+        console.log("move")
+        // move_ev.preventDefault()
       }
 
       function process_touchend() {
@@ -165,7 +166,7 @@ function addSwipeListeners(ref, trans) {
           const diff = lastMove - beginning
           if (diff >= 15 && (ref.scrollTop === 0)) {
             trans.up()
-          } else if (diff <= -15 && (ref.scrollTop === ref.scrollTopMax)) {
+          } else if (diff <= -15 && (ref.scrollHeight - ref.offsetHeight)) {
             trans.down()
           }
         }
@@ -220,29 +221,32 @@ const NavigationLayout = (props) => {
   const bodyRef = useRef()
 
   useEffect(() => {
-    const trans = transition(props.location, transitionLinkContext)
-    const ref = bodyRef.current
-    const handleScroll = (event) => {
-      if (mobileWidth) {
-        if (ref.scrollTop === ref.scrollTopMax) {
-          trans.down()
-          // console.log("Transition down")
-        } else if (ref.scrollTop === 0) {
-          trans.up()
-          // console.log("Transition up")
+    const path = props.location.pathname.replaceAll("/", "")
+    if (path in order) {
+      const trans = transition(path, transitionLinkContext)
+      const ref = bodyRef.current
+      const handleScroll = (event) => {
+        if (mobileWidth) {
+          if (ref.scrollTop === ref.scrollTopMax) {
+            trans.down()
+            // console.log("Transition down")
+          } else if (ref.scrollTop === 0) {
+            trans.up()
+            // console.log("Transition up")
+          }
         }
       }
-    }
 
-    ref.addEventListener("scroll", handleScroll)
-    // ref.addEventListener("wheel", handleSwipe)
+      ref.addEventListener("scroll", handleScroll)
+      // ref.addEventListener("wheel", handleSwipe)
 
-    const removeListeners = addSwipeListeners(ref, trans)
+      const removeListeners = addSwipeListeners(ref, trans)
 
-    return () => {
-      ref.removeEventListener("scroll", handleScroll)
-      removeListeners()
-      // ref.removeEventListener("wheel", handleSwipe)
+      return () => {
+        ref.removeEventListener("scroll", handleScroll)
+        removeListeners()
+        // ref.removeEventListener("wheel", handleSwipe)
+      }
     }
   }, [mobileWidth, props.location, transitionLinkContext])
 
