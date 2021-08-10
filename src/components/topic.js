@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import "../styles/titles.scss"
 
 const Topic = (props) => {
@@ -20,6 +20,24 @@ const Topic = (props) => {
     }
   }, [props])
 
+  const isMobile = (width) => width <= 800
+
+  const [mobileWidth, setMobileWidth] = useState(false)
+
+  useEffect(() => {
+    const resizeEvent = () => {
+      setMobileWidth(isMobile(window.innerWidth))
+    }
+
+    window.addEventListener("resize", resizeEvent)
+    resizeEvent()
+
+    // cleanup this component
+    return () => {
+      window.removeEventListener("resize", resizeEvent)
+    }
+  }, [])
+
   return (
     <div ref={topicRef} style={{...props.starting}}>
       <div
@@ -27,9 +45,10 @@ const Topic = (props) => {
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
+          transform: `scale(${mobileWidth && props.mobileShrink})`
         }}
       >
-        <props.Animation ref={animationRef} />
+        <props.Animation ref={animationRef}/>
       </div>
       <div ref={bodyRef}>{props.children}</div>
     </div>

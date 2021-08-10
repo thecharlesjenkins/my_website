@@ -40,6 +40,7 @@ const AboutMe = ({ data, transitionStatus }) => {
         Animation={Animation}
         exitAnimation={exitAnimation}
         enterAnimation={enterAnimation}
+        mobileShrink={.6}
       >
         <BasicPageQuery data={data} />
       </Topic>

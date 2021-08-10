@@ -1,5 +1,9 @@
 @use 'sass:math';
 
+.mobile {
+  transform: scale(.3);
+}
+
 .fancy_titles {
   text {
     text-align: center;
@@ -39,9 +43,6 @@
     cursor: pointer;
     border-radius: 100px 30px 100px 30px;
     animation: 2s morph ease infinite;
-
-    max-width: 50vw;
-    margin: auto;
 
     p {
       padding-top: 0;
@@ -184,6 +185,8 @@
     border-radius: 25%;
     animation: 0.2s shake ease alternate infinite;
     margin-top: 20px;
+
+    max-width: 80vw;
 
     p {
       padding-left: 20px;

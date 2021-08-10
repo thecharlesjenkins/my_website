@@ -42,6 +42,7 @@ const NonTechnical = ({ data, transitionStatus }) => {
       Animation={Animation}
       exitAnimation={exitAnimation}
       enterAnimation={enterAnimation}
+      mobileShrink={.5}
     >
       <SectionTitle>Non-Technical Things</SectionTitle>
       <div>
