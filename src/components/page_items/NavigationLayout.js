@@ -157,7 +157,7 @@ function addSwipeListeners(ref, trans) {
 
       function process_touchmove(move_ev) {
         lastMove = move_ev.touches[0].clientY
-        console.log("move")
+        // console.log("move")
         // move_ev.preventDefault()
       }
 
@@ -166,7 +166,7 @@ function addSwipeListeners(ref, trans) {
           const diff = lastMove - beginning
           if (diff >= 15 && (ref.scrollTop === 0)) {
             trans.up()
-          } else if (diff <= -15 && (ref.scrollHeight - ref.offsetHeight)) {
+          } else if (diff <= -15 && ((ref.scrollHeight - ref.offsetHeight) === ref.scrollTop )) {
             trans.down()
           }
         }
