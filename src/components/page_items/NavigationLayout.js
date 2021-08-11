@@ -111,33 +111,43 @@ const order = {
   contact_me: ["/non_technical", null],
 }
 
-function transition(path, transitionLinkContext) {
-  let inUse = false
+let inUse = false
+let nextTransition = null
 
+function transitionReady(next, transitionLinkContext) {
+  // TransitionLink expects an event to be passed, so we create a fake one:
+  const FakeEvent = new Event("click")
+  FakeEvent.persist = () => {}
+
+  // We can finally call "triggerTransition"
+  triggerTransition({
+    event: FakeEvent,
+    to: next,
+    exit: {
+      length: 0.3,
+    },
+    entry: {
+      length: 0.3,
+    },
+    ...transitionLinkContext,
+  })
+}
+
+function transition(path, transitionLinkContext) {
   const performTransition = (next) => {
-    console.log("performTransition")
     console.log(inUse)
     if (!inUse) {
       if (next != null) {
-        // console.log("triggering down")
-        // TransitionLink expects an event to be passed, so we create a fake one:
-        const FakeEvent = new Event("click")
-        FakeEvent.persist = () => {}
-
-        // We can finally call "triggerTransition"
-        triggerTransition({
-          event: FakeEvent,
-          to: next,
-          exit: {
-            length: 0.3,
-          },
-          entry: {
-            length: 0.3,
-          },
-          ...transitionLinkContext,
-        })
+        nextTransition = next
+        transitionReady(next, transitionLinkContext)
       }
-      setTimeout(() => (inUse = false), 100)
+      setTimeout(() => {
+        inUse = false
+        if (nextTransition != null) {
+          transitionReady(nextTransition, transitionLinkContext)
+          nextTransition = null
+        }
+      }, 1000)
       inUse = true
     }
   }
@@ -157,16 +167,17 @@ function addSwipeListeners(ref, trans) {
 
       function process_touchmove(move_ev) {
         lastMove = move_ev.touches[0].clientY
-        // console.log("move")
-        // move_ev.preventDefault()
       }
 
       function process_touchend() {
         if (lastMove != null) {
           const diff = lastMove - beginning
-          if (diff >= 15 && (ref.scrollTop === 0)) {
+          if (diff >= 15 && ref.scrollTop === 0) {
             trans.up()
-          } else if (diff <= -15 && ((ref.scrollHeight - ref.offsetHeight) === ref.scrollTop )) {
+          } else if (
+            diff <= -15 &&
+            ref.scrollHeight - ref.offsetHeight === ref.scrollTop
+          ) {
             trans.down()
           }
         }
@@ -190,7 +201,9 @@ function addSwipeListeners(ref, trans) {
 
   ref.addEventListener("touchstart", process_touchstart, false)
 
-  return () => ref.removeEventListener("touchstart", addSwipeListeners)
+  return () => {
+    ref.removeEventListener("touchstart", addSwipeListeners)
+  }
 }
 
 const NavigationLayout = (props) => {
@@ -212,7 +225,6 @@ const NavigationLayout = (props) => {
     }
   }, [])
 
-  // console.log("mobile", mobileWidth)
 
   const data = useStaticQuery(query)
 
@@ -225,27 +237,23 @@ const NavigationLayout = (props) => {
     if (path in order) {
       const trans = transition(path, transitionLinkContext)
       const ref = bodyRef.current
-      const handleScroll = (event) => {
+      const handleScroll = () => {
         if (mobileWidth) {
           if (ref.scrollTop === ref.scrollTopMax) {
             trans.down()
-            // console.log("Transition down")
           } else if (ref.scrollTop === 0) {
             trans.up()
-            // console.log("Transition up")
           }
         }
       }
 
       ref.addEventListener("scroll", handleScroll)
-      // ref.addEventListener("wheel", handleSwipe)
 
       const removeListeners = addSwipeListeners(ref, trans)
 
       return () => {
         ref.removeEventListener("scroll", handleScroll)
         removeListeners()
-        // ref.removeEventListener("wheel", handleSwipe)
       }
     }
   }, [mobileWidth, props.location, transitionLinkContext])
