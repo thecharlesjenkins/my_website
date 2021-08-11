@@ -13,6 +13,7 @@ import Footer from "../page_items/Footer"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import GlobalStyle from "../../styles/GlobalStyle"
+import "../../styles/arrows.scss"
 
 const navLinks = [
   {
@@ -225,7 +226,6 @@ const NavigationLayout = (props) => {
     }
   }, [])
 
-
   const data = useStaticQuery(query)
 
   const transitionLinkContext = useContext(TransitionLinkContext)
@@ -293,8 +293,20 @@ const NavigationLayout = (props) => {
           </SideNav>
         )}
         <MainSection ref={bodyRef}>
-          <Children>{props.children}</Children>
-          {(!mobileWidth || props.location.pathname === "/contact_me") && (
+          <Children>
+            {mobileWidth && props.location.pathname.replaceAll("/", "") !== "about_me" &&(
+              <div className="arrow-container">
+                <div className="arrow up"></div>
+              </div>
+            )}
+            {props.children}
+          </Children>
+          {mobileWidth && props.location.pathname.replaceAll("/", "") !== "contact_me" && (
+              <div className="arrow-container">
+                <div className="arrow down"></div>
+              </div>
+            )}
+          {(!mobileWidth || props.location.pathname.replaceAll("/", "") === "contact_me") && (
             <Footer />
           )}
         </MainSection>
