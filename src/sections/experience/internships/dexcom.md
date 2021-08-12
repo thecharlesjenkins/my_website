@@ -3,6 +3,7 @@ company: "Dexcom"
 title: "2-Time Android Intern"
 link: "https://www.dexcom.com"
 dates: May 2019 - August 2019 and June 2020 - August 2020
+order: 2
 ---
 
 - The first year I prototyped some features for the next generation Continuous Glucose Monitoring system using AndroidX and CameraX libraries.

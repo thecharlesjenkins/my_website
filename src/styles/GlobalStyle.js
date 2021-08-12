@@ -89,7 +89,8 @@ const GlobalStyle = createGlobalStyle`
     color: ${colors.offwhite};
   }
   a:hover {
-    color: color: ${colors.offwhite};
+    color: ${colors.lightGreen};
+    transition: all 0.5s ease;
   }
   .no-underline {
     display: inline-block;
