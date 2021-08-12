@@ -1,0 +1,47 @@
+@use './colors.scss';
+
+.arrow-container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+/* Arrow Bouncing */
+.arrow {
+  border: solid colors.$lightGreen;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 10px;
+}
+
+.up {
+  transform: rotate(-135deg);
+  animation: 0.7s bounce-up infinite alternate;
+}
+
+/***Animation Arrow down***/
+@keyframes bounce-up {
+  0% {
+    transform: rotate(-135deg) translateY(0px);
+  }
+  100% {
+    transform: rotate(-135deg) translate(2px, 2px);
+  }
+}
+
+.down {
+  transform: rotate(45deg);
+  animation: 0.7s bounce-down infinite alternate;
+}
+
+/***Animation Arrow down***/
+@keyframes bounce-down {
+  0% {
+    transform: rotate(45deg) translateY(0px);
+  }
+  100% {
+    transform: rotate(45deg) translate(-2px, -2px);
+  }
+}

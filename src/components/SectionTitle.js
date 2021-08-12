@@ -12,7 +12,7 @@ const SectionTitle = styled.h3`
     content: "";
     display: block;
     height: 1px;
-    width: 1000px;
+    width: 100vw;
     background-color: gray;
     top: -5px;
     margin-left: 20px;

@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components"
 import theme from "./theme"
-require("@fontsource/noto-sans-tc")
 const { colors } = theme
+require("@fontsource/noto-sans-tc")
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -59,9 +59,6 @@ const GlobalStyle = createGlobalStyle`
     h3 {
       color: ${colors.lightPink};
     }
-    path {
-      fill: ${colors.offwhite};
-    }
     button {
       color: ${colors.lightGreen};
       background-color: ${colors.darkGreen};
@@ -89,7 +86,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 0 10px 0;
   }
   a {
-    color: inherit;
+    color: ${colors.offwhite};
+  }
+  a:hover {
+    color: ${colors.lightGreen};
+    transition: all 0.5s ease;
   }
   .no-underline {
     display: inline-block;
