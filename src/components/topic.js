@@ -9,13 +9,21 @@ const Topic = (props) => {
     if (props.transitionStatus === "entering") {
       // console.log("topic", props.transitionStatus)
       if (props.enterAnimation) {
-        props.enterAnimation(animationRef.current, bodyRef.current, topicRef.current)
+        props.enterAnimation(
+          animationRef.current,
+          bodyRef.current,
+          topicRef.current
+        )
       }
     }
     if (props.transitionStatus === "exiting") {
       // console.log("topic", props.transitionStatus)
       if (props.exitAnimation) {
-        props.exitAnimation(animationRef.current, bodyRef.current, topicRef.current)
+        props.exitAnimation(
+          animationRef.current,
+          bodyRef.current,
+          topicRef.current
+        )
       }
     }
   }, [props])
@@ -39,16 +47,16 @@ const Topic = (props) => {
   }, [])
 
   return (
-    <div ref={topicRef} style={{...props.starting}}>
+    <div ref={topicRef} style={{ ...props.starting }}>
       <div
         style={{
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
-          transform: `scale(${mobileWidth && props.mobileShrink})`
+          transform: `scale(${mobileWidth && props.mobileShrink})`,
         }}
       >
-        <props.Animation ref={animationRef}/>
+        <props.Animation ref={animationRef} />
       </div>
       <div ref={bodyRef}>{props.children}</div>
     </div>

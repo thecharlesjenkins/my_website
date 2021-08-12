@@ -294,19 +294,22 @@ const NavigationLayout = (props) => {
         )}
         <MainSection ref={bodyRef}>
           <Children>
-            {mobileWidth && props.location.pathname.replaceAll("/", "") !== "about_me" &&(
-              <div className="arrow-container">
-                <div className="arrow up"></div>
-              </div>
-            )}
+            {mobileWidth &&
+              props.location.pathname.replaceAll("/", "") !== "about_me" && (
+                <div className="arrow-container">
+                  <div className="arrow up"></div>
+                </div>
+              )}
             {props.children}
           </Children>
-          {mobileWidth && props.location.pathname.replaceAll("/", "") !== "contact_me" && (
+          {mobileWidth &&
+            props.location.pathname.replaceAll("/", "") !== "contact_me" && (
               <div className="arrow-container">
                 <div className="arrow down"></div>
               </div>
             )}
-          {(!mobileWidth || props.location.pathname.replaceAll("/", "") === "contact_me") && (
+          {(!mobileWidth ||
+            props.location.pathname.replaceAll("/", "") === "contact_me") && (
             <Footer />
           )}
         </MainSection>

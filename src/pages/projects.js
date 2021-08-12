@@ -92,8 +92,9 @@ export default Projects
 export const query = graphql`
   {
     allMarkdownRemark(
-      sort: {fields: [frontmatter___order], order: ASC},
-      filter: { fileAbsolutePath: { regex: "/projects/" } }) {
+      sort: { fields: [frontmatter___order], order: ASC }
+      filter: { fileAbsolutePath: { regex: "/projects/" } }
+    ) {
       edges {
         node {
           frontmatter {

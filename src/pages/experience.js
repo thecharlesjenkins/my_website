@@ -145,7 +145,7 @@ export default Experience
 export const query = graphql`
   query {
     internships: allMarkdownRemark(
-      sort: {fields: [frontmatter___order], order: ASC},
+      sort: { fields: [frontmatter___order], order: ASC }
       filter: { fileAbsolutePath: { regex: "/experience/internships/" } }
     ) {
       edges {
