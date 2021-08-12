@@ -23,6 +23,7 @@ module.exports = {
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sass",
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -65,5 +66,13 @@ module.exports = {
         path: `${__dirname}/src`,
       },
     },
+    {
+      resolve: "gatsby-plugin-transition-link",
+      options: {
+        layout: require.resolve(
+          `./src/components/page_items/NavigationLayout.js`
+        ),
+      },
+    },
   ],
-};
+}

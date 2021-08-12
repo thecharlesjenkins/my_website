@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import SocialLink from "./SocialLink"
 import styled from "styled-components"
 import media from "../styles/media"
+// import colors from "../styles/theme"
 
 const SocialContainer = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const FixedContainer = styled.div`
   width: 35px;
   position: fixed;
   bottom: 0px;
-  left: 25px;
+  right: 50px;
   ${media.tablet`display: none;`};
 
   &:after {
@@ -59,4 +60,4 @@ const SocialMedia = ({ fixed }) => {
   )
 }
 
-export default SocialMedia;
+export default SocialMedia
