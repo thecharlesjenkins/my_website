@@ -134,7 +134,7 @@ function transitionReady(next, transitionLinkContext) {
   })
 }
 
-function transition(path, transitionLinkContext) {
+function transition(transitionLinkContext) {
   const performTransition = (next) => {
     console.log(inUse)
     if (!inUse) {
@@ -154,12 +154,16 @@ function transition(path, transitionLinkContext) {
   }
 
   return {
-    up: () => performTransition(order[path][0]),
-    down: () => performTransition(order[path][1]),
+    up: (path) => {
+      performTransition(order[path()][0])
+    },
+    down: (path) => {
+      performTransition(order[path()][1])
+    },
   }
 }
 
-function addSwipeListeners(ref, trans) {
+function addSwipeListeners(ref, trans, path) {
   function process_touchstart(ev) {
     function handle_one_touch() {
       const beginning = ev.touches[0].clientY
@@ -174,12 +178,12 @@ function addSwipeListeners(ref, trans) {
         if (lastMove != null) {
           const diff = lastMove - beginning
           if (diff >= 15 && ref.scrollTop === 0) {
-            trans.up()
+            trans.up(path)
           } else if (
             diff <= -15 &&
             ref.scrollHeight - ref.offsetHeight === ref.scrollTop
           ) {
-            trans.down()
+            trans.down(path)
           }
         }
 
@@ -233,30 +237,32 @@ const NavigationLayout = (props) => {
   const bodyRef = useRef()
 
   useEffect(() => {
-    const path = props.location.pathname.replaceAll("/", "")
-    if (path in order) {
-      const trans = transition(path, transitionLinkContext)
-      const ref = bodyRef.current
-      const handleScroll = () => {
-        if (mobileWidth) {
-          if (ref.scrollTop === ref.scrollTopMax) {
-            trans.down()
-          } else if (ref.scrollTop === 0) {
-            trans.up()
+      const path = () => {
+        return window.location.pathname.replaceAll("/", "")
+      }
+      if (path() in order) {
+        const trans = transition(transitionLinkContext)
+        const ref = bodyRef.current
+        const handleScroll = () => {
+          if (mobileWidth) {
+            if (ref.scrollTop === ref.scrollTopMax) {
+              trans.down(path)
+            } else if (ref.scrollTop === 0) {
+              trans.up(path)
+            }
           }
         }
+
+        ref.addEventListener("scroll", handleScroll)
+
+        const removeListeners = addSwipeListeners(ref, trans, path)
+
+        return () => {
+          ref.removeEventListener("scroll", handleScroll)
+          removeListeners()
+        }
       }
-
-      ref.addEventListener("scroll", handleScroll)
-
-      const removeListeners = addSwipeListeners(ref, trans)
-
-      return () => {
-        ref.removeEventListener("scroll", handleScroll)
-        removeListeners()
-      }
-    }
-  }, [mobileWidth, props.location, transitionLinkContext])
+  }, [mobileWidth, transitionLinkContext])
 
   return (
     <div>
