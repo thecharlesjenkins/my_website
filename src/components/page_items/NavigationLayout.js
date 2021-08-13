@@ -136,7 +136,7 @@ function transitionReady(next, transitionLinkContext) {
 
 function transition(transitionLinkContext) {
   const performTransition = (next) => {
-    console.log(inUse)
+    // console.log(inUse)
     if (!inUse) {
       if (next != null) {
         nextTransition = next
