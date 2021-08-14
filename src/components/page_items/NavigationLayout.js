@@ -136,7 +136,7 @@ function transitionReady(next, transitionLinkContext) {
 
 function transition(transitionLinkContext) {
   const performTransition = (next) => {
-    console.log(inUse)
+    // console.log(inUse)
     if (!inUse) {
       if (next != null) {
         nextTransition = next
@@ -177,11 +177,10 @@ function addSwipeListeners(ref, trans, path) {
       function process_touchend() {
         if (lastMove != null) {
           const diff = lastMove - beginning
-          if (diff >= 15 && ref.scrollTop === 0) {
+          if ((diff >= 15) && (ref.scrollTop === 0)) {
             trans.up(path)
           } else if (
-            diff <= -15 &&
-            ref.scrollHeight - ref.offsetHeight === ref.scrollTop
+            (diff <= -15) && ((ref.scrollHeight - ref.offsetHeight) === (ref.scrollTop))
           ) {
             trans.down(path)
           }
@@ -263,6 +262,12 @@ const NavigationLayout = (props) => {
         }
       }
   }, [mobileWidth, transitionLinkContext])
+
+
+  // Scroll to the top of the page on navigation 
+  useEffect(() => {
+    bodyRef.current.scrollTo(0,0)
+  }, [props.location])
 
   return (
     <div>
