@@ -7,7 +7,6 @@ const Topic = (props) => {
   let bodyRef = useRef(null)
   useEffect(() => {
     if (props.transitionStatus === "entering") {
-      // console.log("topic", props.transitionStatus)
       if (props.enterAnimation) {
         props.enterAnimation(
           animationRef.current,
@@ -17,7 +16,6 @@ const Topic = (props) => {
       }
     }
     if (props.transitionStatus === "exiting") {
-      // console.log("topic", props.transitionStatus)
       if (props.exitAnimation) {
         props.exitAnimation(
           animationRef.current,
@@ -47,18 +45,20 @@ const Topic = (props) => {
   }, [])
 
   return (
-    <div ref={topicRef} style={{ ...props.starting }}>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          transform: `scale(${mobileWidth && props.mobileShrink})`,
-        }}
-      >
-        <props.Animation ref={animationRef} />
+    <div style={{ overflow: "hidden" }}>
+      <div ref={topicRef} style={{ ...props.starting }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            transform: `scale(${mobileWidth && props.mobileShrink})`,
+          }}
+        >
+          <props.Animation ref={animationRef} />
+        </div>
+        <div ref={bodyRef}>{props.children}</div>
       </div>
-      <div ref={bodyRef}>{props.children}</div>
     </div>
   )
 }

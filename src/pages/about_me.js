@@ -33,23 +33,19 @@ const exitAnimation = (animationRef, bodyRef, pageRef) => {
 
 const AboutMe = ({ data, transitionStatus }) => {
   return (
-    <>
-      <div style={{ overflow: "hidden" }}>
-        <Topic
-          data={data}
-          transitionStatus={transitionStatus}
-          Animation={Animation}
-          exitAnimation={exitAnimation}
-          enterAnimation={enterAnimation}
-          mobileShrink={0.6}
-        >
-          <h4>Hello, I am</h4>
-          <h1>Charles Jenkins</h1>
-          <h4 id="about">a software engineer</h4>
-          <BasicPageQuery data={data} />
-        </Topic>
-      </div>
-    </>
+    <Topic
+      data={data}
+      transitionStatus={transitionStatus}
+      Animation={Animation}
+      exitAnimation={exitAnimation}
+      enterAnimation={enterAnimation}
+      mobileShrink={0.6}
+    >
+      <h4>Hello, I am</h4>
+      <h1>Charles Jenkins</h1>
+      <h4 id="about">a software engineer</h4>
+      <BasicPageQuery data={data} />
+    </Topic>
   )
 }
 

@@ -110,33 +110,31 @@ const Ta = ({ data, props }) =>
 const Experience = ({ data, transitionStatus }) => {
   // console.log(data)
   return (
-    <div style={{ overflow: "hidden" }}>
-      <Topic
-        data={data}
-        transitionStatus={transitionStatus}
-        Animation={Animation}
-        exitAnimation={exitAnimation}
-        enterAnimation={enterAnimation}
-      >
-        <SectionTitle>My Experience</SectionTitle>
-        <ExperienceContainer>
-          <Tabs defaultActiveKey="internships" className="mb-3 colored-tabs">
-            <Tab eventKey="internships" title="Internships">
-              <Internships data={data} />
-            </Tab>
-            <Tab eventKey="clubs" title="Clubs">
-              <Clubs data={data} />
-            </Tab>
-            <Tab eventKey="research" title="Research">
-              <Research data={data} />
-            </Tab>
-            <Tab eventKey="ta" title="TA">
-              <Ta data={data} />
-            </Tab>
-          </Tabs>
-        </ExperienceContainer>
-      </Topic>
-    </div>
+    <Topic
+      data={data}
+      transitionStatus={transitionStatus}
+      Animation={Animation}
+      exitAnimation={exitAnimation}
+      enterAnimation={enterAnimation}
+    >
+      <SectionTitle>My Experience</SectionTitle>
+      <ExperienceContainer>
+        <Tabs defaultActiveKey="internships" className="mb-3 colored-tabs">
+          <Tab eventKey="internships" title="Internships">
+            <Internships data={data} />
+          </Tab>
+          <Tab eventKey="clubs" title="Clubs">
+            <Clubs data={data} />
+          </Tab>
+          <Tab eventKey="research" title="Research">
+            <Research data={data} />
+          </Tab>
+          <Tab eventKey="ta" title="TA">
+            <Ta data={data} />
+          </Tab>
+        </Tabs>
+      </ExperienceContainer>
+    </Topic>
   )
 }
 
