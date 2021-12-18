@@ -36,6 +36,10 @@ const navLinks = [
     name: "Contact",
     url: "/contact_me",
   },
+  {
+    name: "Blog",
+    url: "/blog",
+  },
 ]
 
 const SideNav = styled.nav`
@@ -210,7 +214,7 @@ const NavigationLayout = (props) => {
         <link rel="icon" href="favicon.ico" />
       </Helmet>
       <Body>
-        {!mobileWidth && (
+        {!mobileWidth && path() !== "blog" && (
           <SideNav>
             <Title className="no-underline" to="/">
               Charles Jenkins
