@@ -163,53 +163,6 @@ function transition(transitionLinkContext) {
   }
 }
 
-// function addSwipeListeners(ref, trans, path) {
-//   function process_touchstart(ev) {
-//     function handle_one_touch() {
-//       const beginning = ev.touches[0].clientY
-
-//       let lastMove = null
-
-//       function process_touchmove(move_ev) {
-//         lastMove = move_ev.touches[0].clientY
-//       }
-
-//       function process_touchend() {
-//         if (lastMove != null) {
-//           const diff = lastMove - beginning
-//           if ((diff >= 15) && (ref.scrollTop === 0)) {
-//             trans.up(path)
-//           } else if (
-//             (diff <= -15) && ((ref.scrollHeight - ref.offsetHeight) === (ref.scrollTop))
-//           ) {
-//             trans.down(path)
-//           }
-//         }
-
-//         ref.removeEventListener("touchend", process_touchend)
-//         ref.removeEventListener("touchmove", process_touchmove)
-//       }
-//       ref.addEventListener("touchend", process_touchend, false)
-//       ref.addEventListener("touchmove", process_touchmove, false)
-//     }
-
-//     // Use the event's data to call out to the appropriate gesture handlers
-//     switch (ev.touches.length) {
-//       case 1:
-//         handle_one_touch()
-//         break
-//       default:
-//         break
-//     }
-//   }
-
-//   ref.addEventListener("touchstart", process_touchstart, false)
-
-//   return () => {
-//     ref.removeEventListener("touchstart", addSwipeListeners)
-//   }
-// }
-
 const NavigationLayout = (props) => {
   const isMobile = (width) => width <= 800
 
