@@ -163,52 +163,52 @@ function transition(transitionLinkContext) {
   }
 }
 
-function addSwipeListeners(ref, trans, path) {
-  function process_touchstart(ev) {
-    function handle_one_touch() {
-      const beginning = ev.touches[0].clientY
+// function addSwipeListeners(ref, trans, path) {
+//   function process_touchstart(ev) {
+//     function handle_one_touch() {
+//       const beginning = ev.touches[0].clientY
 
-      let lastMove = null
+//       let lastMove = null
 
-      function process_touchmove(move_ev) {
-        lastMove = move_ev.touches[0].clientY
-      }
+//       function process_touchmove(move_ev) {
+//         lastMove = move_ev.touches[0].clientY
+//       }
 
-      function process_touchend() {
-        if (lastMove != null) {
-          const diff = lastMove - beginning
-          if ((diff >= 15) && (ref.scrollTop === 0)) {
-            trans.up(path)
-          } else if (
-            (diff <= -15) && ((ref.scrollHeight - ref.offsetHeight) === (ref.scrollTop))
-          ) {
-            trans.down(path)
-          }
-        }
+//       function process_touchend() {
+//         if (lastMove != null) {
+//           const diff = lastMove - beginning
+//           if ((diff >= 15) && (ref.scrollTop === 0)) {
+//             trans.up(path)
+//           } else if (
+//             (diff <= -15) && ((ref.scrollHeight - ref.offsetHeight) === (ref.scrollTop))
+//           ) {
+//             trans.down(path)
+//           }
+//         }
 
-        ref.removeEventListener("touchend", process_touchend)
-        ref.removeEventListener("touchmove", process_touchmove)
-      }
-      ref.addEventListener("touchend", process_touchend, false)
-      ref.addEventListener("touchmove", process_touchmove, false)
-    }
+//         ref.removeEventListener("touchend", process_touchend)
+//         ref.removeEventListener("touchmove", process_touchmove)
+//       }
+//       ref.addEventListener("touchend", process_touchend, false)
+//       ref.addEventListener("touchmove", process_touchmove, false)
+//     }
 
-    // Use the event's data to call out to the appropriate gesture handlers
-    switch (ev.touches.length) {
-      case 1:
-        handle_one_touch()
-        break
-      default:
-        break
-    }
-  }
+//     // Use the event's data to call out to the appropriate gesture handlers
+//     switch (ev.touches.length) {
+//       case 1:
+//         handle_one_touch()
+//         break
+//       default:
+//         break
+//     }
+//   }
 
-  ref.addEventListener("touchstart", process_touchstart, false)
+//   ref.addEventListener("touchstart", process_touchstart, false)
 
-  return () => {
-    ref.removeEventListener("touchstart", addSwipeListeners)
-  }
-}
+//   return () => {
+//     ref.removeEventListener("touchstart", addSwipeListeners)
+//   }
+// }
 
 const NavigationLayout = (props) => {
   const isMobile = (width) => width <= 800
@@ -235,39 +235,16 @@ const NavigationLayout = (props) => {
 
   const bodyRef = useRef()
 
+  // Scroll to the top of the page on navigation
   useEffect(() => {
-      const path = () => {
-        return window.location.pathname.replaceAll("/", "")
-      }
-      if (path() in order) {
-        const trans = transition(transitionLinkContext)
-        const ref = bodyRef.current
-        const handleScroll = () => {
-          if (mobileWidth) {
-            if (ref.scrollTop === ref.scrollTopMax) {
-              trans.down(path)
-            } else if (ref.scrollTop === 0) {
-              trans.up(path)
-            }
-          }
-        }
-
-        ref.addEventListener("scroll", handleScroll)
-
-        const removeListeners = addSwipeListeners(ref, trans, path)
-
-        return () => {
-          ref.removeEventListener("scroll", handleScroll)
-          removeListeners()
-        }
-      }
-  }, [mobileWidth, transitionLinkContext])
-
-
-  // Scroll to the top of the page on navigation 
-  useEffect(() => {
-    bodyRef.current.scrollTo(0,0)
+    if (bodyRef.current) {
+      bodyRef.current.scrollTo(0, 0)
+    }
   }, [props.location])
+
+  const path = () => {
+    return window.location.pathname.replaceAll("/", "")
+  }
 
   return (
     <div>
@@ -304,20 +281,25 @@ const NavigationLayout = (props) => {
           </SideNav>
         )}
         <MainSection ref={bodyRef}>
-          <Children>
-            {mobileWidth &&
-              props.location.pathname.replaceAll("/", "") !== "about_me" && (
-                <div className="arrow-container">
-                  <div className="arrow up"></div>
-                </div>
-              )}
-            {props.children}
-          </Children>
+          {mobileWidth &&
+            props.location.pathname.replaceAll("/", "") !== "about_me" && (
+              <button
+                className="arrow-container"
+                onClick={() => transition(transitionLinkContext).up(path)}
+              >
+                <div className="arrow up"></div>
+              </button>
+            )}
+
+          <Children>{props.children}</Children>
           {mobileWidth &&
             props.location.pathname.replaceAll("/", "") !== "contact_me" && (
-              <div className="arrow-container">
+              <button
+                className="arrow-container"
+                onClick={() => transition(transitionLinkContext).down(path)}
+              >
                 <div className="arrow down"></div>
-              </div>
+              </button>
             )}
           {(!mobileWidth ||
             props.location.pathname.replaceAll("/", "") === "contact_me") && (
