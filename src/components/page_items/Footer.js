@@ -10,6 +10,7 @@ const FooterContainer = styled.footer`
   padding: 10px 0 0 0;
   text-align: center;
   height: auto;
+  width: 100%;
   min-height: 70px;
   flex-shrink: 0;
 `

@@ -214,7 +214,7 @@ const NavigationLayout = (props) => {
         <link rel="icon" href="favicon.ico" />
       </Helmet>
       <Body>
-        {!mobileWidth && path() !== "blog" && (
+        {!mobileWidth && (
           <SideNav>
             <Title className="no-underline" to="/">
               Charles Jenkins
