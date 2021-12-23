@@ -1,7 +1,7 @@
 ---
-title: The Original
-date: 2020-10-01
-topic: Westworld
+title: How I Built this Website
+date: 2021-12-23T04:42:59.849Z
+brief: From React to SVG animations
 ---
 
 Westworld is a huge Western-themed park where human guests can interact with lifelike android "hosts", programmed to run through a daily narrative, without memory of prior days' events, and interact with guests. As hosts are unable to harm guests, guests often live out their darkest desires, including violent and sexual ones.
