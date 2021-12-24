@@ -1,15 +1,13 @@
 import React from "react"
-import { Link } from "gatsby"
+import "../styles/blog.scss"
 
 function BlogPost({pageContext}) {
   return (
-    <div className="wrapper">
-      <header>
-        <Link to="/">Go back to "Home"</Link>
-      </header>
+    <div>
       <main>
         <h1>{pageContext.title}</h1>
-          <em>{pageContext.date}</em>
+        <em>{pageContext.date}</em>
+        <hr></hr>
         <div dangerouslySetInnerHTML={{ __html: pageContext.html }} />
       </main>
     </div>

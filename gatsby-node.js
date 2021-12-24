@@ -1,21 +1,9 @@
-exports.createPages = ({ actions }) => {
-  const { createRedirect } = actions
-
-  createRedirect({
-    fromPath: `/`,
-    toPath: `/about_me`,
-    redirectInBrowser: true,
-    isPermanent: true,
-  })
-}
-
 exports.createResolvers = ({ createResolvers }) => {
   const resolvers = {
     Query: {
       allBlogPosts: {
         type: ["MarkdownRemark"],
         resolve: async (source, args, context, info) => {
-          // Whenever possible, use `limit` and `skip` on findAll calls to increase performance
           const { entries } = await context.nodeModel.findAll({
             type: "MarkdownRemark", query: {
               limit: args.limit, skip: args.skip, filter: {
@@ -34,7 +22,7 @@ exports.createResolvers = ({ createResolvers }) => {
 const path = require(`path`)
 // Create blog pages dynamically
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
   const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
   const result = await graphql(`
     query {
@@ -64,5 +52,12 @@ exports.createPages = async ({ graphql, actions }) => {
         html: edge.html
       }
     })
+  })
+
+  createRedirect({
+    fromPath: `/`,
+    toPath: `/about_me`,
+    redirectInBrowser: true,
+    isPermanent: true,
   })
 }

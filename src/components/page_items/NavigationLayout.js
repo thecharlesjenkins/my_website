@@ -83,19 +83,21 @@ const Body = styled.div`
   flex-direction: row;
   height: 100vh;
   overflow-y: hidden;
+  width: 100vw;
 `
 
 const MainSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-width: 0;
   overflow: auto;
+  width: 100vw;
 `
 
 const Children = styled.div`
+  display: inline-block;
+  max-width: 2000px; 
   padding-left: 10vw;
-  padding-right: 10vw;
 `
 
 const ResumeLink = ({ children }) => (
