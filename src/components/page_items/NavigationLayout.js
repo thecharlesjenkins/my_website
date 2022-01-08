@@ -95,9 +95,10 @@ const MainSection = styled.div`
 `
 
 const Children = styled.div`
-  display: inline-block;
+  display: flex;
   max-width: 2000px; 
-  padding-left: 10vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
 `
 
 const ResumeLink = ({ children }) => (
