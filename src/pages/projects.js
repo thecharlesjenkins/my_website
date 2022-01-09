@@ -73,12 +73,12 @@ const Projects = ({ data, transitionStatus }) => {
             >
               <ProjectTitle>{edge.node.frontmatter.title}</ProjectTitle>
 
-              <GatsbyImage
+              {edge.node.frontmatter.picture != null && <GatsbyImage
                 image={
                   edge.node.frontmatter.picture.childImageSharp.gatsbyImageData
                 }
                 alt={edge.node.frontmatter.title}
-              />
+              />}
             </a>
           </Card>
         ))}
