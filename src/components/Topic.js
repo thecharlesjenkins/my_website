@@ -47,6 +47,7 @@ const Topic = (props) => {
   return (
     <div style={{ overflow: "hidden" }}>
       <div ref={topicRef} style={{ ...props.starting }}>
+        
         <div
           style={{
             display: "flex",
@@ -55,7 +56,8 @@ const Topic = (props) => {
             transform: `scale(${mobileWidth && props.mobileShrink})`,
           }}
         >
-          <props.Animation ref={animationRef} />
+          {'Animation' in props &&
+           <props.Animation ref={animationRef} />}
         </div>
         <div ref={bodyRef}>{props.children}</div>
       </div>

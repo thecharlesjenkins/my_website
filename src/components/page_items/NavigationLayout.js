@@ -15,6 +15,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import GlobalStyle from "../../styles/GlobalStyle"
 import "../../styles/arrows.scss"
 
+import favicon from '../../images/favicon.ico'
+
 const navLinks = [
   {
     name: "About",
@@ -35,6 +37,10 @@ const navLinks = [
   {
     name: "Contact",
     url: "/contact_me",
+  },
+  {
+    name: "Blog",
+    url: "/blog",
   },
 ]
 
@@ -79,19 +85,22 @@ const Body = styled.div`
   flex-direction: row;
   height: 100vh;
   overflow-y: hidden;
+  width: 100vw;
 `
 
 const MainSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-width: 0;
   overflow: auto;
+  width: 100vw;
 `
 
 const Children = styled.div`
-  padding-left: 10vw;
-  padding-right: 10vw;
+  display: flex;
+  max-width: 2000px; 
+  padding-left: 5vw;
+  padding-right: 5vw;
 `
 
 const ResumeLink = ({ children }) => (
@@ -207,7 +216,7 @@ const NavigationLayout = (props) => {
         <meta charSet="utf-8" />
         <title>{data.site.siteMetadata.title}</title>
         <link rel="canonical" href="https://thecharlesjenkins.com" />
-        <link rel="icon" href="favicon.ico" />
+        <link rel="icon" href={favicon} />
       </Helmet>
       <Body>
         {!mobileWidth && (
