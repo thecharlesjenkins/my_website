@@ -1,9 +1,22 @@
-$darkBlue: #24305E;
+$darkBlue:  #24305E;
 $lightBlue: #A8D0E6;
-$darkPink: #F64C72;
+$darkPink:  #F64C72;
 $lightPink: #F172A1;
-$offwhite: #DCE7FF;
-$darkGray: #333F58;
+$offwhite:  #DCE7FF;
+$darkGray:  #333F58;
 $lightGray: #d3d3d3;
-$lightGreen: #71d99a;
+$lightGreen:#71d99a;
 $darkGreen: #116466;
+
+
+:export {
+    darkBlue:   $darkBlue;
+    lightBlue:  $lightBlue;
+    darkPink:   $darkPink;
+    lightPink:  $lightPink;
+    offwhite:   $offwhite;
+    darkGray:   $darkGray;
+    lightGray:  $lightGray;
+    lightGreen: $lightGreen;
+    darkGreen:  $darkGreen;
+}
