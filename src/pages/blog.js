@@ -23,9 +23,9 @@ const BlogEntry = ({ title, top_color, bottom_color, date, brief }) => (
   </BlogButton>
 )
 
+// Playing twice so disable for now
 const enterAnimation = (animationRef, bodyRef, pageRef) => {
   let timeline = gsap.timeline()
-  timeline.from(pageRef, { x: "100vw", duration: 1 })
   return timeline
 }
 
