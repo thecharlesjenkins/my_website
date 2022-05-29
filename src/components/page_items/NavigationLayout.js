@@ -98,6 +98,7 @@ const Children = styled.div`
   display: inline-block;
   max-width: 2000px; 
   padding-left: 10vw;
+  padding-right: 10vw
 `
 
 const ResumeLink = ({ children }) => (

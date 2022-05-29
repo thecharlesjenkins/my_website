@@ -93,7 +93,7 @@ export const query = graphql`
   {
     allMarkdownRemark(
       sort: { fields: [frontmatter___order], order: ASC }
-      filter: { fileAbsolutePath: { regex: "/projects/" } }
+      filter: { fileAbsolutePath: { regex: "/project_lists/" } }
     ) {
       edges {
         node {
@@ -102,7 +102,10 @@ export const query = graphql`
             link
             picture {
               childImageSharp {
-                gatsbyImageData(width: 300, height: 300, layout: FIXED)
+                gatsbyImageData(
+                  width: 300
+                  height: 300
+                  layout: FIXED)
               }
             }
           }

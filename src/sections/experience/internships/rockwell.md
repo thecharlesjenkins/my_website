@@ -3,7 +3,7 @@ company: "Rockwell Automation"
 title: "Embedded Software Engineer"
 link: "https://www.rockwellautomation.com/en-us/company/about-us.html"
 dates: May 2021 - August 2021
-order: 1
+order: 2
 ---
 
 - I worked closely on a scrum team filled with full time employees
