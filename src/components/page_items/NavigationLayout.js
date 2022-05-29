@@ -15,6 +15,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import GlobalStyle from "../../styles/GlobalStyle"
 import "../../styles/arrows.scss"
 
+import favicon from '../../images/favicon.ico'
+
 const navLinks = [
   {
     name: "About",
@@ -95,10 +97,10 @@ const MainSection = styled.div`
 `
 
 const Children = styled.div`
-  display: inline-block;
+  display: flex;
   max-width: 2000px; 
-  padding-left: 10vw;
-  padding-right: 10vw
+  padding-left: 5vw;
+  padding-right: 5vw;
 `
 
 const ResumeLink = ({ children }) => (
@@ -214,7 +216,7 @@ const NavigationLayout = (props) => {
         <meta charSet="utf-8" />
         <title>{data.site.siteMetadata.title}</title>
         <link rel="canonical" href="https://thecharlesjenkins.com" />
-        <link rel="icon" href="favicon.ico" />
+        <link rel="icon" href={favicon} />
       </Helmet>
       <Body>
         {!mobileWidth && (
