@@ -39,7 +39,7 @@
     "gatsby-remark-images": "~6.15.0",
     "gatsby-source-filesystem": "~4.15.0",
     "gatsby-transformer-inline-svg": "~1.2.0",
-    "gatsby-transformer-remark": "~5.15.0",
+    "gatsby-transformer-remark": "~5.25.1",
     "gatsby-transformer-sharp": "~4.15.0",
     "gsap": "~3.10.4",
     "immer": "~9.0.14",
